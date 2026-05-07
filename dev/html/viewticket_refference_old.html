@@ -1,0 +1,75 @@
+<div id="messageContainer">
+    <div class="reviews_ticket">
+       
+       <div class="well  {% if site['rtl'] %} rtl-content {% endif %}">
+          <!--   <div class="titcket-title">{{ ticket['thema'] }}</div> -->
+          {% if messageList %}
+          {% for message in messageList %}
+          {% if message['support'] == 0 %}
+          <div class="order_refill_content text-color2 ticket-message-block ticket-message-right row">
+          <div class="message col-md-11 col-md-offset-1">
+ 
+                <div class="info text-right">
+                   <strong>{{ message['author'] }}</strong>
+                   <small class="text-muted">{{ message['time'] }}</small>
+                </div>
+                <div class="ticket-message text-right">
+                   <div class="message">
+                      <p class="small_content">{{ message['message'] }}</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+          {% else %}
+          <div class="row ticket-message-block ticket-message-left">
+             <div class="col-md-11">
+                <div class="info">
+                   <strong>{{ message['author'] }}</strong>
+                   <small class="text-muted">{{ message['time'] }}</small>
+                   <span class="ticketReview"
+                      data-message="{{ message['message'] }}" 
+                      data-Rating="" 
+                      id="msg_{{ message['id'] }}" ></span>
+                </div>
+                <div class="ticket-message">
+                   <div class="message" id="msg_container_{{ message['id'] }}">{{ message['message'] }}</div>
+                </div>
+             </div>
+             <div class="col-md-1"></div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+       </div>
+    </div>
+    {% if canAddMessage %}
+    <div class="send_button">
+       <div class="form-group mt-4">
+          <form {% if site['rtl'] %} class="rtl-form"{% endif %} method="post" action="/viewticket/{{ ticket['id'] }}">
+          {% if error %}
+          <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+             {{ errorMessage }}
+          </div>
+          {% endif %}
+          <div class="form-group panel-border-top">
+             <label for="message" class="control-label">{{ lang('tickets.message') }}</label>
+             <textarea id="message" rows="5" class="form-control ticket_msg" name="TicketMessageForm[message]"></textarea>
+          </div>
+          <input type="hidden" name="_csrf" value="{{csrftoken}}">
+          <!-- <button type="submit" class="btn btn-primary btn-block">{{ lang('tickets.button.reply') }}</button> -->
+          <button type="submit" class="btn btn-primary btn-block">SEND MESSAGE</button>
+          </form>
+       </div>
+    </div>
+    {% endif %}
+ </div>
+ <script>
+    const homeURL =  location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/';
+        const currentURL = window.location.href;
+          console.log(currentURL)
+       // on submit ticket message redirect to ticket page
+          if(currentURL.includes('viewticket') ){
+      window.location.href = homeURL+"tickets";
+        }
+ </script>

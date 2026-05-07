@@ -1,0 +1,68 @@
+{% if blog %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="well {% if site['rtl'] %} rtl-content {% endif %}">
+                    {{ blog }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if posts %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% for post in posts %}
+                <div class="well">
+                    <h4>{{ post['title'] }}</h4>
+                    {% if post['image'] %} <p><img src="{{ post['image'] }}" alt="{{ post['title'] }}" class="img-responsive">
+                    </p> {% endif %}
+                    <div>{{ post['content'] }}</div>
+                    <a href="{{ page_url('blog') }}/{{ post['url'] }}" class="btn btn-primary">{{ lang('blog.link') }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% if pagination['count'] > 10 %}
+                <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                    {% if pagination['current'] != 1 %}
+                    <li>
+                        <a href="{{ page['url'] }}{% if pagination['last'] %}?page={{ pagination['last'] }}{% endif %}"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% set r, l = 3, 3 %}
+                    {% if pagination['current'] == 1 %}
+                    {% set r = 6 %}
+                    {% endif %}
+                    {% if pagination['current'] == 2 %}
+                    {% set r = 5 %}
+                    {% endif %}
+                    {% if pagination['current'] >= pagination['pages'] %}
+                    {% set l = 5 %}
+                    {% endif %}
+                    {% for i in 1..ceil(pagination['pages']) %}
+                    {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                        <li{% if i == pagination['current'] %} class="active"{% endif %}><a
+                            href="{{ page['url'] }}{% if i != 1 %}?page={{ i }}{% endif %}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if pagination['current'] < pagination['pages'] %}
+                    <li>
+                        <a href="{{ page['url'] }}{% if pagination['next'] %}?page={{ pagination['next'] }}{% endif %}"
+                        aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

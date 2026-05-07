@@ -1,0 +1,110 @@
+<div class="refund-page">
+    <div>
+        <h3 class="fw-bold page-title">Refunds</h3>
+        <p class="page-description">Refund details are available for the past 90 days.</p>
+    </div>
+
+    <div class="mt-3 mb-4">                                                                                            
+        <div class="row gx-2">
+            <div class="col-lg-2 col-md-5 col-sm-12 mt-2">
+                 <select class="form-control form-select" id="sel_status" value="{{ status }}">
+                    <option value="/orders/refunds" {% if 'all' == order_status %} selected {% endif %} data-href="/orders/refunds">
+                        All
+                    </option>  
+                    <option value="/orders/refunds?order_status=canceled" {% if 'canceled' == order_status %} selected {% endif %} data-href="/orders/refunds?order_status=canceled">
+                        Canceled
+                    </option>
+                    <option value="/orders/refunds?order_status=partial" {% if 'partial' == order_status %} selected {% endif %} data-href="/orders/refunds?order_status=partial">
+                        Partial
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-7 col-sm-12 mt-2">
+                <form action="{{ page['url'] }}" method="get">
+                    <div class="input-group-custom">
+                        <input type="text" name="search" id="searchService" class="form-control" value="{{ search }}" placeholder="{{ lang('general.search.placeholder') }}">
+                        <span class="input-group-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="refund-wrapper mt-3">
+        <div class="card table-responsive mt-3">
+            <table class="table mt-3 {% if site['rtl'] %} rtl-table {% endif %}" style="margin-bottom: 11px;">
+                <thead>
+                    <tr>
+                        <th class="color-gray-400">{{ lang('orders.refunds.id') }}</th>
+                        <th class="color-gray-400">{{ lang('orders.refunds.amount') }}</th>
+                        <th class="color-gray-400">{{ lang('orders.refunds.status') }}</th>
+                        <th class="color-gray-400">{{ lang('orders.refunds.date') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for refund in refundList %}
+                    <tr>
+                        <td><a href="{{ page_url('orders') }}?search={{ refund['order_id'] }}">{{ refund['order_id'] }}</a></td>
+                        <td class="text-nowrap">{{ refund['amount'] }}</td>
+                        <td>{{ refund['order_status_name'] }}</td>
+                        <td>{{ refund['date'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    
+            <div class="mx-4">
+                {% if pagination['count'] > 100 %}
+                {% if searchList %}
+                    {% set params = {} %}
+                    {% for search in searchList %}
+                        {% set params = params | merge([search['name'] ~ '=' ~ search['value']]) %}
+                    {% endfor %}
+                    {% set params = '?' ~ params|join('&') %}
+                {% endif %}
+                <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                    {% if pagination['current'] != 1 %}
+                    <li>
+                        <a href="{{ page['url'] }}?order_status={{ order_status }}&page={{ pagination['last'] }}{% if search %}&search={{ search }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">Previous</span>
+                        </a>
+                    </li>
+                    {% endif %}
+        
+                    {% set r, l = 3, 3 %}
+    
+                    {% if pagination['current'] == 1 %}
+                        {% set r = 6 %}
+                    {% endif %}
+        
+                    {% if pagination['current'] == 2 %}
+                        {% set r = 5 %}
+                    {% endif %}
+        
+                    {% if pagination['current'] >= pagination['pages'] %}
+                        {% set l = 5 %}
+                    {% endif %}
+            
+                    {% for i in 1..ceil(pagination['pages']) %}
+                        {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                            <li{% if i == pagination['current'] %} class="active"{% endif %}>
+                                <a href="{{ page['url'] }}?order_status={{ order_status }}&page={{ i }}{% if search %}&search={{ search }}{% endif %}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+            
+                    {% if pagination['current'] < pagination['pages'] %}
+                    <li>
+                        <a href="{{ page['url'] }}?order_status={{ order_status }}&page={{ pagination['next'] }}{% if search %}&search={{ search }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">Next</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

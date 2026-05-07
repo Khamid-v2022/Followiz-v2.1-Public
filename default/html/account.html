@@ -1,0 +1,204 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            {% if success %}
+                <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ successText }}
+                </div>
+            {% endif %}
+            {% if twofactorauth.success %}
+                <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close">&times;</button>
+                    {{ twofactorauth.success }}
+                </div>
+            {% endif %}
+    
+            <div class="well">
+                {% if successChangeEmail %}
+                    <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ successChangeEmailMessage }}
+                    </div>
+                {% endif %}
+                {% if errorChangeEmail %}
+                    <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ errorChangeEmailMessage }}
+                    </div>
+                {% endif %}
+        
+                <div class="form-group">
+                    <label for="username" class="control-label">{{ lang('account.username') }}</label>
+                    <input type="text" class="form-control" id="username" value="{{ user['username'] }}" readonly>
+                </div>
+        
+                <div class="form-group">
+                    <label for="email" class="control-label">{{ lang('account.email') }}</label>
+                    <input type="text" class="form-control" id="email" value="{{ user['email'] }}" readonly>
+                </div>
+                <button class="btn btn-primary" id="changeEmailLink">
+                    {{ lang('confirmemail.button.change') }}
+                </button>
+            </div>
+    
+            <div class="well">
+                <form {% if site['rtl'] %}class="rtl-form"{% endif %} method="post" action="">
+                    {% if error %}
+                        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ errorText }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="current" class="control-label">{{ lang('account.password.current') }}</label>
+                        <input type="password" class="form-control" id="current" name="SettingsFrom[current_password]">
+                    </div>
+                    <div class="form-group">
+                        <label for="new" class="control-label">{{ lang('account.password.new') }}</label>
+                        <input type="password" class="form-control" id="new" name="SettingsFrom[password]">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm" class="control-label">{{ lang('account.password.confirm') }}</label>
+                        <input type="password" class="form-control" id="confirm" name="SettingsFrom[confirm_password]">
+                    </div>
+        
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                    <button type="submit" class="btn btn-primary">{{ lang('account.password.button') }}</button>
+                </form>
+            </div>
+    
+            <div class="well">
+                <div id="2fa-approve-error-block"
+                    style="{% if twofactorauth.error %} display: block; {% else %} display: none; {% endif %}"
+                    class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close">&times;</button>
+                    <span id="2fa-error-text">{{ twofactorauth.error }}</span>
+                </div>
+    
+                <label class="control-label">
+                    {{ lang('2fa.title') }}
+                    {% if not twofactorauth.activated %}
+                    {{ lang('account.2fa.enabled') }}
+                    {% endif %}
+                </label>
+        
+                <!-- 2FA Form generate code -->
+                <form id="2fa-generate-form"
+                        method="post" {% if site['rtl'] %} class="rtl-form" {% endif %}
+                        action="{{ twofactorauth.url.generate }}"
+                        style="{% if twofactorauth.active_code %} display: none; {% else %} display: block; {% endif %}">
+                    <p>{{ lang('account.2fa.description') }}</p>
+                    <input type="hidden" name="enabled" value="{{ twofactorauth.activated }}">
+                    <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                    <button id="2fa-generate" type="submit" class="btn btn-primary">
+                    {% if twofactorauth.activated %}
+                        {{ lang('account.2fa.enable') }}
+                    {% else %}
+                        {{ lang('account.2fa.disable') }}
+                    {% endif %}
+                    </button>
+                </form>
+    
+                <!-- 2FA Form approve code -->
+                <form id="2fa-approve-form" method="post" {% if site['rtl'] %} class="rtl-form"{% endif %}
+                        action="{{ twofactorauth.url.approve }}"
+                        style="{% if twofactorauth.active_code %} display: block; {% else %} display: none; {% endif %}">
+                    <p>{{ lang('2fa.sent') }}</p>
+                    <div class="form-group">
+                        <label for="code" class="control-label">{{ lang('2fa.code') }}</label>
+                        <input type="text" id="code" name="code" class="form-control">
+                    </div>
+                    <input type="hidden" name="enabled" value="{{ twofactorauth.activated }}">
+                    <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                    <button id="2fa-approve" type="submit" class="btn btn-primary">
+                    {% if twofactorauth.activated %}
+                        {{ lang('account.2fa.enable') }}
+                    {% else %}
+                        {{ lang('account.2fa.disable') }}
+                    {% endif %}
+                    </button>
+                </form>
+            </div>
+    
+            {% if site['languages']|length > 1 %}
+            <div class="well">
+                <form {% if site['rtl'] %}class="rtl-form"{% endif %} method="post" action="">
+                    <div class="form-group">
+                        <label for="language" class="control-label">{{ lang('account.language') }}</label>
+                        <select class="form-control" id="language" name="SettingsFrom[lang]">
+                        {% for language in site['languages'] %}
+                            <option value="{{ language['code'] }}" {% if language['code'] == user['lang'] %}selected{% endif %}>{{ language['name'] }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                    <button type="submit" class="btn btn-primary">{{ lang('account.save') }}</button>
+                </form>
+            </div>
+            {% endif %}
+    
+            <div class="well">
+                <form {% if site['rtl'] %}class="rtl-form"{% endif %} action="" method="post">
+                    <div class="form-group">
+                        <label for="timezone" class="control-label">{{ lang('account.timezone') }}</label>
+                        <select name="SettingsFrom[timezone]" id="timezone" class="form-control">
+                            {% for timezone,label in timezones %}
+                            <option value="{{timezone}}" {% if timezone == user['timezone'] %}selected{% endif %}>{{label}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+        
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                    <button type="submit" class="btn btn-primary">{{ lang('account.save') }}</button>
+                </form>
+            </div>
+            <div class="well">
+                <form {% if site['rtl'] %}class="rtl-form"{% endif %} action="{{ page['url'] }}/newkey" method="post">
+                    <div class="form-group">
+                        <label for="key" class="control-label">{{ lang('account.api_key') }}</label>
+                        {% if user['is_generated_apikey'] %}
+                            <input type="text" class="form-control" id="api_key" value="{{ user['apikey'] }}" readonly>
+                            <small class="help-block">{{ lang('account.api_key.date') }} {{ user['apikey_created'] }}</small>
+                        {% endif %}
+                    </div>
+        
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                    <button type="submit" class="btn btn-primary">{{ lang('account.generate_key') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<!-- Change email -->
+<div class="modal fade" tabindex="-1" role="dialog" id="changeEmailModal" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <form id="changeEmailForm" class="modal-content{% if site['rtl'] %} rtl-form{% endif %}" method="post" action="">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ lang('confirmemail.change_email.title') }}</h4>
+            </div>
+            <div class="modal-body">
+                <div id="changeEmailError" class="error-summary alert alert-dismissible alert-danger hidden{% if site['rtl'] %} rtl-alert {% endif %}"></div>
+                <div class="form-group">
+                    <label for="current-email">{{ lang('confirmemail.change_email.current_email') }}</label>
+                    <span class="form-control" id="current-email" disabled>{{ user['email'] }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="new-email">{{ lang('confirmemail.change_email.new_email') }}</label>
+                    <input type="email" class="form-control" id="new-email" name="ChangeEmailForm[email]">
+                </div>
+                <div class="form-group">
+                <label for="current-password">{{ lang('confirmemail.change_email.current_password') }}</label>
+                <input type="password" class="form-control" id="current-password" name="ChangeEmailForm[password]">
+                </div>
+                <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ lang('confirmemail.change_email.close') }}</button>
+                <button type="submit" class="btn btn-primary" id="changeEmailSubmitBtn">{{ lang('confirmemail.change_email.submit') }}</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,825 @@
+<div class="faq-page">
+    <div>
+        <h3 class="fw-bold page-title">Place a New Order</h3>
+        <p class="page-description">You can use this page for single or bulk orders.</p>
+    </div>
+
+    <nav>
+        <div class="nav mt-5" id="nav-tab" role="tablist">
+            <a class="custom-tag text-decoration-none mb-3 active" data-bs-toggle="tab" data-bs-target="#service" role="tab" aria-controls="service" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.20667 0.333008H8.794C10.8533 0.333008 12 1.51967 12 3.55301V10.4397C12 12.5063 10.8533 13.6663 8.794 13.6663H3.20667C1.18 13.6663 0 12.5063 0 10.4397V3.55301C0 1.51967 1.18 0.333008 3.20667 0.333008ZM3.38667 3.43968V3.43301H5.37933C5.66667 3.43301 5.9 3.66634 5.9 3.95234C5.9 4.24634 5.66667 4.47967 5.37933 4.47967H3.38667C3.09933 4.47967 2.86667 4.24634 2.86667 3.95967C2.86667 3.67301 3.09933 3.43968 3.38667 3.43968ZM3.38667 7.49301H8.61333C8.9 7.49301 9.13333 7.25968 9.13333 6.97301C9.13333 6.68634 8.9 6.45234 8.61333 6.45234H3.38667C3.09933 6.45234 2.86667 6.68634 2.86667 6.97301C2.86667 7.25968 3.09933 7.49301 3.38667 7.49301ZM3.38667 10.5397H8.61333C8.87933 10.513 9.08 10.2857 9.08 10.0197C9.08 9.74634 8.87933 9.51968 8.61333 9.49301H3.38667C3.18667 9.47301 2.99333 9.56634 2.88667 9.73968C2.78 9.90634 2.78 10.1263 2.88667 10.2997C2.99333 10.4663 3.18667 10.5663 3.38667 10.5397Z"/>
+                </svg>
+                <span>Service</span>
+            </a>
+            <a class="custom-tag text-decoration-none mb-3"  data-bs-toggle="tab" data-bs-target="#orders" role="tab" aria-controls="orders" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.75799 1.96872C4.75799 1.85015 4.65502 1.75719 4.53792 1.77583C2.79974 2.05254 1.66666 3.42884 1.66666 5.39503V10.6951C1.66666 12.6587 2.79977 14.0319 4.53799 14.3077C4.65507 14.3263 4.75799 14.2333 4.75799 14.1148V1.96872Z" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1997 10.428H10.1611V10.7213C10.1611 10.9973 9.93705 11.2213 9.66105 11.2213C9.38505 11.2213 9.16105 10.9973 9.16105 10.7213V10.428H8.44972C8.17372 10.428 7.94972 10.204 7.94972 9.92801C7.94972 9.65201 8.17372 9.42801 8.44972 9.42801H10.1997C10.4437 9.42801 10.6424 9.23067 10.6424 8.98801C10.6424 8.74534 10.4437 8.54801 10.1997 8.54801H9.12305C8.32772 8.54801 7.68039 7.89867 7.68039 7.10134C7.68039 6.30667 8.32772 5.66134 9.12305 5.66134H9.16105V5.36801C9.16105 5.09201 9.38505 4.86801 9.66105 4.86801C9.93705 4.86801 10.1611 5.09201 10.1611 5.36801V5.66134H10.8731C11.1491 5.66134 11.3731 5.88534 11.3731 6.16134C11.3731 6.43734 11.1491 6.66134 10.8731 6.66134H9.12305C8.87905 6.66134 8.68039 6.85867 8.68039 7.10134C8.68039 7.34734 8.87905 7.54801 9.12305 7.54801H10.1997C10.9951 7.54801 11.6424 8.19334 11.6424 8.98801C11.6424 9.78201 10.9951 10.428 10.1997 10.428ZM10.8111 1.70801H5.95772C5.84726 1.70801 5.75772 1.79755 5.75772 1.90801V14.1747C5.75772 14.2851 5.84726 14.3747 5.95772 14.3747H10.8104C12.9177 14.3747 14.3331 12.896 14.3331 10.6947V5.39467C14.3331 3.19001 12.9177 1.70801 10.8111 1.70801Z" />
+                </svg>
+                <span>Orders</span>
+            </a>
+            <a class="custom-tag text-decoration-none mb-3" data-bs-toggle="tab" data-bs-target="#payments" role="tab" aria-controls="payments" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.13625 1.34566C5.68935 1.34566 5.30916 1.65621 5.20244 2.07477H8.79091C8.68419 1.65621 8.304 1.34566 7.85711 1.34566H6.13625ZM9.80475 2.07477H11.1254C12.5261 2.07477 13.6667 3.2292 13.6667 4.64691C13.6667 4.64691 13.6267 5.24708 13.6133 6.08285C13.612 6.14901 13.58 6.21382 13.5273 6.25298C13.2064 6.48994 12.913 6.68572 12.8863 6.69922C11.7791 7.44183 10.4924 7.96436 9.12174 8.22428C9.03236 8.24183 8.94432 8.19525 8.89896 8.11558C8.51477 7.44993 7.79708 7.01652 6.99668 7.01652C6.20161 7.01652 5.47725 7.44521 5.08172 8.11153C5.0357 8.18985 4.94899 8.23508 4.86027 8.2182C3.50093 7.95761 2.21428 7.43576 1.11373 6.70597L0.473414 6.2604C0.420054 6.22665 0.386704 6.16589 0.386704 6.09838C0.366694 5.75408 0.333344 4.64691 0.333344 4.64691C0.333344 3.2292 1.47391 2.07477 2.87461 2.07477H4.1886C4.31533 1.09587 5.13575 0.333008 6.13625 0.333008H7.85711C8.85761 0.333008 9.67802 1.09587 9.80475 2.07477ZM13.4399 7.54316L13.4132 7.55667C12.0659 8.4613 10.4451 9.06214 8.74422 9.31193C8.5041 9.34569 8.26397 9.19041 8.19727 8.94738C8.05053 8.39379 7.57696 8.02924 7.01001 8.02924H7.00334H6.99C6.42305 8.02924 5.94948 8.39379 5.80274 8.94738C5.73604 9.19041 5.49592 9.34569 5.2558 9.31193C3.55495 9.06214 1.93414 8.4613 0.586804 7.55667C0.580134 7.54992 0.513434 7.50941 0.460074 7.54316C0.400044 7.57692 0.400044 7.65793 0.400044 7.65793L0.446734 11.101C0.446734 12.5187 1.58063 13.6663 2.98133 13.6663H11.012C12.4127 13.6663 13.5466 12.5187 13.5466 11.101L13.6 7.65793C13.6 7.65793 13.6 7.57692 13.5399 7.54316C13.5066 7.52291 13.4666 7.52966 13.4399 7.54316ZM7.49692 10.3718C7.49692 10.6554 7.27681 10.8782 6.99668 10.8782C6.7232 10.8782 6.49642 10.6554 6.49642 10.3718V9.50096C6.49642 9.22417 6.7232 8.99463 6.99668 8.99463C7.27681 8.99463 7.49692 9.22417 7.49692 9.50096V10.3718Z"/>
+                </svg>
+                <span>Payments</span>
+            </a>
+            <a class="custom-tag text-decoration-none mb-3" data-bs-toggle="tab" data-bs-target="#account" role="tab" aria-controls="account" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.52933 3.86038C9.52933 5.8184 7.95941 7.38841 6.00001 7.38841C4.04127 7.38841 2.47068 5.8184 2.47068 3.86038C2.47068 1.90236 4.04127 0.333008 6.00001 0.333008C7.95941 0.333008 9.52933 1.90236 9.52933 3.86038ZM6 13.6663C3.10825 13.6663 0.666672 13.1963 0.666672 11.383C0.666672 9.56897 3.12359 9.11563 6 9.11563C8.89242 9.11563 11.3333 9.58563 11.3333 11.399C11.3333 13.213 8.87642 13.6663 6 13.6663Z"/>
+                </svg>
+                <span>Account</span>
+            </a>
+            <a class="custom-tag text-decoration-none mb-3" data-bs-toggle="tab" data-bs-target="#child-panel" role="tab" aria-controls="child-panel" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.73449 1.66699C4.67219 1.66699 3.78329 2.04533 3.16159 2.71213C2.5423 3.37633 2.21257 4.30013 2.21257 5.35107V5.82845H14.8786V5.35107C14.8786 4.30059 14.5507 3.37675 13.9323 2.71232C13.3113 2.0452 12.4223 1.66699 11.3573 1.66699H5.73449ZM4.73861 3.86751C4.46247 3.86751 4.23861 4.09137 4.23861 4.36751C4.23861 4.64365 4.46247 4.86751 4.73861 4.86751H4.77558C5.05172 4.86751 5.27558 4.64365 5.27558 4.36751C5.27558 4.09137 5.05172 3.86751 4.77558 3.86751H4.73861ZM6.39561 3.86751C6.11947 3.86751 5.89561 4.09137 5.89561 4.36751C5.89561 4.64365 6.11947 4.86751 6.39561 4.86751H6.43259C6.70873 4.86751 6.9326 4.64365 6.9326 4.36751C6.9326 4.09137 6.70873 3.86751 6.43259 3.86751H6.39561ZM8.05327 3.86751C7.77713 3.86751 7.55327 4.09137 7.55327 4.36751C7.55327 4.64365 7.77713 4.86751 8.05327 4.86751H8.0902C8.3664 4.86751 8.5902 4.64365 8.5902 4.36751C8.5902 4.09137 8.3664 3.86751 8.0902 3.86751H8.05327Z" fill="#838C9B"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.21257 10.6486V6.82812H14.8786V10.6486C14.8786 11.6991 14.5507 12.6229 13.9322 13.2874C13.3111 13.9545 12.422 14.3327 11.3567 14.3327H5.73449C4.66949 14.3327 3.78041 13.9545 3.15925 13.2874C2.54059 12.623 2.21257 11.6991 2.21257 10.6486ZM9.04553 9.14399C9.04553 8.86779 8.82167 8.64399 8.54553 8.64399C8.2694 8.64399 8.04553 8.86779 8.04553 9.14399V11.662C8.04553 11.9382 8.2694 12.162 8.54553 12.162C8.82167 12.162 9.04553 11.9382 9.04553 11.662V9.14399ZM6.84113 10.0885C6.84113 9.81232 6.61729 9.58846 6.34115 9.58846C6.06501 9.58846 5.84115 9.81232 5.84115 10.0885V11.6621C5.84115 11.9382 6.06501 12.1621 6.34115 12.1621C6.61729 12.1621 6.84113 11.9382 6.84113 11.6621V10.0885ZM11.2505 10.923C11.2505 10.6469 11.0267 10.423 10.7505 10.423C10.4744 10.423 10.2505 10.6469 10.2505 10.923V11.6618C10.2505 11.9379 10.4744 12.1618 10.7505 12.1618C11.0267 12.1618 11.2505 11.9379 11.2505 11.6618V10.923Z"/>
+                </svg>
+                <span>Child Panel</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="tab-content faq-details row mt-2">
+        <!-- services -->
+        <div class="tab-pane fade show active" id="service"  role="tabpanel" tabindex="0" aria-labelledby="service-tab">
+            <div class="accordion row" id="services_tab_accordion">
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq1-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq1" aria-expanded="false" aria-controls="service_tab_faq1">
+                                Are the services on Followiz.com safe to use?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq1" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq1-heading">
+                            <div class="accordion-body">
+                                While we cannot guarantee that our services are 100% safe, we can assure you that we have not received any reports of links being banned or penalized as a result of using our services. We take measures to minimize any potential risks, but it's essential to exercise caution and adhere to platform policies when using any promotional services.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq2-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq2" aria-expanded="false" aria-controls="service_tab_faq2">
+                                Is it possible to receive a discount on services?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq2" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq2-heading">
+                            <div class="accordion-body">
+                                Unfortunately, we do not provide any discounts on our services. The prices you see listed are the final prices you will pay. We strive to maintain transparency and fairness in our pricing structure for all our users.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq3-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq3" aria-expanded="false" aria-controls="service_tab_faq3">
+                                Are my orders guaranteed not to drop?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq3" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq3-heading">
+                            <div class="accordion-body">
+                                While we cannot provide an absolute guarantee that orders will never drop, many of our services come with a "refill" feature. This means that if you experience a drop within the specified refill period, we will replenish your order at no extra cost.<br>It's important to note that changes in social media algorithms or updates can occasionally lead to drops in previous orders. Therefore, while we strive to provide the best service possible, some factors beyond our control may impact order stability.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq4-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq4" aria-expanded="false" aria-controls="service_tab_faq4">
+                                What criteria determine why some services are labeled as "Best Sellers"?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq4" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq4-heading">
+                            <div class="accordion-body">
+                                Services are designated as "Best Sellers" based on their popularity and positive feedback from our clients. This label is used to highlight services that have consistently delivered excellent results and value to our users. It helps you easily identify and choose services that have been highly regarded by other clients, making it simpler to select the right service for your needs on our site.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq5-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq5" aria-expanded="false" aria-controls="service_tab_faq5">
+                                How do I read a service name?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq5" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq5-heading">
+                            <div class="accordion-body">
+                                Service names are structured as follows: "Service Type [Start Time - Speed/Day - Maximum] [Refill Period]."<br>
+                                For example, if you see a service named "Youtube Views [1h - 1m/d - 5m] [r30]," it means:<br>
+                                "Youtube Views" is the type of service. <br>
+                                "1h" indicates a 1-hour start time for the service. <br>
+                                "1m/d" represents a speed of 1 million views per day. <br>
+                                "5m" denotes a maximum of 5 million views.<br>
+                                "[r30]" signifies that there is a 30-day refill period for this service. 
+                                <br>In summary, the service name provides essential details about the service type, start time, daily speed, maximum quantity, and any refill periods associated with it.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq6-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq6" aria-expanded="false" aria-controls="service_tab_faq6">
+                                What does the emoji means in a service name?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq6" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq6-heading">
+                            <div class="accordion-body">
+                                Emojis in a service name serve as visual indicators to provide quick information about the service:<br>
+                                ♻ indicates that the service has the ""Refill Button"" enabled, allowing for potential refills.<br>
+                                ⛔ signifies that the ""Cancellation Button"" is enabled, allowing you to cancel the service if needed.<br>
+                                ⚡ denotes ""Fast Start Services,"" indicating that the service has a rapid initiation.<br>
+                                🔥 represents ""Popular Services,"" indicating high demand and popularity among users.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq7-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq7" aria-expanded="false" aria-controls="service_tab_faq7">
+                                What is the start time & speed after placing an order?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq7" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq7-heading">
+                            <div class="accordion-body">
+                                The start time and speed of your order depend on the specific service you choose. When you select a service from the drop-down menu, you will see a description box that provides all the essential details for that particular service. This includes information such as the estimated start time, minimum and maximum order quantities, and the average daily speed of delivery. Please refer to this information to understand when your order will begin and how quickly it will be processed.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq8-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq8" aria-expanded="false" aria-controls="service_tab_faq8">
+                                What is a refill?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq8" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq8-heading">
+                            <div class="accordion-body">
+                                A refill is a service provided to address potential drops in social media metrics. Social media platforms frequently conduct updates to remove inactive or spam accounts. These updates can occasionally result in a decrease in the numbers associated with your order, such as followers or likes.<br>
+                                If such a drop occurs and your order falls within the specified refill period, all you need to do is open a support ticket with your Order ID. We will then replenish your order at no additional cost.<br>
+                                For example, if you see "[r30]" in the service description, it means that we will offer free refills for the next 30 days after your order was initially created to ensure the stability of your metrics.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq9-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq9" aria-expanded="false" aria-controls="service_tab_faq9">
+                                Can I use your services in conjunction with other services simultaneously?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq9" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq9-heading">
+                            <div class="accordion-body">
+                                While it's not recommended to use our services simultaneously with others, it's essential to note that ad campaigns or external enhancements from other sources do not impact our delivery times or process. We solely rely on the start counts and current counts as recorded by our system.<br>
+                                However, please be aware that the services you use alongside ours will not accumulate or combine their effects, so it's crucial to plan your strategy accordingly.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq10-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq10" aria-expanded="false" aria-controls="service_tab_faq10">
+                                How can I mark a service as a favorite?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq10" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq10-heading">
+                            <div class="accordion-body">
+                                To designate a service as a favorite, simply follow these steps:<br>
+                                <br>
+                                1. Navigate to either the <a href="/?page=neworder">New Order</a>,<a href="/services">Services</a>, or <a href="/orders">Order History</a> page.<br>
+                                2. Locate the service you want to favorite.<br>
+                                3. Assign a 5-star rating to the chosen service.<br>
+                                4. Once rated, the service will automatically be added to your list of favorite services on the <a href="/?page=neworder">New Order</a> page.<br>
+                                This makes it convenient for you to quickly access and reorder your preferred services.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq11-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq11" aria-expanded="false" aria-controls="service_tab_faq11">
+                                How frequently do you update service names?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq11" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq11-heading">
+                            <div class="accordion-body">
+                                Service names are updated in response to user reports indicating that the actual service speed differs from what is stated on our website. We do not have an automatic mechanism for verifying service speeds, so user feedback plays a vital role in ensuring the accuracy of our service names.<br>
+                                Your input is greatly appreciated in maintaining the quality and transparency of our platform.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="service_tab_faq12-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service_tab_faq12" aria-expanded="false" aria-controls="service_tab_faq12">
+                                With so many services available, how do I decide which one to use?
+                            </button>
+                        </h2>
+                        <div id="service_tab_faq12" class="accordion-collapse collapse" data-bs-parent="#services_tab_accordion" aria-labelledby="service_tab_faq12-heading">
+                            <div class="accordion-body">
+                                To make the selection process easier, we recommend using our "Best Sellers." These services have been carefully chosen by our customers and are recognized as our top-performing and most popular options. This way, you can benefit from the services that have received high ratings and positive feedback from other users, helping you make a well-informed decision.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+        <!-- / services -->
+
+        <!-- Orders -->
+        <div class="tab-pane fade" id="orders" role="tabpanel" tabindex="0" aria-labelledby="orders-tab">
+            <div class="accordion row" id="orders_tab_accordion">
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq1-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq1" aria-expanded="false" aria-controls="orders_tab_faq1">
+                                How do I place an order?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq1" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq1-heading">
+                            <div class="accordion-body">
+                                To place an order, follow these simple steps:<br>
+                                <br>
+                                1.Category: Begin by selecting the social media platform or account you wish to boost.<br>
+                                2. Service: Choose the specific service type that aligns with your goals.<br>
+                                3. Description: Review the service description, which provides essential information such as service quality, start time, daily speed, minimum and maximum order quantities, refill warranty, and the price per 1,000 units.<br>
+                                4. Details: Take note of any additional details, samples, or relevant information provided about the selected service.<br>
+                                5. Link: Enter the correct username or page link associated with your social media account. Ensure the accuracy of this information, as changes may not be possible once the order is placed.<br>
+                                6. Quantity: Specify the desired quantity for your order. Avoid using commas or dots in quantity values; for example, use "1000" instead of "1,000."<br>
+                                7. Dripfeed: If you wish to place the same order multiple times automatically, click this option.<br>
+                                <br>
+                                By following these steps, you can successfully place an order to boost your social media presence or engagement.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq2-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq2" aria-expanded="false" aria-controls="orders_tab_faq2">
+                                How do I use the Mass Order feature?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq2" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq2-heading">
+                            <div class="accordion-body">
+                                To utilize the Mass Order feature, follow these steps: <br>
+                                1. Retrieve the Service ID: Visit our Services List at https://followiz.com/services to find the Service ID for the service you wish to use. <br>
+                                2. Format Your Order: On each line, create an order entry using the following format: Service ID | Link | Quantity. For example, if you want to add 1000 Instagram followers to three different accounts (abcd, asdf, qwer) using Service ID 885, your entries would look like this:<br>
+                                885|abcd|1000 <br>
+                                885|asdf|1000 <br>
+                                885|qwer|1000 <br>
+                                <br>
+                                By following this format, you can efficiently use the Mass Order feature to place multiple orders for different accounts and quantities, streamlining the process for your convenience.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq3-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq3" aria-expanded="false" aria-controls="orders_tab_faq3">
+                                What is drip feed order?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq3" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq3-heading">
+                            <div class="accordion-body">
+                                Drip Feed is a service we offer that allows you to automatically place the same order multiple times over a specified interval. Here's how it works:<br>
+                                <br>
+                                Quantity: This represents the total quantity of the service you want.<br>
+                                Runs: The number of times you want the order to be repeated.<br>
+                                Interval: The time gap between each repetition.<br>
+                                For example, if you order 100 likes with "Runs: 10" and "Interval: 30," it means you'll receive 100 likes every 30 minutes, resulting in a total of 1000 likes.<br>
+                                <br>
+                                However, it's crucial to adhere to a few guidelines:<br>
+                                <br>
+                                Never exceed the maximum quantity specified in the service name (Quantity x Runs). For instance, if the service's maximum is 4000, don't set "Quantity: 500" and "Run: 10" because it would exceed the service limit (500 x 10 = 5000).<br>
+                                Ensure that the Interval is not set below the actual start time. Some services require a 60-minute start time, so avoid setting an Interval less than this or it may result in order failure.<br>
+                                Please note that the minimum Interval should be at least 4 times the specified start time. Orders not following this rule will not be eligible for refunds.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq4-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq4" aria-expanded="false" aria-controls="orders_tab_faq4">
+                                Does drip feed function with mass orders or through the API?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq4" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq4-heading">
+                            <div class="accordion-body">
+                                Drip Feed functionality is not compatible with either "Mass Orders" or the API. It operates independently and is designed for individual orders, offering a gradual delivery of services over a specified time frame.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq5-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq5" aria-expanded="false" aria-controls="orders_tab_faq5">
+                                Under what circumstances am I not eligible for refills?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq5" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq5-heading">
+                            <div class="accordion-body">
+                                Refills are an essential part of our service, but there are instances where we may not be able to provide them. One common scenario is when clients place orders with us for accounts that have previously purchased a substantial number of followers from different providers. For instance, if someone orders 1,000 followers for an account with tens or hundreds of thousands of existing followers, it becomes more challenging to maintain stability, and drops may occur due to the large number of previously acquired followers. In such cases, we cannot offer refills for accounts that experience drops below their initial start count.<br>
+                                It's important to consider the existing follower count when placing your order to ensure the best possible outcome.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq6-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq6" aria-expanded="false" aria-controls="orders_tab_faq6">
+                                What is the expected time frame for completing the refill of my orders?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq6" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq6-heading">
+                            <div class="accordion-body">
+                                The refill completion time for your order depends on the extent of the drop in your followers, likes, or views. Typically, it can take anywhere from 1 to 7 working days to fully refill your order. The initial start of the refill process may also vary and can take anywhere from 0 to 48 hours. This initial delay depends on the current server load.<br>
+                                Additionally, in some cases, it might take longer if there is a significant update or change in social media platforms that affects our refill process. Rest assured, our team works diligently to ensure your order is refilled as efficiently as possible.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq7-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq7" aria-expanded="false" aria-controls="orders_tab_faq7">
+                                Will Followiz issue a refund if the refill process fails?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq7" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq7-heading">
+                            <div class="accordion-body">
+                                Yes, if we are unable to initiate your refill request within 48 hours, we will issue a refund for your order. The extent of the refund, whether it's partial or full, depends on the amount of the drop in your order.<br>
+                                Our commitment is to ensure your satisfaction, and we take the necessary steps to address any issues promptly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq8-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq8" aria-expanded="false" aria-controls="orders_tab_faq8">
+                                How long does it take to Speed Up my order?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq8" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq8-heading">
+                            <div class="accordion-body">
+                                Typically, we aim to accelerate or speed up your order within a time frame of 1 to 12 hours. We make every effort to deliver your order as quickly as possible. Your patience is greatly appreciated, and we strive to ensure efficient service delivery while maintaining quality.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq9-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq9" aria-expanded="false" aria-controls="orders_tab_faq9">
+                                Is it possible to cancel an order if the speed mentioned in the service description was not accurate?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq9" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq9-heading">
+                            <div class="accordion-body">
+                                Occasionally, delays may occur, often due to recent updates in a specific social media platform's algorithm or system overload. In the rare event that such a delay occurs, we can offer a refund or partial refund for the missing portion of the order.<br>
+                                To be eligible for a refund, you must open a support ticket within 48 hours of encountering the issue if it has not been resolved by that time. We are committed to addressing any discrepancies promptly and ensuring your satisfaction with our services.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq10-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq10" aria-expanded="false" aria-controls="orders_tab_faq10">
+                                I mistakenly entered the wrong username or want to cancel an order after submission, is it possible?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq10" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq10-heading">
+                            <div class="accordion-body">
+                                If the username or link you provided is valid and corresponds to the service ordered, the order cannot be stopped or canceled. However, in cases where the link is invalid (for instance, submitting a YouTube link for an Instagram service), there is a slight chance that we may be able to cancel and refund the order. Please keep in mind that it's crucial to double-check and ensure the accuracy of your order details before submission to avoid any potential issues.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq11-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq11" aria-expanded="false" aria-controls="orders_tab_faq11">
+                                What is the cancellation timeframe?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq11" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq11-heading">
+                            <div class="accordion-body">
+                                If your order is eligible for cancellation, the process typically takes up to 3 working days from the time you submit the cancellation request. Please allow this time frame for us to process your request and ensure a smooth cancellation process.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq12-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq12" aria-expanded="false" aria-controls="orders_tab_faq12">
+                                Why my order canceled?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq12" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq12-heading">
+                            <div class="accordion-body">
+                                Orders are typically canceled for one of the following reasons:<br>
+                                <br>
+                                Incorrect URL or Format: If you provided an incorrect URL or the order format does not match the service requirements, it may lead to order cancellation. Please double-check your input for accuracy.<br>
+                                <br>
+                                Service Server Issues: Occasionally, orders may be canceled if the service server is experiencing technical problems or is temporarily unavailable. In such cases, you can consider ordering from one of our alternative services.<br>
+                                <br>
+                                We strive to maintain service quality and ensure that your orders are processed smoothly. If you encounter order cancellation, please review the above factors to identify the possible cause.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq13-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq13" aria-expanded="false" aria-controls="orders_tab_faq13">
+                                My order status is showing as "Partial." What does this mean?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq13" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq13-heading">
+                            <div class="accordion-body">
+                                The "Partial" status indicates that your order could not be fully completed on a particular server because it has reached its maximum capacity for delivering the requested service. In such cases, you will automatically receive a refund for the portion of the order that was not delivered. You are then free to choose and use any of our other available servers to fulfill your order, ensuring that you receive the full service you requested.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="orders_tab_faq14-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orders_tab_faq14" aria-expanded="false" aria-controls="orders_tab_faq14">
+                                Why is the Cancel Button / Refill Button not working for me?
+                            </button>
+                        </h2>
+                        <div id="orders_tab_faq14" class="accordion-collapse collapse" data-bs-parent="#orders_tab_accordion" aria-labelledby="orders_tab_faq14-heading">
+                            <div class="accordion-body">
+                                The Cancel and Refill buttons serve as triggers to initiate the respective actions, but they do not operate instantly. It's important to understand that these buttons send a request to either cancel or refill an order.<br>
+                                However, there are instances where it may be too late to stop an order, or the order may not require a refill at the time. The effectiveness of these buttons depends on various factors, including the timing and status of the order.<br>Please be patient and allow some time for the system to process your request accordingly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / Orders -->
+
+        <!--Payment-->
+        <div class="tab-pane fade" id="payments" role="tabpanel" tabindex="0" aria-labelledby="payments-tab">
+            <div class="accordion row" id="payments_tab_accordion">
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="payments_tab_faq1-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payments_tab_faq1" aria-expanded="false" aria-controls="payments_tab_faq1">
+                                Is my payment secured?
+                            </button>
+                        </h2>
+                        <div id="payments_tab_faq1" class="accordion-collapse collapse" data-bs-parent="#payments_tab_accordion" aria-labelledby="payments_tab_faq1-heading">
+                            <div class="accordion-body">
+                                Rest assured that your payment is secure. We utilize trusted third-party secure payment gateways to process all payments, ensuring the safety and security of your financial transactions.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="payments_tab_faq2-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payments_tab_faq2" aria-expanded="false" aria-controls="payments_tab_faq2">
+                                Why is paypal not enabled?
+                            </button>
+                        </h2>
+                        <div id="payments_tab_faq2" class="accordion-collapse collapse" data-bs-parent="#payments_tab_accordion" aria-labelledby="payments_tab_faq2-heading">
+                            <div class="accordion-body">
+                                PayPal is no longer available as a payment option because our PayPal account has been permanently limited. Additionally, we strongly advise against using PayPal for transactions on your SMM Panel due to potential limitations and restrictions that can affect your account and transactions.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="payments_tab_faq3-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payments_tab_faq3" aria-expanded="false" aria-controls="payments_tab_faq3">
+                                Why am I unable to make a payment with a credit card after subscribing to your panel?
+                            </button>
+                        </h2>
+                        <div id="payments_tab_faq3" class="accordion-collapse collapse" data-bs-parent="#payments_tab_accordion" aria-labelledby="payments_tab_faq3-heading">
+                            <div class="accordion-body">
+                                Credit card payments through our payment gateway Stripe are only available to VIP members. To qualify for VIP status and access this payment method, you must have a purchase history of at least $5000. For our other panel users, funding your accounts can be done using CryptoCurrencies, Payeer, and Perfect Money.<br>If you have questions about becoming a VIP member or need further information, please feel free to reach out to us.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="payments_tab_faq4-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payments_tab_faq4" aria-expanded="false" aria-controls="payments_tab_faq4">
+                                My cryptocurrency payment hasn't been added automatically after 30 minutes. What could be the issue?
+                            </button>
+                        </h2>
+                        <div id="payments_tab_faq4" class="accordion-collapse collapse" data-bs-parent="#payments_tab_accordion" aria-labelledby="payments_tab_faq4-heading">
+                            <div class="accordion-body">
+                                If your cryptocurrency payment has not been processed automatically after 30 minutes, it's possible that your transaction was "Cancelled" or "Timed Out." This often occurs when the amount of cryptocurrency sent does not match the required amount for the transaction. Coinpayments, our cryptocurrency payment processor, will typically send you a "Payment Time Out" email explaining the issue and outlining the steps to resolve it.<br>
+                                <br>
+                                To avoid such issues in the future, please ensure that you send the correct amount of cryptocurrency (BTC), not USD. The value of cryptocurrency in BTC/USD can fluctuate, and sending the incorrect amount may lead to transaction problems. Double-check the amount before making your next transaction to ensure it matches the required amount specified in BTC.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="payments_tab_faq5-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payments_tab_faq5" aria-expanded="false" aria-controls="payments_tab_faq5">
+                                Can I get a refund of my balance?
+                            </button>
+                        </h2>
+                        <div id="payments_tab_faq5" class="accordion-collapse collapse" data-bs-parent="#payments_tab_accordion" aria-labelledby="payments_tab_faq5-heading">
+                            <div class="accordion-body">
+                                Certainly. We process refunds exclusively through Cryptocurrency Bitcoin. To initiate a refund, please open a support ticket and provide us with your Bitcoin wallet address. We will promptly process your refund to the provided address.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="payments_tab_faq6-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payments_tab_faq6" aria-expanded="false" aria-controls="payments_tab_faq6">
+                                Why am I unable to access the Deposit Page?
+                            </button>
+                        </h2>
+                        <div id="payments_tab_faq6" class="accordion-collapse collapse" data-bs-parent="#payments_tab_accordion" aria-labelledby="payments_tab_faq6-heading">
+                            <div class="accordion-body">
+                                Regrettably, we have had to block Canadian users from depositing on our website due to legal reasons.<br>
+                                We apologize for any inconvenience this may cause and appreciate your understanding in this matter.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / Payments -->
+
+        <!-- Account -->
+        <div class="tab-pane fade" id="account" role="tabpanel" tabindex="0" aria-labelledby="account-tab">
+            <div class="accordion row" id="account_tab_accordion">
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="account_tab_faq1-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#account_tab_faq1" aria-expanded="false" aria-controls="account_tab_faq1">
+                                How can I enhance the security of my account?
+                            </button>
+                        </h2>
+                        <div id="account_tab_faq1" class="accordion-collapse collapse" data-bs-parent="#account_tab_accordion" aria-labelledby="account_tab_faq1-heading">
+                            <div class="accordion-body">
+                                You can bolster the security of your account by taking the following steps:<br>
+                                <br>
+                                Enable Two-Step Authentication (2FA): Access your <a href="/account">account settings</a> page and activate Two-Step Authentication (2FA) for an extra layer of security. This will require you to enter a verification code from your mobile app or email when logging in.<br>
+                                <br>
+                                Use a Strong and Unique Password: Create a robust and distinctive password for your Followiz account. Incorporate a combination of letters, numbers, and special characters to make it more secure.<br>
+                                <br>
+                                By implementing these measures, you can significantly enhance the protection of your Followiz account.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="account_tab_faq2-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#account_tab_faq2" aria-expanded="false" aria-controls="account_tab_faq2">
+                                Where can I locate my API Key?
+                            </button>
+                        </h2>
+                        <div id="account_tab_faq2" class="accordion-collapse collapse" data-bs-parent="#account_tab_accordion" aria-labelledby="account_tab_faq2-heading">
+                            <div class="accordion-body">
+                                Your API Key is available within your <a href="/account">Account page</a>. To obtain it, you should generate a new API Key from your account settings. Please be mindful never to share your API Key with anyone, and it's important to note that we will never request your API Key for any reason.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="account_tab_faq3-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#account_tab_faq3" aria-expanded="false" aria-controls="account_tab_faq3">
+                                Why is my API Key hidden?
+                            </button>
+                        </h2>
+                        <div id="account_tab_faq3" class="accordion-collapse collapse" data-bs-parent="#account_tab_accordion" aria-labelledby="account_tab_faq3-heading">
+                            <div class="accordion-body">
+                                Your API Key is concealed by default to ensure its security. You cannot directly view your current API Key; the only way to access it is by generating a new API Key. This practice is in place to safeguard the integrity of your API Key and protect your account from unauthorized access or misuse.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="account_tab_faq4-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#account_tab_faq4" aria-expanded="false" aria-controls="account_tab_faq4">
+                                How can I attain VIP status, and what advantages come with it?
+                            </button>
+                        </h2>
+                        <div id="account_tab_faq4" class="accordion-collapse collapse" data-bs-parent="#account_tab_accordion" aria-labelledby="account_tab_faq4-heading">
+                            <div class="accordion-body">
+                                VIP status is granted to clients whose purchase history reaches or exceeds $5,000. As a VIP client, you gain access to a range of exclusive perks and benefits available only to VIP clients.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / Account -->
+
+        <!-- Child Panel -->
+        <div class="tab-pane fade" id="child-panel" role="tabpanel" tabindex="0" aria-labelledby="child-panel-tab">
+            <div class="accordion row" id="child_tab_accordion">
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq1-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq1" aria-expanded="false" aria-controls="child-panel_tab_faq1">
+                                I'm interested in having a panel similar to yours to resell your services. How can I do that?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq1" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq1-heading">
+                            <div class="accordion-body">
+                                To obtain a panel like ours or explore reselling our services, please visit the Child Panel to inquire about renting a panel. Once you have your panel set up, you can easily connect to our services through API integration. This will allow you to offer our services to your clients and resell them efficiently.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq2-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq2" aria-expanded="false" aria-controls="child-panel_tab_faq2">
+                                How can I generate income with a child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq2" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq2-heading">
+                            <div class="accordion-body">
+                                A child panel is essentially a website that allows you to resell services from Followiz. Here's how you can make money with it: You can purchase services from Followiz at a rate of $1 per 1000 units and then offer those same services on your child panel for $2 per 1000 units.<br>
+                                This means you'll make a profit of $1 for every 1000 units sold on your child panel. It's a straightforward way to generate income by reselling services at a markup.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq3-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq3" aria-expanded="false" aria-controls="child-panel_tab_faq3">
+                                What is the monthly cost of the child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq3" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq3-heading">
+                            <div class="accordion-body">
+                                The child panel is priced at $25 per month. With even a modest number of sales, covering this cost becomes easily manageable.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq4-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq4" aria-expanded="false" aria-controls="child-panel_tab_faq4">
+                                What happens if I don't pay for my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq4" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq4-heading">
+                            <div class="accordion-body">
+                                You will have a 7 days period before the end of your subscription to make the payment. After these 7 days, your child panel will be frozen. This means that while you will still have access to the admin side, your clients won't be able to access your website or use its services until the payment is made and the panel is reactivated.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq5-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq5" aria-expanded="false" aria-controls="child-panel_tab_faq5">
+                                How can I change the Name Servers to ensure my child panel works?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq5" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq5-heading">
+                            <div class="accordion-body">
+                                Modifying the Name Servers of your domain can vary depending on your domain hosting provider, but it's typically a straightforward process. <br>
+                                Here's an example of how to do it using Namecheap: You can watch this instructional video on YouTube for step-by-step guidance: <a href="https://www.youtube.com/watch?v=LHwcfgbTUHo" target="_blank">https://www.youtube.com/watch?v=LHwcfgbTUHo</a>. <br>The video provides clear instructions on how to change the Name Servers for your domain, which is essential for ensuring that your child panel functions correctly.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq6-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq6" aria-expanded="false" aria-controls="child-panel_tab_faq6">
+                                Am I allowed to use multiple providers on my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq6" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq6-heading">
+                            <div class="accordion-body">
+                                No, it's not possible to use multiple providers on your child panel. Each child panel is specifically associated with the parent panel that you purchased it from, and it cannot be used to integrate services from other providers.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq7-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq7" aria-expanded="false" aria-controls="child-panel_tab_faq7">
+                                Is it possible to import Followiz services into my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq7" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq7-heading">
+                            <div class="accordion-body">
+                                Absolutely! We offer a convenient feature that allows you to import all of our services into your child panel with just a single click. This includes importing all the service details, making it easy for you to offer our services to your clients seamlessly.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq8-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq8" aria-expanded="false" aria-controls="child-panel_tab_faq8">
+                                Am I able to customize the design of my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq8" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq8-heading">
+                            <div class="accordion-body">
+                                Yes, you have the flexibility to completely change the front-end design of your website on your child panel. You can achieve this by using HTML, CSS, and JavaScript for a more advanced approach.<br>
+                                Alternatively, we also provide a user-friendly option with a drag-and-drop editor, which is particularly suitable for beginners. This enables you to customize the appearance and layout of your child panel to match your preferences and branding.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq9-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq9" aria-expanded="false" aria-controls="child-panel_tab_faq9">
+                                Is it possible to use the Followiz design for my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq9" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq9-heading">
+                            <div class="accordion-body">
+                                Regrettably, no. The Followiz design is exclusive to our business, and it cannot be replicated or shared for use on your child panel. You will need to design and customize the appearance of your child panel independently to create a unique and distinct identity for your website.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq10-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq10" aria-expanded="false" aria-controls="child-panel_tab_faq10">
+                                Can I utilize the drag and drop editor for my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq10" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq10-heading">
+                            <div class="accordion-body">
+                                Certainly! To enable the drag and drop editor for your child panel, simply open a support ticket on our website and request its activation. We'll be happy to assist you in setting up the drag and drop editor for easy customization of your child panel's design and layout.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq11-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq11" aria-expanded="false" aria-controls="child-panel_tab_faq11">
+                                What payment methods are accessible on the child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq11" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq11-heading">
+                            <div class="accordion-body">
+                                The child panel provides access to a wide range of payment methods, with over 100 options available for your convenience. You can choose from various payment methods to cater to the preferences of your clients and ensure seamless transactions.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq12-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq12" aria-expanded="false" aria-controls="child-panel_tab_faq12">
+                                Is it possible to change the currency of my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq12" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq12-heading">
+                            <div class="accordion-body">
+                                Yes, you have the flexibility to modify the currency used on your child panel. To make this change, simply open a support ticket on our website and request the currency adjustment. We offer a variety of currency options to choose from, ensuring that your panel can accommodate the currency preferences of your clients.<br>
+                                <br>
+                                Here are the available currency:<br>
+                                United States Dollars (USD)<br>
+                                Russian Rubies (RIJB)<br>
+                                Thai Bant (THB)<br>
+                                Turkish Lira (TRY)<br>
+                                Euro (EUR)<br>
+                                Inconesian Rupiah (IDR)<br>
+                                Brazilian Real (BRL)<br>
+                                Chinese Yuan (CNY)<br>
+                                South Korean Won (KRW)<br>
+                                Indian Rupee (INR)<br>
+                                Iranian Rial (IRR)<br>
+                                Saudi Arabia Riyal (SAR)<br>
+                                Polish floty (PLN)<br>
+                                Malaysian Ringgit (MYR)<br>
+                                Pound sterling (GBP)<br>
+                                Kuwaiti dinar (KVVD)<br>
+                                Swedish krona (SEK)<br>
+                                Israeli shekel (ILS)<br>
+                                Hong Kong dollar (HKD)<br>
+                                Nigerian naira (NGN)<br>
+                                Kenyan Shilling (KES)<br>
+                                Japanese Yen (JPY)<br>
+                                Argentine peso (ARS)<br>
+                                Vietnamese dòng (VND)<br>
+                                Canadian dollar (CAD)<br>
+                                Iraqi dinar (IQD)<br>
+                                New Taiwan Dollars (TWD)<br>
+                                Azerbaijani manat (AZN)<br>
+                                Philippine peso (PHP)<br>
+                                Belarusian ruble (BYN)<br>
+                                Kazakhstani tenge (KZT)<br>
+                                Ukrainian hryvnia (IJAH)<br>
+                                Romanian leu (RON)<br>
+                                United Arab Emirates dirham (AED)<br>
+                                Colombian peso (COP)<br>
+                                Pakistan Rupee (PKR)<br>
+                                Egyptian Pound (EGP)<br>
+                                Ghanaian Cedi (GHS)<br>
+                                Bangladeshi taka (BOT)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq13-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq13" aria-expanded="false" aria-controls="child-panel_tab_faq13">
+                                Am I able to change the domain of my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq13" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq13-heading">
+                            <div class="accordion-body">
+                                Absolutely! To change the domain of your child panel, please open a support ticket on Followiz and provide us with your preferred new domain name. We'll assist you in updating the domain to ensure that your child panel reflects the domain name you desire.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq14-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq14" aria-expanded="false" aria-controls="child-panel_tab_faq14">
+                                Can I create multiple admin accounts for my child panel?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq14" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq14-heading">
+                            <div class="accordion-body">
+                                Certainly! You have the option to set up a maximum of 2 admin accounts for your child panel. This allows you to designate additional administrators who can manage and oversee the operations of your panel alongside you.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="child-panel_tab_faq15-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#child-panel_tab_faq15" aria-expanded="false" aria-controls="child-panel_tab_faq15">
+                                Is it possible to define specific access permissions for an admin account?
+                            </button>
+                        </h2>
+                        <div id="child-panel_tab_faq15" class="accordion-collapse collapse" data-bs-parent="#child_tab_accordion" aria-labelledby="child-panel_tab_faq15-heading">
+                            <div class="accordion-body">
+                                Yes, you have the flexibility to customize the access permissions for an admin account on your child panel. To set specific access or restrictions, please open a support ticket at Followiz and provide us with details regarding the access you would like to grant or restrict for the admin account. We'll assist you in configuring the permissions according to your preferences.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / Child Panel -->
+    </div>
+</div>

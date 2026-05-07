@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well">
+                <form {% if site['rtl'] %}class="rtl-form"{% endif %} action="" method="post">
+                    {% if error %}
+                    <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ errorMessage }}
+                    </div>
+                    {% endif %}
+
+                    {% if success %}
+                    <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ successText }}
+                    </div>
+                    {% endif %}
+
+                    {% for field in fields %}
+                    <div class="form-group">
+                        <label for="{{ field.code }}" class="control-label">{{ lang(field.label) }}</label>
+                        <input type="{{ field.type }}" class="form-control" id="{{ field.code }}" value="{{ field.value }}" name="RegistrationForm[{{ field.code }}]">
+                    </div>
+                    {% endfor %}
+
+                    {% if site['captcha'] %}
+                    {{ captchaCode }}
+                    {% endif %}
+
+                    {% if check_agreement %}
+                    <div class="form-group">
+                        <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="terms-accept-checkbox" name="RegistrationForm[termsofservice]"> {{ lang('signup.accept_terms_text') }} <a href="{{ page_url('terms') }}" target="_blank">{{ lang('terms.signup_checkbox') }}</a>
+                        </label>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-inline">
+                                <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">{{ lang('signup.button') }}</button>
+                                </div>
+
+                                {% if googleSignIn %}
+                                    <div class="form-group">
+                                        <div id="g_id_onload"
+                                            data-client_id="{{ googleClientId }}"
+                                            data-login_uri="{{ googleSignInRedirectUrl }}"
+                                            data-auto_prompt="false"
+                                            data-_csrf="{{csrftoken}}">
+                                        </div>
+                                        <div class="g_id_signin"
+                                            data-type="standard"
+                                            data-size="large"
+                                            data-theme="outline"
+                                            data-text="signup_with"
+                                            data-shape="rectangular"
+                                            data-logo_alignment="left">
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 text-md-right">
+                            <span class="pull-right-middle">{{ lang('signup.text') }} <a href="{{ page_url('signin') }}">{{ lang('signin.title') }}</a></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

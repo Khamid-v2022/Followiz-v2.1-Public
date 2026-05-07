@@ -1,0 +1,307 @@
+<div class="account-page">
+    <div>
+        <h3 class="fw-bold page-title">My Account</h3>
+        <p class="page-description">Manage your account settings here</p>
+    </div>
+
+    <div class="mt-5 d-flex">
+        <a href="javascript:;" class="custom-tag neworder-btn text-decoration-none active">General</a>
+        <a href="/notifications" class="custom-tag text-decoration-none">Notifications</a>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-xl-6 col-lg-7 col-md-9 col-sm-12">
+            {% if success %}
+                <div class="alert alert-dismissible alert-success general-success-alert {% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span>{{ successText }}</span>
+                </div>
+                <script>
+                    const message = "{{ successText }}";
+                    
+                    var api_alert = false;
+                    if(message.includes("API key has been generated:")) {
+                        api_alert = true;
+                        document.querySelector('.general-success-alert').classList.add("d-none");
+                    }
+                </script>
+            {% endif %}
+            {% if twofactorauth.success %}
+                <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close">&times;</button>
+                    {{ twofactorauth.success }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-xl-7 col-lg-12 mb-3">
+            <div class="card">
+                <div class="card-body mt-1">
+                    {% if successChangeEmail %}
+                        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ successChangeEmailMessage }}
+                        </div>
+                    {% endif %}
+                    {% if errorChangeEmail %}
+                        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ errorChangeEmailMessage }}
+                        </div>
+                    {% endif %}
+
+                    {% if error %}
+                        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ errorText }}
+                        </div>
+                    {% endif %}
+
+                    <div class="d-block d-sm-flex align-items-center">
+                        <div class="avatar mb-2 me-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="52" height="64" viewBox="0 0 52 64" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M42.9401 16.9328C42.9401 26.3311 35.4047 33.8669 25.9998 33.8669C16.5982 33.8669 9.05954 26.3311 9.05954 16.9328C9.05954 7.53462 16.5982 0.00195312 25.9998 0.00195312C35.4047 0.00195312 42.9401 7.53462 42.9401 16.9328ZM26 63.9991C12.12 63.9991 0.400726 61.7431 0.400726 53.0393C0.400726 44.3322 12.1936 42.1562 26 42.1562C39.8832 42.1562 51.5993 44.4122 51.5993 53.1161C51.5993 61.8231 39.8064 63.9991 26 63.9991Z" fill="#525A66"/>
+                            </svg>
+                        </div>
+                        <div class="mb-2 me-4">
+                            <label class=""><small>Username</small></label>
+                            <h6 class="color-primary">{{ user['username'] }}</h6>
+                            <button type="button" class="btn btn-primary btn-md mt-2" id="changeEmailLink">Change Email</button>
+                        </div>
+                        <div class="mb-2">
+                            <label class=""><small>Email</small></label>
+                            <h6 class="color-primary">{{ user['email'] }}</h6>
+                            <button type="button" class="btn btn-outline-primary btn-md mt-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" id="other_name" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-2 pt-1">
+                                <input type="text" class="form-control" id="other_phone" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-2 pt-1">
+                                <input type="text" class="form-control" id="other_address" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="row gx-3">
+                            <div class="col-sm-6 mb-2 pt-1">
+                                <input type="text" class="form-control" id="other_city" placeholder="City">
+                            </div>
+                            <div class="col-sm-6 mb-2 pt-1">
+                                <input type="text" class="form-control" id="other_country" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row gx-3">
+                            <div class="col-sm-6 mb-2 pt-1">
+                                <input type="text" class="form-control" id="other_province" placeholder="Province">
+                            </div>
+                            <div class="col-sm-6 mb-2 pt-1">
+                                <input type="text" class="form-control" id="other_postal" placeholder="Postal Code">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 pt-1 mb-4">
+                                <textarea type="text" rows="3" class="form-control" id="other_detail" placeholder="Other Details"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="py-3">
+                        <button class="btn btn-primary btn-md" type="button" id="save_other_details">
+                            Save Change
+                            <i class="fa fa-spinner fa-pulse fa-fw d-none"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-5 col-lg-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div id="2fa-approve-error-block"
+                            style="{% if twofactorauth.error %} display: block; {% else %} display: none; {% endif %}"
+                            class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close">&times;</button>
+                        <span id="2fa-error-text">{{ twofactorauth.error }}</span>
+                    </div>
+
+                    <h5>Two Factor Authentication</h5>
+                    <p class="mb-4">Email-based option to add an extra layer of protection to your account. When signing in you’ll need to enter a code that will be sent to your email address.</p>
+
+                    <!-- 2FA Form generate code -->
+                    <form id="2fa-generate-form"
+                    method="post" {% if site['rtl'] %} class="rtl-form" {% endif %}
+                    action="{{ twofactorauth.url.generate }}"
+                    style="{% if twofactorauth.active_code %} display: none; {% else %} display: block; {% endif %}">
+                        <input type="hidden" name="enabled" value="{{ twofactorauth.activated }}">
+                        <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                        <button id="2fa-generate" type="submit" class="btn btn-outline-primary btn-md">
+                            {% if twofactorauth.activated %}
+                                Enable 2FA Auth
+                            {% else %}
+                                Disable 2FA Auth
+                            {% endif %}
+                        </button>
+                    </form>
+            
+                    <!-- 2FA Form approve code -->
+                    <form id="2fa-approve-form" method="post" {% if site['rtl'] %} class="rtl-form"{% endif %}
+                            action="{{ twofactorauth.url.approve }}"
+                            style="{% if twofactorauth.active_code %} display: block; {% else %} display: none; {% endif %}">
+                        <p>{{ lang('2fa.sent') }}</p>
+                        <div class="form-group">
+                            <label for="code" class="control-label">{{ lang('2fa.code') }}</label>
+                            <input type="text" id="code" name="code" class="form-control">
+                        </div>
+                        <input type="hidden" name="enabled" value="{{ twofactorauth.activated }}">
+                        <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                        <button id="2fa-approve" type="submit" class="btn btn-outline-primary btn-md">
+                            {% if twofactorauth.activated %}
+                                {{ lang('account.2fa.enable') }}
+                            {% else %}
+                                {{ lang('account.2fa.disable') }}
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5>Timezone Settings</h5>
+                    <p>Choose your time zone</p>
+                    <form {% if site['rtl'] %}class="rtl-form"{% endif %} action="" method="post">
+                        <select name="SettingsFrom[timezone]" id="timezone" class="form-control form-select">
+                            {% for timezone,label in timezones %}
+                            <option value="{{timezone}}" {% if timezone == user['timezone'] %}selected{% endif %}>{{label}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-outline-primary btn-md">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5>API Key Settings</h5>
+                    <p >Never share your API Key. We will never ask for it.</p>
+                    {% if success %}
+                        <div class="alert alert-dismissible alert-success d-none api-success-alert {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <div class="d-flex justify-content-between">
+                                <span>{{ successText }}</span>
+                                <a class="copy-btn" href="javascript:;" style="margin-top: 15px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy key">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.3342 1.35821C2.00054 0.642376 2.94344 0.249756 4.03456 0.249756H9.23169C10.1938 0.249756 11.0419 0.551956 11.6883 1.11879C12.3325 1.68356 12.7294 2.46967 12.8672 3.35808C12.9306 3.7674 12.6503 4.15067 12.2409 4.21412C11.8316 4.27758 11.4483 3.9972 11.3849 3.58788C11.2937 2.99987 11.0447 2.54937 10.6994 2.24664C10.3565 1.94596 9.87189 1.74976 9.23169 1.74976H4.03456C3.31641 1.74976 2.78638 1.99968 2.43212 2.38025C2.07236 2.76672 1.83871 3.34835 1.83871 4.10024V10.7952C1.83871 11.4802 2.03355 12.0246 2.33981 12.4059C2.64124 12.7812 3.08435 13.0421 3.67607 13.1155C4.08714 13.1665 4.37905 13.5411 4.32807 13.9521C4.27709 14.3632 3.90253 14.6551 3.49147 14.6041C2.53339 14.4853 1.72897 14.0408 1.17032 13.3452C0.616515 12.6557 0.338715 11.7639 0.338715 10.7952V4.10024C0.338715 3.03674 0.673355 2.06813 1.3342 1.35821Z" fill="#5FDEAE"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.40849 6.4692C7.07504 5.75429 8.01799 5.36304 9.10879 5.36304H14.3042C15.3975 5.36304 16.3409 5.75394 17.0072 6.46961C17.6678 7.17922 18 8.14716 18 9.20916V15.9041C18 16.9661 17.6678 17.934 17.007 18.6437C16.3406 19.3594 15.397 19.7502 14.3033 19.7502H9.10879C8.01539 19.7502 7.07207 19.3593 6.40581 18.6436C5.7452 17.934 5.41293 16.9661 5.41293 15.9041V9.20916C5.41293 8.14606 5.74736 7.1783 6.40849 6.4692ZM7.50559 7.4921C7.14635 7.87744 6.91293 8.45766 6.91293 9.20916V15.9041C6.91293 16.6566 7.14545 17.2367 7.50369 17.6215C7.85629 18.0003 8.38589 18.2502 9.10879 18.2502H14.3033C15.0268 18.2502 15.5566 18.0002 15.9092 17.6215C16.2675 17.2367 16.5 16.6566 16.5 15.9041V9.20916C16.5 8.45666 16.2675 7.87651 15.9093 7.49169C15.5567 7.11294 15.0271 6.86304 14.3042 6.86304H9.10879C8.38949 6.86304 7.85949 7.11259 7.50559 7.4921Z" fill="#5FDEAE"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <script>
+                            if(api_alert) {
+                                document.querySelector('.api-success-alert').classList.remove("d-none");
+                            }
+                        </script>
+                    {% endif %}
+                    <form {% if site['rtl'] %}class="rtl-form"{% endif %} action="{{ page['url'] }}/newkey" method="post">
+                        {% if user['is_generated_apikey'] %}
+                            <input type="text" class="form-control" id="api_key" value="{{ user['apikey'] }}" readonly>
+                            <small class="help-block">{{ lang('account.api_key.date') }} {{ user['apikey_created'] }}</small>
+                        {% endif %}
+            
+                        <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-outline-primary btn-md">Generate new key</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Change Email Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="changeEmailModal" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <form id="changeEmailForm" class="modal-content {% if site['rtl'] %} rtl-form{% endif %}" method="post" action="">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ lang('confirmemail.change_email.title') }}</h5>
+                    <a href="javascript:;" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.181 15.4577C15.035 15.6037 14.843 15.6777 14.651 15.6777C14.458 15.6777 14.267 15.6037 14.12 15.4577L12.247 13.5847L10.38 15.4517C10.234 15.5987 10.042 15.6717 9.85 15.6717C9.659 15.6717 9.466 15.5987 9.32 15.4517C9.027 15.1587 9.027 14.6847 9.32 14.3917L11.186 12.5237L9.32 10.6577C9.027 10.3647 9.027 9.89067 9.32 9.59767C9.613 9.30467 10.087 9.30467 10.38 9.59767L12.246 11.4637L14.11 9.59967C14.403 9.30667 14.877 9.30667 15.17 9.59967C15.463 9.89267 15.463 10.3667 15.17 10.6597L13.307 12.5237L15.181 14.3967C15.474 14.6897 15.474 15.1647 15.181 15.4577ZM12.25 2.78467C5.052 2.78467 2.5 5.33667 2.5 12.5347C2.5 19.7327 5.052 22.2847 12.25 22.2847C19.449 22.2847 22 19.7327 22 12.5347C22 5.33667 19.449 2.78467 12.25 2.78467Z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <p>Use the form below to change your email.</p>
+                    <div id="changeEmailError" class="error-summary alert alert-dismissible alert-danger hidden mt-4 {% if site['rtl'] %} rtl-alert {% endif %}"></div>
+                    <div class="form-group mt-4">
+                        <span class="form-control" id="current-email" disabled>{{ user['email'] }}</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="new-email" name="ChangeEmailForm[email]" placeholder="{{ lang('confirmemail.change_email.new_email') }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="current-password" name="ChangeEmailForm[password]" placeholder="{{ lang('confirmemail.change_email.current_password') }}">
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                </div>
+                <div class="mt-2 text-end">
+                    <button type="submit" class="btn btn-primary" id="changeEmailSubmitBtn">{{ lang('confirmemail.change_email.submit') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="changePasswordModal" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content {% if site['rtl'] %} rtl-form{% endif %}" method="post" action="">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Password</h5>
+                    <a href="javascript:;" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.181 15.4577C15.035 15.6037 14.843 15.6777 14.651 15.6777C14.458 15.6777 14.267 15.6037 14.12 15.4577L12.247 13.5847L10.38 15.4517C10.234 15.5987 10.042 15.6717 9.85 15.6717C9.659 15.6717 9.466 15.5987 9.32 15.4517C9.027 15.1587 9.027 14.6847 9.32 14.3917L11.186 12.5237L9.32 10.6577C9.027 10.3647 9.027 9.89067 9.32 9.59767C9.613 9.30467 10.087 9.30467 10.38 9.59767L12.246 11.4637L14.11 9.59967C14.403 9.30667 14.877 9.30667 15.17 9.59967C15.463 9.89267 15.463 10.3667 15.17 10.6597L13.307 12.5237L15.181 14.3967C15.474 14.6897 15.474 15.1647 15.181 15.4577ZM12.25 2.78467C5.052 2.78467 2.5 5.33667 2.5 12.5347C2.5 19.7327 5.052 22.2847 12.25 22.2847C19.449 22.2847 22 19.7327 22 12.5347C22 5.33667 19.449 2.78467 12.25 2.78467Z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <p>Use the form below to change your password. Never share your password. We will never ask for it.</p>
+                    {% if error %}
+                    <div class="alert alert-dismissible alert-danger mt-4 {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ errorText }}
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group mt-4">
+                        <input type="password" class="form-control" id="current" name="SettingsFrom[current_password]" placeholder="{{ lang('account.password.current') }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="new" name="SettingsFrom[password]" placeholder="{{ lang('account.password.new') }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="confirm" name="SettingsFrom[confirm_password]" placeholder="{{ lang('account.password.confirm') }}">
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                </div>
+                <div class="mt-2 text-end">
+                    <button type="submit" class="btn btn-primary">{{ lang('account.password.button') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

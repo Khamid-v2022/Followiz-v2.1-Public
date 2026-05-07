@@ -1,0 +1,272 @@
+<div class="affiliates-page">
+    <div class="d-flex justify-content-between">
+        <div>
+            <h3 class="fw-bold page-title">Affiliates</h3>
+            <p class="page-description">Our system operates 24/7, displaying your earnings in real-time. <br>
+                If you have any questions about the Affiliate program, please open a <a href="/tickets">support ticket</a>.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-lg-12 mt-2 mb-4">
+            <div class="card">
+                <div class="card-body mt-1 pt-4 py-5">
+                    <div class="row gx-3">
+                        <div class="col-sm-6">
+                            <div class="card mb-3">
+                                <div class="card-body py-4 px-3 d-flex justify-content-between">
+                                    <div>
+                                        <h2 class="fw-bold widget-value">{{ commission_rate }}</h2>
+                                        <label class="widget-title">Commission Rate</label>
+                                    </div>
+                                    <div class="widget-icon">
+                                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2072 10.0039L9.82746 16.3834C9.62119 16.6044 9.34124 16.7076 9.04657 16.7076C8.76663 16.7076 8.48668 16.6044 8.26567 16.3834C7.83839 15.9562 7.83839 15.2637 8.26567 14.8217L14.6455 8.44215C15.0727 8.01488 15.78 8.01488 16.2072 8.44215C16.6345 8.88415 16.6345 9.57661 16.2072 10.0039ZM15.3822 16.6192H15.3232C14.7044 16.6192 14.2182 16.133 14.2182 15.5142C14.2182 14.9101 14.7044 14.4092 15.3232 14.4092C15.9273 14.4092 16.4577 14.9101 16.4577 15.5142C16.4577 16.133 16.001 16.6192 15.3822 16.6192ZM9.13497 8.20642C9.73906 8.20642 10.2842 8.70735 10.2842 9.31141C10.2842 9.93021 9.82746 10.4164 9.20864 10.4164H9.13497C8.53088 10.4164 8.02993 9.93021 8.02993 9.31141C8.02993 8.70735 8.53088 8.20642 9.13497 8.20642ZM12.4059 0C5.55465 0 0 5.55443 0 12.4054C0 19.2564 5.55465 24.8108 12.4059 24.8108C19.2572 24.8108 24.8118 19.2564 24.8118 12.4054C24.8118 5.55443 19.2572 0 12.4059 0Z" fill="#FF6B89"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M26.9316 25.483L24.0084 22.5673C23.4323 21.9927 22.4997 21.9927 21.925 22.5702C21.3504 23.1463 21.3519 24.0804 21.928 24.655L24.8512 27.5692C25.1385 27.8551 25.5157 27.9994 25.8914 27.9994C26.2686 27.9994 26.6472 27.8551 26.9345 27.5663C27.5092 26.9902 27.5077 26.0576 26.9316 25.483Z" fill="#FF6B89"/>
+                                        </svg>                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="card mb-3">
+                                <div class="card-body py-4 px-3 d-flex justify-content-between">
+                                    <div>
+                                        <h2 class="fw-bold widget-value">{{minimum_payout}}</h2>
+                                        <label class="widget-title">Minimum Payout</label>
+                                    </div>
+                                    <div class="widget-icon">
+                                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9216 10.4964L13.6686 9.59012C13.8896 9.51644 14.1298 9.51496 14.3568 9.58865L17.0802 10.4729L17.0604 0.449049C17.06 0.204801 16.8615 0.00722434 16.6173 0.00781382L11.3514 0.0204285C11.1075 0.0210179 10.9101 0.219081 10.9104 0.463035L10.9216 10.4964Z" fill="#5FDEAE"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M27.9691 8.11853C27.9632 5.70168 27.1527 3.56926 25.6878 2.11179C24.2981 0.729474 22.403 0 20.2072 0H20.1733L19.7129 0.00150309C19.469 0.00229888 19.2718 0.200495 19.2723 0.444419L19.2935 11.9928C19.2935 12.348 19.1255 12.6811 18.8381 12.8888C18.5522 13.0966 18.1838 13.1556 17.8463 13.0465L14.0177 11.8027L10.164 13.0745C10.0505 13.1128 9.93412 13.1305 9.8177 13.1305C9.58782 13.1305 9.36235 13.0598 9.17077 12.9213C8.8834 12.7135 8.71393 12.3804 8.71245 12.0267L8.69968 0.46953C8.69941 0.225017 8.5007 0.0271452 8.25619 0.0279115L7.75751 0.0294737C3.10656 0.0456842 -0.0117561 3.32168 3.333e-05 8.18042L0.0265595 19.8815C0.0324542 22.2246 0.758981 24.2377 2.12951 25.7055C3.53393 27.2072 5.49098 28 7.78993 28H7.82235L20.2381 27.9705C24.8891 27.9543 28.0059 24.6798 27.9971 19.8196L27.9691 8.11853Z" fill="#5FDEAE"/>
+                                        </svg>                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mt-2">
+                        <div class="col-md-4 col-6">
+                            <div class="card small-widget-card mb-3">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="fw-semibold widget-value">{{ statistics['total_visits'] }}</h5>
+                                        <label class="widget-title">Total Visits</label>
+                                    </div>
+                                    <div class="d-flex align-items-center widget-icon">
+                                        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16.9804 8.4707C18.927 8.4707 20.7727 9.14607 22.3795 10.3964C23.9864 11.6376 25.3546 13.4538 26.3371 15.7263C26.4105 15.8997 26.4105 16.1005 26.3371 16.2648C24.3721 20.8098 20.8737 23.5295 16.9804 23.5295H16.9712C13.0871 23.5295 9.58872 20.8098 7.62373 16.2648C7.55027 16.1005 7.55027 15.8997 7.62373 15.7263C9.58872 11.1813 13.0871 8.4707 16.9712 8.4707H16.9804ZM16.9804 12.3495C14.9511 12.3495 13.3075 13.9831 13.3075 16.0001C13.3075 18.008 14.9511 19.6416 16.9804 19.6416C19.0005 19.6416 20.6441 18.008 20.6441 16.0001C20.6441 13.9831 19.0005 12.3495 16.9804 12.3495ZM16.9815 13.7165C18.2395 13.7165 19.2679 14.7386 19.2679 15.9981C19.2679 17.2484 18.2395 18.2706 16.9815 18.2706C15.7144 18.2706 14.6859 17.2484 14.6859 15.9981C14.6859 15.843 14.7043 15.6969 14.7319 15.5509H14.7778C15.797 15.5509 16.6234 14.7478 16.6601 13.7438C16.7611 13.7256 16.8713 13.7165 16.9815 13.7165Z" fill="#75B9FF"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_2280_12787" x1="-0.761884" y1="4" x2="16.6667" y2="32" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2B2F36"/>
+                                            <stop offset="0.642395" stop-color="#202328"/>
+                                            </linearGradient>
+                                            </defs>
+                                        </svg>                                                                  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="card small-widget-card mb-3">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="fw-semibold widget-value">{{ statistics['referral_registrations'] }}</h5>
+                                        <label class="widget-title">Registrations</label>
+                                    </div>
+                                    <div class="d-flex align-items-center widget-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6076 9H19.8936C22.2105 9 23.5005 10.335 23.5005 12.6225V20.37C23.5005 22.695 22.2105 24 19.8936 24H13.6076C11.3275 24 9.99998 22.695 9.99998 20.37V12.6225C9.99998 10.335 11.3275 9 13.6076 9ZM13.8101 12.495V12.4875H16.052C16.3752 12.4875 16.6377 12.75 16.6377 13.0718C16.6377 13.4025 16.3752 13.665 16.052 13.665H13.8101C13.4869 13.665 13.2251 13.4025 13.2251 13.08C13.2251 12.7575 13.4869 12.495 13.8101 12.495ZM13.8101 17.0543H19.6904C20.0129 17.0543 20.2754 16.7918 20.2754 16.4693C20.2754 16.1468 20.0129 15.8836 19.6904 15.8836H13.8101C13.4869 15.8836 13.2251 16.1468 13.2251 16.4693C13.2251 16.7918 13.4869 17.0543 13.8101 17.0543ZM13.8101 20.483H19.6904C19.9896 20.453 20.2154 20.1973 20.2154 19.898C20.2154 19.5905 19.9896 19.3355 19.6904 19.3055H13.8101C13.5851 19.283 13.3676 19.388 13.2476 19.583C13.1276 19.7705 13.1276 20.018 13.2476 20.213C13.3676 20.4005 13.5851 20.513 13.8101 20.483Z" fill="#D9E583"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_2280_12955" x1="-1.09523" y1="4" x2="16.3333" y2="32" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2B2F36"/>
+                                            <stop offset="0.642395" stop-color="#202328"/>
+                                            </linearGradient>
+                                            </defs>
+                                        </svg>                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="card small-widget-card mb-3">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="fw-semibold widget-value">{{ statistics['paid_referrals'] }}</h5>
+                                        <label class="widget-title">Referrals</label>
+                                    </div>
+                                    <div class="d-flex align-items-center widget-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                            <path d="M13.6438 18.5402C17.1863 18.5402 20.1765 19.1032 20.1765 21.2803C20.1765 23.4557 17.1672 24 13.6438 24L13.4032 23.9991C9.96691 23.9736 7.11106 23.3875 7.11106 21.2599C7.11106 19.0845 10.1204 18.5402 13.6438 18.5402ZM19.173 17.2295C20.5203 17.204 21.9693 17.3854 22.5042 17.5132C23.6383 17.7304 24.3837 18.1724 24.6925 18.8172C24.9543 19.3453 24.9543 19.9586 24.6925 20.4867C24.2202 21.4849 22.6964 21.806 22.1041 21.8887C21.9815 21.9057 21.8832 21.8035 21.8962 21.6825C22.1989 18.916 19.7923 17.6043 19.1695 17.3028C19.1434 17.2883 19.1374 17.2678 19.14 17.2542C19.1417 17.2457 19.153 17.2321 19.173 17.2295ZM13.6438 8C16.0435 8 17.9665 9.88324 17.9665 12.2333C17.9665 14.5833 16.0435 16.4665 13.6438 16.4665C11.245 16.4665 9.32112 14.5833 9.32112 12.2333C9.32112 9.88324 11.245 8 13.6438 8ZM19.4079 8.70705C21.7258 8.70705 23.5453 10.8416 22.9251 13.2188C22.5068 14.821 20.9926 15.8848 19.3052 15.8414C19.1356 15.838 18.9695 15.8218 18.8077 15.7954C18.6912 15.775 18.632 15.6463 18.699 15.551C19.3426 14.6234 19.7097 13.5067 19.7097 12.31C19.7097 11.0596 19.3096 9.89525 18.6129 8.93873C18.5903 8.90891 18.5738 8.86377 18.5964 8.82885C18.6138 8.80159 18.6486 8.78626 18.6807 8.77945C18.9156 8.7326 19.1565 8.70705 19.4079 8.70705Z" fill="#8C8CED"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_2280_12968" x1="-1.4286" y1="4" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2B2F36"/>
+                                            <stop offset="0.642395" stop-color="#202328"/>
+                                            </linearGradient>
+                                            </defs>
+                                        </svg>                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="card small-widget-card mb-3">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="fw-semibold widget-value">{{ statistics['conversion_rate'] }}</h5>
+                                        <label class="widget-title">Conversion Rate</label>
+                                    </div>
+                                    <div class="d-flex align-items-center widget-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1795 10.3904V10.8802C12.1795 11.1166 12.3149 11.3315 12.5274 11.4349C12.6119 11.4759 12.7038 11.4956 12.7949 11.4956C12.9311 11.4956 13.0665 11.4497 13.1772 11.3627L14.6041 10.2304C14.7518 10.1131 14.8371 9.93583 14.8371 9.74794C14.8371 9.56086 14.7518 9.38281 14.6041 9.26547L13.1772 8.13316C12.9918 7.98711 12.7391 7.95839 12.5274 8.06095C12.3149 8.16434 12.1795 8.37931 12.1795 8.61562V9.15963C10.4055 9.29829 9 10.7695 9 12.5787C9 12.9184 9.27569 13.1941 9.61538 13.1941C9.95508 13.1941 10.2308 12.9184 10.2308 12.5787C10.2308 11.448 11.0841 10.5241 12.1795 10.3904Z" fill="#5FDEAE"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24.5079 19.422C24.5079 19.0823 24.2323 18.8066 23.8926 18.8066C23.5529 18.8066 23.2772 19.0823 23.2772 19.422C23.2772 20.5683 22.4 21.5029 21.2825 21.6153V21.1197C21.2825 20.8817 21.1455 20.6659 20.9305 20.5642C20.718 20.4624 20.462 20.4928 20.2766 20.6446L18.8973 21.7777C18.7553 21.8951 18.6733 22.069 18.6733 22.2528C18.6733 22.4374 18.7553 22.6122 18.8981 22.7287L20.2774 23.861C20.389 23.9529 20.5276 24.0005 20.6671 24.0005C20.7574 24.0005 20.8468 23.9816 20.9305 23.9414C21.1455 23.8397 21.2825 23.6231 21.2825 23.3851V22.846C23.0786 22.7295 24.5079 21.2469 24.5079 19.422Z" fill="#5FDEAE"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5529 19.7988C15.4678 19.7988 12.9587 17.288 12.9587 14.2029C12.9587 14.0827 12.8388 14.0027 12.7355 14.0642C11.4592 14.8247 10.5948 16.2053 10.5948 17.7967C10.5948 20.2033 12.5525 22.1619 14.9574 22.1619C16.5492 22.1619 17.9291 21.2962 18.6898 20.0191C18.7506 19.9171 18.6716 19.7988 18.5529 19.7988Z" fill="#5FDEAE"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5529 18.569C20.9587 18.569 22.9156 16.6104 22.9156 14.2039C22.9156 11.7965 20.9587 9.83789 18.5529 9.83789C16.1464 9.83789 14.1894 11.7965 14.1894 14.2039C14.1894 16.6104 16.1464 18.569 18.5529 18.569Z" fill="#5FDEAE"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_2282_13019" x1="-0.761884" y1="4" x2="16.6667" y2="32" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2B2F36"/>
+                                            <stop offset="0.642395" stop-color="#202328"/>
+                                            </linearGradient>
+                                            </defs>
+                                        </svg>                                                               
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="card small-widget-card mb-3">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="fw-semibold widget-value">{{ statistics['total_earnings'] }}</h5>
+                                        <label class="widget-title">Total Earnings</label>
+                                    </div>
+                                    <div class="d-flex align-items-center widget-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                            <path d="M9.29443 17.3202C9.14103 17.2936 9 17.4111 9 17.5668V19.7523C9 22.2133 10.5867 24.0002 12.7735 24.0002H20.8292C23.0152 24.0002 24.6019 22.2133 24.6019 19.7523V17.5676C24.6019 17.4119 24.4609 17.2943 24.3075 17.3209C23.1366 17.5238 21.8862 17.675 20.5968 17.7746C20.4664 17.7846 20.3654 17.8931 20.3654 18.0238V18.0326C20.3654 18.3767 20.0861 18.656 19.742 18.656C19.3979 18.656 19.1186 18.3767 19.1186 18.0326C19.1186 17.9414 19.0425 17.8688 18.9514 17.8726C18.2394 17.903 17.5211 17.9181 16.8028 17.9181C16.0842 17.9181 15.3658 17.903 14.6538 17.8726C14.5627 17.8687 14.4865 17.9414 14.4865 18.0326C14.4865 18.3767 14.2073 18.656 13.8632 18.656C13.5191 18.656 13.2398 18.3767 13.2398 18.0326V18.0237C13.2398 17.893 13.1387 17.7845 13.0084 17.7745C11.7178 17.6748 10.4663 17.5234 9.29443 17.3202Z" fill="#FF6B89"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.1702 10.371C20.1962 10.4927 20.3005 10.5848 20.4249 10.5848H20.8292C22.9886 10.5848 24.6019 12.331 24.6019 13.8919V15.793C24.6019 15.9126 24.5169 16.0155 24.3993 16.0371C23.195 16.2588 21.8977 16.4225 20.5558 16.5283C20.4531 16.5364 20.3654 16.4551 20.3654 16.3521C20.3654 16.008 20.0861 15.7287 19.742 15.7287C19.3979 15.7287 19.1186 16.008 19.1186 16.3521V16.3811C19.1186 16.5142 19.0141 16.6238 18.8811 16.6295C17.5036 16.688 16.1015 16.688 14.7241 16.6295C14.5911 16.6238 14.4865 16.5141 14.4865 16.3811V16.3521C14.4865 16.008 14.2073 15.7287 13.8632 15.7287C13.5191 15.7287 13.2398 16.008 13.2398 16.3521C13.2398 16.455 13.1521 16.5364 13.0494 16.5283C11.7062 16.4224 10.4077 16.2583 9.20255 16.0363C9.08489 16.0146 9 15.9118 9 15.7921V13.8919C9 12.331 10.6133 10.5848 12.7735 10.5848H13.1794C13.3038 10.5848 13.4081 10.4927 13.4342 10.371C13.7243 9.01749 14.9302 8 16.37 8H17.2352C18.6742 8 19.8801 9.01749 20.1702 10.371ZM18.6226 10.5848C18.7842 10.5848 18.9033 10.4324 18.8371 10.2849C18.5628 9.6734 17.9479 9.2467 17.2352 9.2467H16.37C15.6572 9.2467 15.0419 9.67339 14.7673 10.2849C14.7011 10.4323 14.8202 10.5848 14.9818 10.5848H18.6226Z" fill="#FF6B89"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_2282_13032" x1="-1.09523" y1="4" x2="16.3333" y2="32" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2B2F36"/>
+                                            <stop offset="0.642395" stop-color="#202328"/>
+                                            </linearGradient>
+                                            </defs>
+                                        </svg>                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="card small-widget-card mb-3">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="fw-semibold widget-value">{{ statistics['unpaid_earnings'] }}</h5>
+                                        <label class="widget-title">Unpaid Earnings</label>
+                                    </div>
+                                    <div class="d-flex align-items-center widget-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8477 16.229C19.3996 16.229 19.9272 16.3344 20.4116 16.5262C20.5748 16.5907 20.7605 16.4757 20.7605 16.3003V13.443C20.7605 12.4552 20.0645 11.6272 19.1368 11.4203C19.1208 11.4168 19.1045 11.4151 19.0883 11.4151H11.7963C11.5796 11.4151 11.4038 11.2393 11.4038 11.0226C11.4038 10.806 11.5796 10.6301 11.7963 10.6301H18.8711C19.0011 10.6301 19.1065 10.5247 19.1065 10.3946V9.69079C19.1065 9.16406 18.8679 8.67736 18.4519 8.35473C18.0366 8.03289 17.506 7.92299 16.9957 8.05408L10.1414 9.82816C9.46941 9.99772 9 10.6022 9 11.3V20.8455C9 21.9877 9.93177 22.9179 11.0763 22.9179H14.8947C15.0848 22.9179 15.1995 22.7018 15.108 22.5351C14.7749 21.928 14.5853 21.2315 14.5853 20.4915C14.5853 18.1412 16.4975 16.229 18.8477 16.229ZM12.5607 17.0822C12.5607 15.8013 13.6004 14.7594 14.8802 14.7594C15.2053 14.7594 15.469 15.0232 15.469 15.3481C15.469 15.6732 15.2053 15.9369 14.8802 15.9369C14.2512 15.9369 13.7381 16.4507 13.7381 17.0822C13.7381 17.4072 13.4744 17.6709 13.1494 17.6709C12.8244 17.6709 12.5607 17.4072 12.5607 17.0822Z" fill="#75B9FF"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.6517 23.9992C21.501 23.9992 21.3502 23.9419 21.2348 23.8273L20.3604 22.9505C19.92 23.2221 19.4019 23.3791 18.8477 23.3791C17.255 23.3791 15.959 22.0831 15.959 20.4903C15.959 18.8968 17.255 17.6016 18.8477 17.6016C20.4405 17.6016 21.7364 18.8968 21.7364 20.4903C21.7364 21.1042 21.5441 21.6741 21.2168 22.1419L22.0685 22.9944C22.2977 23.2244 22.2977 23.5981 22.0677 23.8273C21.9531 23.9419 21.8024 23.9992 21.6517 23.9992ZM18.8477 18.779C17.9042 18.779 17.1365 19.5468 17.1365 20.4903C17.1365 21.4339 17.9042 22.2016 18.8477 22.2016C19.2787 22.2016 19.6735 22.0415 19.975 21.7769C19.9812 21.7699 19.9891 21.762 19.9969 21.7542C20.0142 21.7369 20.0323 21.7204 20.0511 21.7055C20.3643 21.3954 20.559 20.9645 20.559 20.4903C20.559 19.5468 19.7913 18.779 18.8477 18.779Z" fill="#75B9FF"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_2282_13049" x1="-1.4286" y1="4" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2B2F36"/>
+                                            <stop offset="0.642395" stop-color="#202328"/>
+                                            </linearGradient>
+                                            </defs>
+                                        </svg>                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-2 py-3 align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1521 16.4922C20.3356 16.4922 18.6156 16.8619 17.1688 17.4727C22.2485 18.9515 25.8333 22.4718 25.9136 26.5707C28.5499 26.2171 31.3791 25.2366 31.3791 22.504C31.3791 19.2409 27.1514 16.4922 22.1521 16.4922Z" fill="#5FDEAE"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1039 14.1788H22.1521C25.5761 14.1788 28.357 11.398 28.357 7.97419C28.357 4.55037 25.5761 1.76953 22.1521 1.76953C21.4769 1.76953 20.8339 1.88205 20.2231 2.07494C21.3323 3.71451 21.9753 5.69164 21.9753 7.81344C21.9753 10.0478 21.2519 12.1213 20.0302 13.8091C20.6732 14.0502 21.3805 14.1788 22.1039 14.1788Z" fill="#5FDEAE"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7492 19.1289C5.38031 19.1289 0 22.609 0 26.7288C0 31.453 6.70489 31.9995 11.7492 31.9995C14.6555 31.9995 23.4984 31.9995 23.4984 26.6967C23.4984 22.5945 18.1181 19.1289 11.7492 19.1289Z" fill="#5FDEAE"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.699 15.6386H11.7472C16.0601 15.6386 19.5677 12.1312 19.5677 7.82012C19.5677 3.5074 16.0601 0 11.7472 0C7.43747 0 3.9299 3.5074 3.9299 7.8169C3.92186 9.89852 4.724 11.858 6.19165 13.3351C7.6593 14.8123 9.61402 15.6305 11.699 15.6386Z" fill="#5FDEAE"/>
+                        </svg>
+                        <div class="ms-3">
+                            <label>Refferal Link:</label><br>
+                            <a href="javascript:;" class="text-decoration-none" id="refferal_link">{{ user['referral_link'] }}</a>
+                        </div>
+                    </div>
+                    <button type="button" id="copy_refferal_link_btn" class="btn btn-primary w-100 mt-5 mb-2">Copy Refferal Link</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-12 mt-2 mb-4">
+            <div class="py-3 faq-wrapper">
+                <div class="note">
+                    <label class="color-primary fw-semibold">How it works</label>
+                </div>
+                <div class="faq-section mt-3">
+                    <div class="accordion row" id="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step1-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step1" aria-expanded="false" aria-controls="step1">
+                                    Step One : Copy Your Referral Link
+                                </button>
+                            </h2>
+                            <div id="step1" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step1-heading">
+                                <div class="accordion-body">
+                                    In your affiliate dashboard, find and copy your unique referral link. When users register using your link, you'll receive a commission for every payment they make on our site.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step2-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2" aria-expanded="false" aria-controls="step2">
+                                    Step Two : Promote Your Link
+                                </button>
+                            </h2>
+                            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step2-heading">
+                                <div class="accordion-body">
+                                    Utilize your referral link to promote our services. Share it on various platforms such as your website, social media, email campaigns, Skype, WhatsApp, or any other channel where you can connect with potential customers.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step3-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3" aria-expanded="false" aria-controls="step3">
+                                    Step Three : Track Your Progress
+                                </button>
+                            </h2>
+                            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step3-heading">
+                                <div class="accordion-body">
+                                    Regularly check our affiliate dashboard to keep tabs on the performance of your referral link. You'll be able to monitor the number of clicks, conversions, and the commissions you've earned.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step4-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4" aria-expanded="false" aria-controls="step4">
+                                    Step Four : Reach Minimum Payout
+                                </button>
+                            </h2>
+                            <div id="step4" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step4-heading">
+                                <div class="accordion-body">
+                                    Once your earnings have reached the minimum payout threshold, you can initiate the withdrawal process. This allows you to transfer your earnings to your Followiz Balance.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step5-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5" aria-expanded="false" aria-controls="step5">
+                                    Step Five : Withdraw and Use Your Balance
+                                </button>
+                            </h2>
+                            <div id="step5" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step5-heading">
+                                <div class="accordion-body">
+                                    To access your earnings, open a support ticket, and our team will assist you in transferring your earnings to your Followiz Balance. You can then use this balance to purchase our services or continue growing your earnings.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+</div>

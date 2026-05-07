@@ -1,0 +1,116 @@
+<div class="api-page">
+    <div class="mt-2 col-xxl-6 col-xl-8 col-md-12">
+        <h3 class="fw-bold page-title">API Documentation</h3>
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="width-40">HTTP Method</td>
+                                <td>POST</td>
+                            </tr>
+                            <tr>
+                                <td>API URL</td>
+                                <td>{{site['protocol']}}://{{site['domain']}}/api/v2</td>
+                            </tr>
+                            {% if user['auth'] %}
+                                <tr>
+                                <td>API Key</td>
+                                <td>Get an API key on the <a href="{{site['protocol']}}://{{site['domain']}}/account">Account</a> page</td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <td>Response format</td>
+                                <td>JSON</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="/example.txt" class="btn btn-primary mt-5 w-100" target="_blank">Example of PHP code</a>
+            </div>
+        </div>
+        
+        {% set loopIndex = 1 %} 
+        {% for method,methodDetails in methods %}
+            <div class="card mt-4">
+                <div class="card-header"  data-bs-toggle="collapse" href="#collapse-{{loopIndex}}" role="button" aria-expanded="true" aria-controls="collapse-{{loopIndex}}">
+                    <h3 class="fw-bold page-title mb-0">{{methodDetails['title']}}</h3>
+                </div>
+                <div id="collapse-{{loopIndex}}" class="pane-collapse in collapse show">
+                    <div class="card-body">
+                        {% if 'add' == method %}
+                            {% if methodDetails['types']|length > 1 %}
+                                <p>
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <select class="form-control form-select input-sm" id="service_type">
+                                                {% for type,label in methodDetails['types'] %}
+                                                    <option value="{{type}}">{{label}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </form>
+                                </p>
+                            {% endif %}
+                            {% for type,parameters in methodDetails['parameters'] %}
+                                <div id="type_{{type}}" class="table-responsive" style="display:none;">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="width-40">Parameters</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for parameter,label in parameters %}
+                                                <tr>
+                                                <td>{{parameter}}</td>
+                                                <td>{{label}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="width-40">Parameters</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for parameter,label in methodDetails['parameters'] %}
+                                            <tr>
+                                                <td>{{parameter}}</td>
+                                                <td>{{label}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+            
+                        <p><strong>Example response</strong></p>
+                        <div class="example-code">
+                            <a href="javascript:;" class=" ex-response-btn" title="Copy code" onclick="CopyToClipboard('copyServiceListCode_{{method}}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.3342 1.35821C2.00054 0.642376 2.94344 0.249756 4.03456 0.249756H9.23169C10.1938 0.249756 11.0419 0.551956 11.6883 1.11879C12.3325 1.68356 12.7294 2.46967 12.8672 3.35808C12.9306 3.7674 12.6503 4.15067 12.2409 4.21412C11.8316 4.27758 11.4483 3.9972 11.3849 3.58788C11.2937 2.99987 11.0447 2.54937 10.6994 2.24664C10.3565 1.94596 9.87189 1.74976 9.23169 1.74976H4.03456C3.31641 1.74976 2.78638 1.99968 2.43212 2.38025C2.07236 2.76672 1.83871 3.34835 1.83871 4.10024V10.7952C1.83871 11.4802 2.03355 12.0246 2.33981 12.4059C2.64124 12.7812 3.08435 13.0421 3.67607 13.1155C4.08714 13.1665 4.37905 13.5411 4.32807 13.9521C4.27709 14.3632 3.90253 14.6551 3.49147 14.6041C2.53339 14.4853 1.72897 14.0408 1.17032 13.3452C0.616515 12.6557 0.338715 11.7639 0.338715 10.7952V4.10024C0.338715 3.03674 0.673355 2.06813 1.3342 1.35821Z" fill="#5FDEAE"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.40849 6.4692C7.07504 5.75429 8.01799 5.36304 9.10879 5.36304H14.3042C15.3975 5.36304 16.3409 5.75394 17.0072 6.46961C17.6678 7.17922 18 8.14716 18 9.20916V15.9041C18 16.9661 17.6678 17.934 17.007 18.6437C16.3406 19.3594 15.397 19.7502 14.3033 19.7502H9.10879C8.01539 19.7502 7.07207 19.3593 6.40581 18.6436C5.7452 17.934 5.41293 16.9661 5.41293 15.9041V9.20916C5.41293 8.14606 5.74736 7.1783 6.40849 6.4692ZM7.50559 7.4921C7.14635 7.87744 6.91293 8.45766 6.91293 9.20916V15.9041C6.91293 16.6566 7.14545 17.2367 7.50369 17.6215C7.85629 18.0003 8.38589 18.2502 9.10879 18.2502H14.3033C15.0268 18.2502 15.5566 18.0002 15.9092 17.6215C16.2675 17.2367 16.5 16.6566 16.5 15.9041V9.20916C16.5 8.45666 16.2675 7.87651 15.9093 7.49169C15.5567 7.11294 15.0271 6.86304 14.3042 6.86304H9.10879C8.38949 6.86304 7.85949 7.11259 7.50559 7.4921Z" fill="#5FDEAE"></path>
+                                </svg>
+                            </a>
+                            <pre id="copyServiceListCode_{{method}}">{{methodDetails['examples']}}</pre>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% set loopIndex = loopIndex+1 %} 
+        {% endfor %}
+       
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="massorder-page">
+    <div>
+        <h3 class="fw-bold page-title">Place a New Order</h3>
+        <p class="page-description">You can use this page for Mass Order.</p>
+    </div>
+    <div class="mt-5 d-flex">
+        <a href="/?page=neworder" class="custom-tag text-decoration-none">Single Order</a>
+        <a href="javascript:;" class="custom-tag mass-order-btn text-decoration-none active">Mass Order</a>
+        <a href="javascript:;" class="custom-tag service-ruler-btn text-decoration-none">Service Rules</a>
+    </div>
+
+    <div class="massorder-wrapper row mt-4">
+        <div class="col-xl-6 col-lg-8 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <!-- Order form -->
+                    <form {% if site['rtl'] %}class="rtl-form"{% endif %} method="post" action="{{ page['url'] }}">
+                        {% if 1 == success %}
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4>{{lang('massorder.message.success')}}</h4>
+                            <div class="alert-content">
+                                {{lang('massorder.orders')}}: {{order['success']}}<br>
+                                {{lang('massorder.errors')}}: {{order['error']}}<br>
+                                <a href="{{ order['link'] }}" target="_blank">{{ lang('massorder.button.details') }}</a>
+                            </div>
+                        </div>
+                        {%endif%}
+
+                        {% if error %}
+                        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                                {% if order['link'] %}
+                                    <h4>{{ errorText }}</h4>
+                                    <div class="alert-content">
+                                        {{lang('massorder.orders')}}: {{order['success']}}<br>
+                                        {{lang('massorder.errors')}}: {{order['error']}}<br>
+                                        <a href="{{ order['link'] }}" target="_blank">{{ lang('massorder.button.details') }}</a>
+                                    </div>
+                                {%else%}
+                                    <div class="alert-content">
+                                        {{ errorText }}
+                                    </div>
+                                {%endif%}
+                        </div>
+                        {% endif %}
+
+                        <div class="card-description pb-3">
+                            The Mass Order Feature is designed to streamline the process of placing multiple orders simultaneously. To utilize this feature, start by selecting a service from our service list that aligns with your needs.<br><br>
+Then, create orders using the following format:<br>
+Service ID|Link|Quantity
+                        </div>
+                        <div class="mt-4">
+                            <h6 class="color-primary-400">Example:</h6>
+                            <div class="massorder-example">
+                                <ul style="list-style-type: none;">
+                                    <li>885|https://instagram.com/yourlink1|200</li>
+                                    <li>885|https://instagram.com/yourlink2|500</li>
+                                    <li>885|https://instagram.com/yourlink3|1000</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+                        <textarea class="form-control massorder-input" name="MassOrderForm[orders]" rows="15" id="links" placeholder="Service_id|Link|quantity"></textarea>
+                        
+                        
+                        <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                        <button type="submit" class="btn btn-primary w-100 mt-5">Submit Order</button>
+                    </form>
+                    <!-- / Order form -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-ruler-wrapper row mt-4 d-none">
+        <div class="col-xl-6 col-lg-8 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Delays Between Drip-Feed Orders</h6>
+                        <p class="">For orders using the drip-feed feature, it's crucial for you to insert a significant delay between each order. This ensures that drip-feed orders do not overlap and allows each order to complete before the next one begins. This practice is essential for maintaining the intended delivery schedule and preventing confusion.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Avoid Duplicate Orders on the same Link</h6>
+                        <p class="">You cannot place orders of the same service type on the same link simultaneously. If you have an ongoing order for a particular service on a link, please wait for it to complete before making another order for the same service on the same link. This helps maintain order and clarity in the process.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Check for Refill Availability Before Reordering</h6>
+                        <p class="">Before placing new orders using the same link, you should confirm that your previous order has been fully delivered and does not require a refill. This proactive approach ensures a smoother and more effective ordering experience.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Confirm Correct Link Entry Before Ordering</h6>
+                        <p class="">Before placing an order, it's essential for you to make sure you've entered the correct link. Orders made with incorrect links will not be eligible for refunds.</p>
+                    </div>
+					<div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Try Before You Buy</h6>
+                        <p class="">Prior to placing larger orders, you should test the service with a small order. This practice allows you to evaluate the quality and speed of the service. Testing with a smaller order first ensures that you are satisfied with the results and helps prevent potential disappointment and issues with larger orders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

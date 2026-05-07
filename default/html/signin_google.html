@@ -1,0 +1,90 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="well">
+				<form {% if site['rtl'] %}class="rtl-form"{% endif %} method="post" action="{{ page['url'] }}">
+					{% if error %}
+					<div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						{{ errorMessage }}
+					</div>
+					{% endif %}
+		
+					{% if success %}
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						{{successMessage}}
+					</div>
+					{% endif %}
+		
+					<div class="form-group">
+						<label for="username" class="control-label">{{ lang('signup.username') }}</label>
+						<input type="text" class="form-control" id="username" name="LoginForm[username]">
+					</div>
+
+					<div class="form-group form-group__password">
+						<label for="password" class="control-label">{{lang('signup.password')}}</label>
+						<input type="password" class="form-control" id="password" name="LoginForm[password]">
+						{% if site['resetPassword'] %}
+							<a href="{{ page_url('resetpassword') }}" class="forgot-password">{{ lang('signin.reset_password') }}</a>
+						{% endif %}
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"  name="LoginForm[remember]" value="1" id="remember">{{lang('signin.remember_me')}}
+						</label>
+					</div>
+		
+					{% if captcha %}
+						{{ captchaCode }}
+					{% endif %}
+		
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-inline">
+								<input type="hidden" name="_csrf" value="{{csrftoken}}">
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary">{{ lang('signin.button') }}</button>
+								</div>
+								{% if googleSignIn %}
+									<div class="form-group">
+										<div id="g_id_onload"
+											data-client_id="{{ googleClientId }}"
+											data-login_uri="{{ googleSignInRedirectUrl }}"
+											data-auto_prompt="false"
+											data-_csrf="{{csrftoken}}">
+										</div>
+										<div class="g_id_signin"
+											data-type="standard"
+											data-size="large"
+											data-theme="outline"
+											data-text="sign_in_with"
+											data-shape="rectangular"
+											data-logo_alignment="left">
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6 text-md-right">
+							<span class="pull-right-middle">{{ lang('signin.text') }} <a href="{{ page_url('signup') }}">{{ lang('signup.title') }}</a></span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% if authText %}
+	<div class="container">
+		<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="well {% if site['rtl'] %} rtl-content {% endif %}">
+			{{ authText }}
+			</div>
+		</div>
+		</div>
+	</div>
+{% endif %}

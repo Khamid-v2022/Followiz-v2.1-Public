@@ -1,0 +1,320 @@
+<div class="tickets-page">
+    {% if user['spent'] >= 5000 %}
+        <input type="hidden" id="vip-client" value="true">
+    {% endif %}
+
+    <div class="row">
+        <!-- Ticket List -->
+        <div class="col-xl-5 col-md-12">
+            <div>
+                <h3 class="fw-bold page-title">Tickets</h3>
+                <p class="page-description">Manage your tickets here</p>
+            </div>
+            <div class="mb-4">
+                <!-- Search Form -->
+                <div class="row gx-2">      
+                    <div class="col-sm-8 mb-2">
+                        <form action="{{ page['url'] }}" method="get" id="history-search">
+                            <div class="input-group-custom">
+                                <input type="text" name="search" class="form-control" value="{{ search }}" placeholder="Search Ticket" >
+                                <span class="input-group-btn">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-primary create-ticket-btn btn-md text-nowrap"  data-bs-toggle="modal" data-bs-target="#createTicket">Create A Ticket</button>
+                    </div>
+                </div>
+                
+                {% if ticketList %}   
+                <div class="card ticket-table-wrapper table-responsive mt-2">
+                    <table class="table {% if site['rtl'] %} rtl-table {% endif %}">
+                        <thead>
+                            <tr>
+                                <th class="color-gray-400" style="max-width: 95px;">Ticket Number</th>
+                                <th class="color-gray-400"><span class="color-primary-400">Subject</span><br><span>Date</span></th>
+                                <th class="color-gray-400">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ticket_list_body">
+                            {% set index = 0 %}
+                            {% set firstTicketId = '' %}
+
+                            {% for ticket in ticketList %}
+                                {% if firstTicketId == '' %}
+                                    {% set firstTicketId = ticket['id'] %}
+                                {% endif %}
+                                {% if index == 0 %}
+                                <tr class="active" data-ticket_id="{{ticket['id']}}">
+                                {% else %}
+                                <tr data-ticket_id="{{ticket['id']}}">
+                                {% endif %}
+                                    <td>{{ ticket['id'] }}</td>
+                                    <td>
+                                        <a href="#chat_section" class="show-ticket-message text-decoration-none">
+                                            {% if ticket['new'] == 1 %}
+                                                <strong>{{ ticket['theme'] }}</strong>
+                                            {% else %}
+                                                {{ticket['theme']}}
+                                            {% endif %}
+                                        </a>
+                                        <br>
+                                        <span class="nowrap">{{ ticket['time'] }}</span>
+                                    </td>
+                                    <td><span class="badge order-status ticket-status-{{ ticket['status'] }}">{{ ticket['status'] }}</td>
+                                </tr>
+                                {% set index = index + 1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <div class="mx-4">
+                        {% if pagination['count'] > 50 %}
+                            <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                                {% if pagination['current'] != 1 %}
+                                <li>
+                                    <a href="{{ page['url'] }}/{{ pagination['last'] }}" aria-label="Previous">
+                                        <span aria-hidden="true">Previous</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                        
+                                {% set r, l = 1, 1 %}
+                        
+                                {% if pagination['current'] == 1 %}
+                                    {% set r = 1 %}
+                                {% endif %}
+                        
+                                {% if pagination['current'] == 2 %}
+                                    {% set r = 1 %}
+                                {% endif %}
+                        
+                                {% if pagination['current'] >= pagination['pages'] %}
+                                    {% set l = 1 %}
+                                {% endif %}
+                        
+                                {% for i in 1..ceil(pagination['pages']) %}
+                                    {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                                        <li{% if i == pagination['current'] %} class="active"{% endif %}>
+                                            <a href="{{ page['url'] }}/{{i}}">{{ i }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                        
+                                {% if pagination['current'] < pagination['pages'] %}
+                                    <li>
+                                        <a href="{{ page['url'] }}/{{ pagination['next'] }}" aria-label="Next">
+                                            <span aria-hidden="true">Next</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- / Ticket List -->
+
+        <!-- Chat -->
+        <div class="col-xl-7 col-md-12" id="chat_section">
+            <div>
+                <h3 class="fw-bold page-title">Chat</h3>
+                <p class="page-description">Chat with our agent.</p>
+            </div>
+            <div class="mt-3 spinner-wrapper">
+                <i class="fa fa-spinner fa-pulse fa-fw"></i>
+            </div>
+            <div class="mt-3 chat-cotainer d-none">
+            </div>
+        </div>
+        <!-- / Chat -->
+    </div>
+
+    <!-- FAQ -->
+    <!-- <div class="row mt-3">
+        <div class="col-xl-8 col-md-12 mb-4">
+            <div class="faq-wrapper">
+                <div class="note">
+                    <label class="color-primary fw-semibold">Frequently Asked Questions</label>
+                </div>
+                <div class="faq-section mt-3">
+                    <div class="accordion row" id="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step1-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step1" aria-expanded="false" aria-controls="step1">
+                                    Step One : copy referral link
+                                </button>
+                            </h2>
+                            <div id="step1" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step1-heading">
+                                <div class="accordion-body">
+                                    Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step2-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2" aria-expanded="false" aria-controls="step2">
+                                    Step Two : share referral link
+                                </button>
+                            </h2>
+                            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step2-heading">
+                                <div class="accordion-body">
+                                    Step 2 content
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step3-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3" aria-expanded="false" aria-controls="step3">
+                                    Step Three : Check affiliate for activities
+                                </button>
+                            </h2>
+                            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step3-heading">
+                                <div class="accordion-body">
+                                    Step 3 Content
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step4-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4" aria-expanded="false" aria-controls="step4">
+                                    Step Four : start earning
+                                </button>
+                            </h2>
+                            <div id="step4" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step4-heading">
+                                <div class="accordion-body">
+                                    Stem 4 Content
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="step5-heading">
+                                <button class="accordion-button px-0 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5" aria-expanded="false" aria-controls="step5">
+                                    Step Five : withdraw earnings
+                                </button>
+                            </h2>
+                            <div id="step5" class="accordion-collapse collapse" data-bs-parent="#accordion" aria-labelledby="step5-heading">
+                                <div class="accordion-body">
+                                    Stem 5 Content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- / FAQ -->
+
+    <!-- Create Ticket Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="createTicket" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <form class="modal-content {% if site['rtl'] %}rtl-form{% endif %}" method="post" action="" id="ticketsend">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Ticket</h5>
+                    <a href="javascript:;" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.181 15.4577C15.035 15.6037 14.843 15.6777 14.651 15.6777C14.458 15.6777 14.267 15.6037 14.12 15.4577L12.247 13.5847L10.38 15.4517C10.234 15.5987 10.042 15.6717 9.85 15.6717C9.659 15.6717 9.466 15.5987 9.32 15.4517C9.027 15.1587 9.027 14.6847 9.32 14.3917L11.186 12.5237L9.32 10.6577C9.027 10.3647 9.027 9.89067 9.32 9.59767C9.613 9.30467 10.087 9.30467 10.38 9.59767L12.246 11.4637L14.11 9.59967C14.403 9.30667 14.877 9.30667 15.17 9.59967C15.463 9.89267 15.463 10.3667 15.17 10.6597L13.307 12.5237L15.181 14.3967C15.474 14.6897 15.474 15.1647 15.181 15.4577ZM12.25 2.78467C5.052 2.78467 2.5 5.33667 2.5 12.5347C2.5 19.7327 5.052 22.2847 12.25 22.2847C19.449 22.2847 22 19.7327 22 12.5347C22 5.33667 19.449 2.78467 12.25 2.78467Z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <p>Before opening a ticket check out <a href="/faq" class="text-decoration-none">FAQs</a> to get an answer to your question/concerns faster.</p>
+
+                    <div class="alert alert-dismissible alert-danger ticket-danger {% if site['rtl'] %} rtl-alert {% endif %}" style="display: none">
+                        <button type="button" class="close">&times;</button>
+                        <div></div>
+                    </div>
+
+                    <div class="mt-4 d-flex">
+                        <select class="form-select form-control" id="main_subject_select">
+                            <option value="Orders" selected>Orders</option>
+                            <option value="Payments">Payments</option>
+                            <option value="Services">Services</option>
+                            <option value="Child Panel">Child Panel</option>
+                            <option value="Request">Request</option>
+                            <option value="Other">Others</option>
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <select class="form-select form-control sub-title-select d-none" id="Orders_subtitle">
+                            <option value="Refill" selected>Refill</option>
+                            <option value="Cancellation">Cancellation</option>
+                            <option value="Speed Up">Speed Up</option>
+                        </select>
+                        <select class="form-select form-control sub-title-select d-none" id="Payments_subtitle">
+                            <option value="Coinpayments" selected>Coinpayments</option>
+                            <option value="Coinbase">Coinbase</option>
+                            <option value="Perfect Money">Perfect Money</option>
+                            <option value="Payeer">Payeer</option>
+                            <option value="Stripe">Stripe</option>
+                            <option value="Cryptomus">Cryptomus</option>
+                            <option value="Payments Other">Other</option>
+                        </select>
+                        <select class="form-select form-control sub-title-select d-none" id="Request_subtitle">
+                            <option value="Feature" selected>Features</option>
+                            <option value="Service">Services</option>
+                        </select>
+                    </div>
+
+                    <div class="ticket-fields mt-3">
+                        <div class="form-group id_order" id="txtIdInput" style="display:none">
+                            <input type="text" class="form-control" id="txt_id" name="txt_id" placeholder="Transaction ID: ex. 372d6d4632fe7151573640642c74baaa870144f7c2c174fa638930df35e4b15e" >
+                        </div>
+                        <div class="form-group id_order" id="acNumIdInput" style="display:none">
+                            <input type="text" class="form-control" id="acNum" name="acNum" placeholder="Account Number/ Batch Number: ex. U29579999">
+                        </div>
+                        <div class="form-group id_order" id="opIdInput" style="display:none">
+                            <input type="text" class="form-control" id="op_id" name="op_id" placeholder="Operation Id: ex. 1656835919" >
+                        </div>
+                        <div class="form-group id_order" id="orderIdInput">
+                            <input type="text" class="form-control" id="order_id" name="ordernumbers" placeholder="Order ID: ex. 41907565,41907564,41907563,41907562,41907561" >
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" rows="7" id="message_box1" placeholder="{{ lang('tickets.message') }}: ex. Hi there, I would like to check my recent order status."></textarea> 
+                            <textarea class="form-control" style="visibility:hidden; position: absolute;" rows="7" id="message_box2" name="TicketForm[message]"></textarea>
+                        </div>                       
+
+                        <div id="messageContainer"></div>
+                        <input type="hidden" id="ticketSubject" name="TicketForm[subject]">
+
+                        <div class="form-group">
+                            <div
+                                class="tickets-uploader"
+                                data-rtl="{% if site['rtl'] %}true{% else %}false{% endif %}"
+                                data-lang-button-attach="{{ lang('tickets.button.attach') }}"
+                                data-lang-file-format-incorrect="{{ lang('tickets.error.file_format.incorrect') }}"
+                                data-lang-file-size-incorrect="{{ lang('tickets.error.file_size.incorrect') }}"
+                            ></div>
+                        </div>
+                    </div>
+                   
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                </div>
+                <div class="mt-2 text-end">
+                    <button id="submitTicketBtn" type="submit" class="btn btn-primary">{{ lang('tickets.button') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+     <!-- / Create Ticket Modal -->
+
+    <!-- DO NOT DELETE -->
+    <div class="container">
+        <div class="row text" id="ticketInfoHolder">
+        </div>
+    </div>
+    <div class="container d-none" id="ticketInfoContainer"></div>
+    <!-- DO NOT DELETE  -->
+
+</div>
+
+<script>   
+    const firstTicketId = "{{ firstTicketId }}";
+    const ticketPageURL = "{{ page_url('viewticket') }}/" ;
+</script>

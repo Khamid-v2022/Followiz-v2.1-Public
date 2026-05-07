@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="well">
+          <form {% if site['rtl'] %}class="rtl-form"{% endif %} action="" method="post">
+            {% if error %}
+              <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ errorMessage }}
+              </div>
+            {% endif %}
+            {% if success %}
+              <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ successText }}
+              </div>
+            {% endif %}
+            {% for field in fields %}
+              <div class="form-group">
+                <label for="{{ field.code }}" class="control-label">{{ lang(field.label) }}</label>
+                <input type="{{ field.type }}" class="form-control" id="{{ field.code }}" value="{{ field.value }}" name="RegistrationForm[{{ field.code }}]">
+              </div>
+            {% endfor %}
+            {% if site['captcha'] %}
+              {{ captchaCode }}
+            {% endif %}
+            {% if check_agreement %}
+              <div class="form-group">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" class="terms-accept-checkbox" name="RegistrationForm[termsofservice]"> {{ lang('signup.accept_terms_text') }} <a href="{{ page_url('terms') }}" target="_blank">{{ lang('terms.signup_checkbox') }}</a>
+                  </label>
+                </div>
+              </div>
+            {% endif %}
+  
+            <input type="hidden" name="_csrf" value="{{csrftoken}}">
+            <button type="submit" class="btn btn-primary">{{ lang('signup.button') }}</button>
+            <span class="pull-right pull-right-middle">{{ lang('signup.text') }} <a href="{{ page_url('signin') }}">{{ lang('signin.title') }}</a></span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

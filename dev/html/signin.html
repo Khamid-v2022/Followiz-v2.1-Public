@@ -1,0 +1,125 @@
+<div class="signin-page">
+    <div class="">
+        <div class="card mx-auto simple-page-content">
+            <div class="card-body">
+                <form {% if site['rtl'] %}class="rtl-form"{% endif %} method="post" action="{{ page['url'] }}">             
+                    <div class="mb-4">
+                        <a href="/" class="d-flex align-items-center text-decoration-none text-white">
+                            <img src="https://followizaddons.com/new-design/icons/logo.png" alt="Followiz" title="" class="logo-img me-2">
+                            <span class="brand-txt">Follo<span class="color-primary">wiz</span></span>
+                        </a>
+                    </div>
+                    <h6 style="font-size: 16px;" class="card-title mb-4">Login to Your Account</h6>
+
+                    {% if error %}
+                    <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ errorMessage }}
+                    </div>
+                    {% endif %}
+        
+                    {% if success %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{successMessage}}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" name="LoginForm[username]" placeholder="Enter your username">
+                    </div>
+
+                    <div class="form-group form-group__password">
+                        <input type="password" class="form-control" id="password" name="LoginForm[password]" placeholder="Enter your password"> 
+                    </div>
+
+                    <div class="d-flex justify-content-between py-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="form-check-input me-2" name="LoginForm[remember]" value="1" id="remember"><label class="form-check-label" for="remember">{{lang('signin.remember_me')}}</label>
+                            </label>
+                        </div>
+                        {% if site['resetPassword'] %}
+                            <a href="{{ page_url('resetpassword') }}" class="forgot-password text-decoration-none">{{ lang('signin.reset_password') }}</a>
+                        {% endif %}
+                    </div>
+
+                    {% if captcha %}
+                        {{ captchaCode }}
+                    {% endif %}
+        
+                    <div class="auth-buttons-wrapper mt-5 mb-2">
+                        <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                        
+
+                        {% if googleSignIn %}
+                            <button type="submit" class="btn btn-primary main-auth-btn">Login To Your Account</button>
+                            <div class="g-signin-btn-wrapper btn btn-primary">
+                                <span class="google-login">
+                                    Login with 
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c">
+                                        <g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g>
+                                    </svg>
+                                </span>
+                                <div class="form-group g-signin-btn">
+                                    <div id="g_id_onload"
+                                        data-client_id="{{ googleClientId }}"
+                                        data-login_uri="{{ googleSignInRedirectUrl }}"
+                                        data-auto_prompt="false"
+                                        data-_csrf="{{csrftoken}}">
+                                    </div>
+                                    <div class="g_id_signin"
+                                        data-type="standard"
+                                        data-size="large"
+                                        data-theme="outline"
+                                        data-text="sign_in_with"
+                                        data-shape="rectangular"
+                                        data-logo_alignment="left">
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <button type="submit" class="btn btn-primary w-100">Login To Your Account</button>
+                        {% endif %}
+                    </div>
+
+                    {% if registration %}
+                    <div class="pt-1 text-center">
+                        <span class="pull-right pull-right-middle pt-1">Don’t have an account? <a href="{{ page_url('signup') }}" class="text-decoration-none">Create Account</a></span>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if authText %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well {% if site['rtl'] %} rtl-content {% endif %}">
+            {{ authText }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="position-fixed bottom-0 start-50 translate-middle-x p-3 w-auto" style="z-index: 11">
+    <div id="cookieConsentToast" class="toast align-items-center text-bg-dark border-0 w-100" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-body">
+                <div class="d-block d-lg-flex justify-content-between">
+                    <div>
+                        We use cookies to enhance your experience on our website. By continuing to browse the site, you agree to our use of cookies. For more details, please visit our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+                    </div>
+                    <div class="m-auto text-center ms-4 mt-3 mt-lg-0">
+                        <button id="cookieConsentBtn" type="button" class="btn btn-primary btn-md">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  

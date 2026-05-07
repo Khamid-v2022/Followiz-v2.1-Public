@@ -1,0 +1,178 @@
+<div class="subscriptions-page">
+    <div>
+        <h3 class="fw-bold page-title">Subscription</h3>
+        <p class="page-description">View and manage your subscription</p>
+    </div>
+    <div class="mt-3 mb-4">
+        <div class="row gx-2">
+            <div class="col-lg-2 col-md-5 col-sm-12 mt-2">
+                <input type="hidden" id="this_page_url" value="{{ page['url'] }}">
+                <select class="form-control form-select" id="sel_status" value="{{ status }}">
+                    <option value="all" {% if 'all' == status %} selected {% endif %} data-href="{{ page['url'] }}">
+                        {{ lang('subscriptions.status.all') }}
+                    </option>  
+                    <option value="active" {% if 'active' == status %} selected {% endif %} data-href="{{ page['url'] }}/active">
+                        {{ lang('subscriptions.status.active') }}
+                    </option>
+                    <option value="paused" {% if 'paused' == status %} selected {% endif %} data-href="{{ page['url'] }}/paused">
+                        {{ lang('subscriptions.status.paused') }}
+                    </option>
+                    <option value="completed" {% if 'completed' == status %} selected {% endif %} data-href="{{ page['url'] }}/completed">
+                        {{ lang('subscriptions.status.completed') }}
+                    </option>
+                    <option value="expired" {% if 'expired' == status %} selected {% endif %} data-href="{{ page['url'] }}/expired">
+                        {{ lang('subscriptions.status.expired') }}
+                    </option>
+                    <option value="canceled" {% if 'canceled' == status %} selected {% endif %} data-href="{{ page['url'] }}/canceled">
+                        {{ lang('subscriptions.status.canceled') }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-7 col-sm-12 mt-2">
+                <form action="{{ page['url'] }}" method="get" id="history-search">
+                    <div class="input-group-custom">
+                        <input type="text" name="search" class="form-control" value="{{ search }}" placeholder="Search" >
+                        <span class="input-group-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card table-responsive services-table-card mt-3">
+        <table class="table mt-3 {% if site['rtl'] %} rtl-table {% endif %}" style="margin-bottom: 11px;">
+            <thead>
+                <tr>
+                    <th class="no-border pb-0"></th>
+                    <th colspan="10" class="name no-border pb-0">Service Name</th>
+                </tr>
+                <tr>
+                    <th class="color-gray-400 pt-0 text-nowrap name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="copy-all-btn">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9712 5.97214C13.0908 5.97214 13.1878 5.87514 13.1878 5.75547C13.1878 3.79714 11.9295 2.48047 10.0462 2.48047H5.2378C3.35447 2.48047 2.0878 3.79714 2.0878 5.75547V10.2888C2.0878 12.2555 3.35447 13.5721 5.2378 13.5721H5.3128C5.45087 13.5721 5.5628 13.4602 5.5628 13.3221V10.5055C5.5628 7.88047 7.4128 5.97214 9.95449 5.97214H12.9712Z"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 7.2207H9.95708C8.07623 7.2207 6.8129 8.5407 6.8129 10.504V15.0365C6.8129 16.9999 8.07623 18.3199 9.95708 18.3199H14.7671C16.6479 18.3199 17.9121 16.9999 17.9121 15.0365V10.504C17.9121 8.5407 16.6487 7.2207 14.7679 7.2207Z"/>
+                        </svg>
+                        <span class="ms-2">ID</span>
+                    </th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.username') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.quantity') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.new_posts') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.old_posts') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.delay') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.created') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.updated') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.expiry') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('subscriptions.status') }}</th>
+                    <th class="color-gray-400 pt-0">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orderList %}
+                <tr class="trow trow-{{ order['id'] }}" data-service_id="{{ order['id'] }}">
+                    <td rowspan="2" class="text-nowrap name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="copy-btn me-2">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9712 5.97214C13.0908 5.97214 13.1878 5.87514 13.1878 5.75547C13.1878 3.79714 11.9295 2.48047 10.0462 2.48047H5.2378C3.35447 2.48047 2.0878 3.79714 2.0878 5.75547V10.2888C2.0878 12.2555 3.35447 13.5721 5.2378 13.5721H5.3128C5.45087 13.5721 5.5628 13.4602 5.5628 13.3221V10.5055C5.5628 7.88047 7.4128 5.97214 9.95449 5.97214H12.9712Z" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 7.2207H9.95708C8.07623 7.2207 6.8129 8.5407 6.8129 10.504V15.0365C6.8129 16.9999 8.07623 18.3199 9.95708 18.3199H14.7671C16.6479 18.3199 17.9121 16.9999 17.9121 15.0365V10.504C17.9121 8.5407 16.6487 7.2207 14.7679 7.2207Z" />
+                        </svg>
+                        <span class="fas fa-star favorite-btn me-2 d-none" data-service_id="{{ order['service_id'] }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorite"></span>
+                        <span class="">{{ order['id'] }}</span>
+                    </td>
+                    <td colspan="10" class="no-border name pb-0">
+                        <a href="javascript:;" class="order-again-btn text-decoration-none" data-service_id="{{ order['service_id'] }}" data-service="{{ order['service'] }}">{{ order['service_id'] }} - {{ order['service'] }}</a>
+                    </td>
+                </tr>
+                <tr class="trow trow-{{ order['id'] }}"  data-service_id="{{ order['id'] }}">
+                    <td class="link-field"><a href="{{ order['link'] }}" class="text-decoration-none color-gray-400" target="_blank">{{ order['link'] }}</a></td>
+                    <td class="">{% if order['quantity_min'] == order['quantity_max'] %}{{ order['quantity_max']}}{% else %}{{ order['quantity_min'] }}-{{ order['quantity_max'] }}{% endif %}</td>
+                    <td class="">
+                        {% if order['current_count'] %}
+                            <a href="{{ page_url('orders') }}?subscription={{ order['id'] }}&likes_spread=0" class="text-decoration-none">{{ order['current_count'] }}</a>
+                        {% else %}
+                            {{ order['current_count'] }}
+                        {% endif %}
+                        / {{ order['quantity'] }}
+                    </td>
+                    <td class="">
+                        {% if order['current_old_posts'] %}
+                            <a href="{{ page_url('orders') }}?subscription={{ order['id'] }}&likes_spread=1" class="text-decoration-none">{{ order['current_old_posts'] }}</a>
+                        {% else %}
+                            {{ order['current_old_posts'] }}
+                        {% endif %}
+                        / {{ order['old_posts'] }}
+                    </td>
+                    <td class="">{{ order['delay'] }}</td>
+                    <td class="">{{ order['date_created'] }}</td>
+                    <td class="">{{ order['date_updated'] }}</td>
+                    <td class="">{{ order['date_expiry'] }}</td>
+                    <td class="">
+                        <span class="badge order-status {{ order['status_name'] }}">{{ order['status_name'] }}</span>
+                    </td>
+                    <td class="">
+                        {% if order['status'] == 1 or order['status'] == 0 %}
+                            <a href="{{ page['url'] }}/stop/{{order['id']}}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ lang('subscriptions.button.cancel') }}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-xmark color-gray-900"></i>
+                            </a>
+                        {% endif %}
+                        {% if order['status'] == 2 %}
+                            <a href="{{ page['url'] }}/resume/{{order['id']}}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ lang('subscriptions.button.unpause') }}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-play color-gray-900"></i>
+                            </a>
+                        {% endif %}
+                        {% if order['status'] == 3 or order['status'] == 4 or order['status'] == 5 %}
+                            <a href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ lang('subscriptions.button.reorder') }}" class="btn btn-sm btn-primary order-again-btn" data-service_id="{{ order['service_id'] }}" >
+                                <i class="fa-solid fa-rotate-left color-gray-900"></i>
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="mx-4">
+            {% if pagination['count'] > 100 %}
+            <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                {% if pagination['current'] != 1 %}
+                <li>
+                    <a href="{{ page['url'] }}/{{ status }}/{{ pagination['last'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                        <span aria-hidden="true">Previous</span>
+                    </a>
+                </li>
+                {% endif %}
+        
+                {% set r, l = 1, 1 %}
+        
+                {% if pagination['current'] == 1 %}
+                {% set r = 1 %}
+                {% endif %}
+        
+                {% if pagination['current'] == 2 %}
+                {% set r = 1 %}
+                {% endif %}
+        
+                {% if pagination['current'] >= pagination['pages'] %}
+                {% set l = 1 %}
+                {% endif %}
+        
+                {% for i in 1..ceil(pagination['pages']) %}
+                {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                    <li{% if i == pagination['current'] %} class="active"{% endif %}>
+                        <a href="{{ page['url'] }}/{{ status }}/{{i}}{% if search %}?search={{ search }}{% endif %}">{{ i }}</a>
+                    </li>
+                {% endif %}
+                {% endfor %}
+        
+                {% if pagination['current'] < pagination['pages'] %}
+                <li>
+                    <a href="{{ page['url'] }}/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                        <span aria-hidden="true">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>

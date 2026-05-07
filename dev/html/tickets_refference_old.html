@@ -1,0 +1,429 @@
+<div class="container">
+    <!------Create a Ticket start------->
+    <div class="panel create_ticket_page" style="display:none">
+       <div class="panel-body">
+          <div class="row">
+             <div class="col-md-10 col-md-offset-1 bg_color">
+                <div class="well">
+                   <div class="api_document create_ticket">
+                      <h2 class="m-b-md text_color" >Create a Ticket</h2>
+                      <div class="ticket">
+                         <p class="text-color2">Before opening a ticket,<span class="green_color"> check out our FAQs </span> to get an answer to your question/concerns faster!</p>
+                         <div class="order-id">
+                            <h5 class="text_color">Subject</h5>
+                            <ul >
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <span><img src="https://followizaddons.com/followiz-icons/order_icon.svg"></span>
+                                        <p class="text_color">Orders</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <span><img src="https://followizaddons.com/followiz-icons/sales-billing_icon.svg"></span>
+                                        <p class="text_color">Sales/Billing</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <span><img src="https://followizaddons.com/followiz-icons/services_icon.svg"></span>
+                                        <p class="text_color">Service</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <span><img src="https://followizaddons.com/followiz-icons/create-ticket_icon.svg"></span>
+                                        <p class="text_color">Sales/Billing</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <span><img src="https://followizaddons.com/followiz-icons/other_icon.svg"></span>
+                                        <p class="text_color">Other  </p>
+                                     </div>
+                                  </a>
+                               </li>
+                            </ul>
+                         </div>
+                         <div class="form-group">
+                            <label for="order id" class="control-label text_color">Order ID</label>
+                            <input type="text" class="form-control bg_color" id="order_id" name="order id" placeholder="ex. $120">
+                         </div>
+                         <div class="request">
+                            <h5 class="text_color">Request</h5>
+                            <ul>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <p class="text-color2">Refill</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <p  class="text-color2">Cancellation</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <p class="text-color2">Speed Up</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <p class="text-color2">Instagram Verification</p>
+                                     </div>
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="#">
+                                     <div class="subject_box">
+                                        <p class="text-color2">Other</p>
+                                     </div>
+                                  </a>
+                               </li>
+                            </ul>
+                         </div>
+                         <div class="form-group">
+                            <label for="message" class="control-label text_color">{{ lang('tickets.message') }}</label>
+                            <textarea class="form-control bg_color" rows="7" id="message" name="TicketForm[message]" placeholder="ex. Hi there, I’d like to cancel this order because..."></textarea>
+                         </div>
+                         <button type="submit" class="btn btn-primary btn-block">{{ lang('tickets.button') }}</button>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!------Create a Ticket end------->
+ <!------Ticket history start------->
+ <div class="container">
+    <div class="panel account create_ticket_page">
+       <div class="panel-body">
+          <div class="row">
+             <div class="col-md-10 col-md-offset-1 new_ticket ">
+                <div class="row">
+                   <div class=" new_ticket1 desktop-view">
+                      <div class="col-md-4 well bg_color">
+                         <div class="new_ticket_section">
+                            <a href="javascript:void 0" class="btn-block" data-toggle="modal" data-target="#newTicketModal">New Ticket</a>
+                         </div>
+                         <nav class="nav-sidebar new_ticket_apply">
+                            <ul class="nav tabs">
+                               {% set firstTicketId = '' %}
+                               {% set firstTitle= '' %}
+                               {% set firstDate = '' %}
+
+                               {% if ticketList %} 
+                                    {% for ticket in ticketList %}
+                                        {% if firstTicketId == '' %}
+                                            {% set firstTicketId = ticket['id'] %}
+                                            {% set firstTitle= ticket['theme'] %}
+                                            {% set firstDate = ticket['time'] %}
+                                        {% endif %}
+                                        <li class="ticket_massage  ticketList" data-ticketID="{{ ticket['id'] }}" data-href="{{ page_url('viewticket') }}/{{ ticket['id'] }}">
+                                            <a href="#tab1" data-toggle="tab">
+                                                <div class="text-color2">
+                                                    {% if ticket['new'] > 0 %}
+                                                    <span class="message_icon read_message"><img src="https://followizaddons.com/followiz-icons/mail_icon.svg"></span>
+                                                    {% endif %}
+                                                    <p>{{ ticket['theme'] }} </p>
+                                                    <span class="small_font"> Last Update: {{ ticket['time'] }}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                               {% endif %}
+                            </ul>
+                         </nav>
+                      </div>
+                      <!-- tab content -->
+                      <div class="col-md-8 tab_ans bg_color desktop-view">
+                         <div class="tab-content">
+                            <div class="tab-pane active text-style" id="tab1">
+                               <div class="well history_ticket">
+                                  <h2 class="m-b-md text_color">
+                                     <span class="order_text">{{firstTitle}}</span>
+                                     <p class="order_refill text-color2"><span class="order_id">ID: {{firstTicketId}}</span> <span class="status_ans">Status: Answered</span> <span class="status_ans status_date">Last Update: {{firstDate}}</span> </p>
+                                  </h2>
+                                  <div class="ticket ajax-load-ticket">
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class=" new_ticket1 mobile_view">
+                      <div class="col-md-4 well bg_color">
+                         <div class="new_ticket_section">
+                            <a href="javascript:void 0" class="btn-block" data-toggle="modal" data-target="#newTicketModal">New Ticket</a>
+                         </div>
+                         <nav class="nav-sidebar new_ticket_apply">
+                            <ul class="nav tabs">
+                                {% set firstTicketId = '' %}
+                                {% set firstTitle= '' %}
+                                {% set firstDate = '' %}
+                                {% if ticketList %} 
+                                    {% for ticket in ticketList %}
+                                        {% if firstTicketId == '' %}
+                                            {% set firstTicketId = ticket['id'] %}
+                                            {% set firstTitle= ticket['theme'] %}
+                                            {% set firstDate = ticket['time'] %}
+                                        {% endif %}
+                                        <li class="ticket_massage  ticketList" data-ticketID="{{ ticket['id'] }}" data-href="{{ page_url('viewticket') }}/{{ ticket['id'] }}" data-toggle="modal" data-target="#myModal">
+                                            <a href="#tab1" data-toggle="tab">
+                                                <div class="text-color2">
+                                                    {% if ticket['new'] > 0 %}
+                                                    <span class="message_icon read_message"><img src="https://followizaddons.com/followiz-icons/mail_icon.svg"></span>
+                                                    {% endif %}
+                                                    <p>{{ ticket['theme'] }} </p>
+                                                    <span class="small_font"> Last Update: {{ ticket['time'] }}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                         </nav>
+                      </div>
+                      <!-- tab content -->
+                      <div id="myModal" class="modal fade" role="dialog">
+                         <div class="modal-dialog">
+                            <button type="button" class="close ticket_poup_button " data-dismiss="modal">&times;</button>
+                            <div class="col-md-8 tab_ans bg_color ">
+                               <div class="tab-content">
+                                  <div class="tab-pane active text-style" id="tab1">
+                                     <div class="well history_ticket">
+                                        <h2 class="m-b-md text_color">
+                                           <span class="order_text">{{firstTitle}}</span>
+                                           <p class="order_refill text-color2"><span class="order_id">ID: {{firstTicketId}}</span> <span class="status_ans">Status: Answered</span> <span class="status_ans status_date">Last Update: {{firstDate}}</span> </p>
+                                        </h2>
+                                        <div class="ticket ajax-load-ticket">
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!------Ticket history end------->
+    <div class="modal fade " id="newTicketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog ticket_poup" role="document">
+          <div class="modal-content">
+             <button type="button" class="close ticket_poup_button" data-dismiss="modal">&times;</button>
+             <form {% if site['rtl'] %}class="rtl-form"{% endif %} method="post" action="" id="ticketsend">
+             <div class="panel create_ticket_page" >
+                <div class="panel-body">
+                   <div class="">
+                      <div class="">
+                         <div class="well">
+                            <div class="api_document create_ticket">
+                               <h2 class="m-b-md text_color" >Create a Ticket</h2>
+                               <div class="ticket">
+                                  <p class="text-color2">Before opening a ticket,<span class="green_color"> check out our FAQs </span> to get an answer to your question/concerns faster!</p>
+                                  <div class="order-id">
+                                     <h5 class="text_color">Subject</h5>
+                                     <ul class="custom-radio">
+                                        <li class="active">
+                                           <input type="radio" name="TicketForm[subject]" value="Orders" class="designradio"/>
+                                           <a href="javascript:void 0">
+                                              <div class="subject_box">
+                                                 <span><img src="https://followizaddons.com/followiz-icons/order_icon.svg"></span>
+                                                 <p class="text_color">Orders</p>
+                                              </div>
+                                           </a>
+                                        </li>
+                                        <li >
+                                           <input type="radio" name="TicketForm[subject]" value="Sales/Billing"  class="designradio"/>
+                                           <a href="javascript:void 0">
+                                              <div class="subject_box">
+                                                 <span><img src="https://followizaddons.com/followiz-icons/sales-billing_icon.svg"></span>
+                                                 <p class="text_color">Sales/Billing</p>
+                                              </div>
+                                           </a>
+                                        </li>
+                                        <li >
+                                           <input type="radio" name="TicketForm[subject]" value="Service"  class="designradio"/>
+                                           <a href="javascript:void 0">
+                                              <div class="subject_box">
+                                                 <span><img src="https://followizaddons.com/followiz-icons/services_icon.svg"></span>
+                                                 <p class="text_color">Service</p>
+                                              </div>
+                                           </a>
+                                        </li>
+                                        <li>
+                                           <input type="radio" name="TicketForm[subject]" value="Sales/Billing"  class="designradio"/>
+                                           <a href="javascript:void 0">
+                                              <div class="subject_box">
+                                                 <span><img src="https://followizaddons.com/followiz-icons/create-ticket_icon.svg"></span>
+                                                 <p class="text_color">Sales/Billing</p>
+                                              </div>
+                                           </a>
+                                        </li>
+                                        <li>
+                                           <input type="radio" name="TicketForm[subject]" value="Other"  class="designradio"/>
+                                           <a href="javascript:void 0">
+                                              <div class="subject_box">
+                                                 <span><img src="https://followizaddons.com/followiz-icons/other_icon.svg"></span>
+                                                 <p class="text_color">Other  </p>
+                                              </div>
+                                           </a>
+                                        </li>
+                                     </ul>
+                                  </div>
+                                  <div class="tab-content">
+                                     <div class="tab-pane active text-style" id="tab1">
+                                        <div class="form-group">
+                                           <label for="order id" class="control-label text_color">Order ID</label>
+                                           <input type="text" class="form-control bg_color" id="order_id" name="ordernumbers" placeholder="ex. $120" >
+                                        </div>
+                                        <div class="request">
+                                           <h5 class="text_color">Request</h5>
+                                           <ul class="custom-radio">
+                                              <li>
+                                                 <input type="radio" name="request" value="Refill"  class="designradio"/>
+                                                 <a href="#">
+                                                    <div class="subject_box">
+                                                       <p class="text-color2">Refill</p>
+                                                    </div>
+                                                 </a>
+                                              </li>
+                                              <li>
+                                                 <input type="radio" name="request" value="Cancellation"  class="designradio"/>
+                                                 <a href="#">
+                                                    <div class="subject_box">
+                                                       <p  class="text-color2">Cancellation</p>
+                                                    </div>
+                                                 </a>
+                                              </li>
+                                              <li>
+                                                 <input type="radio" name="request" value="Speed Up"  class="designradio"/>
+                                                 <a href="#">
+                                                    <div class="subject_box">
+                                                       <p class="text-color2">Speed Up</p>
+                                                    </div>
+                                                 </a>
+                                              </li>
+                                              <li>
+                                                 <input type="radio" name="request" value="Instagram Verification"  class="designradio"/>
+                                                 <a href="#">
+                                                    <div class="subject_box">
+                                                       <p class="text-color2">Instagram Verification</p>
+                                                    </div>
+                                                 </a>
+                                              </li>
+                                              <li>
+                                                 <input type="radio" name="request" value="Other"  class="designradio"/>
+                                                 <a href="#">
+                                                    <div class="subject_box">
+                                                       <p class="text-color2">Other</p>
+                                                    </div>
+                                                 </a>
+                                              </li>
+                                           </ul>
+                                        </div>
+                                        <div class="form-group">
+                                           <label for="message" class="control-label text_color">{{ lang('tickets.message') }}</label>
+                                           <textarea class="form-control bg_color" rows="7" id="message" name="TicketForm[message]" placeholder="ex. Hi there, I’d like to cancel this order because..."></textarea> <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">{{ lang('tickets.button') }}</button>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             </form>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-md-8 col-md-offset-2">
+          {% if pagination['count'] > 50 %}
+          <div class="nav-pills">
+             <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                {% if pagination['current'] != 1 %}
+                <li>
+                   <a href="{{ page['url'] }}/{{ pagination['last'] }}" aria-label="Previous">
+                   <span aria-hidden="true">&laquo;</span>
+                   </a>
+                </li>
+                {% endif %}
+                {% set r, l = 3, 3 %}
+                {% if pagination['current'] == 1 %}
+                {% set r = 6 %}
+                {% endif %}
+                {% if pagination['current'] == 2 %}
+                {% set r = 5 %}
+                {% endif %}
+                {% if pagination['current'] >= pagination['pages'] %}
+                {% set l = 5 %}
+                {% endif %}
+                {% for i in 1..ceil(pagination['pages']) %}
+                {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                <li{% if i == pagination['current'] %} class="active"{% endif %}><a href="{{ page['url'] }}/{{i}}">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if pagination['current'] < pagination['pages'] %}
+                <li>
+                   <a href="{{ page['url'] }}/{{ pagination['next'] }}" aria-label="Next">
+                   <span aria-hidden="true">&raquo;</span>
+                   </a>
+                </li>
+                {% endif %}
+             </ul>
+          </div>
+          {% endif %}
+       </div>
+    </div>
+ </div>
+ </div>
+ </div>
+ {% if ticketsText %}
+ <div class="container">
+    <div class="row">
+       <div class="col-md-8 col-md-offset-2">
+          <div class="well {% if site['rtl'] %} rtl-content {% endif %}">
+             {{ ticketsText }}
+          </div>
+       </div>
+    </div>
+ </div>
+ {% endif %}
+ <!-- DO NOT DELETE -->
+ <div class="container">
+    <div class="row text" id="ticketInfoHolder">
+    </div>
+ </div>
+ <div class="container" id="ticketInfoContainer" style="display:none"></div>
+ <!-- DO NOT DELETE  -->
+ <script> </script>
+ <script> 
+    const firstTicketId = "{{ firstTicketId }}";
+    const ticketPageURL = "{{ page_url('viewticket') }}/";
+ </script>

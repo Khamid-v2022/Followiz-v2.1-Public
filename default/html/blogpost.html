@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="well">
+                {% if post['image'] %} <p><img src="{{ post['image'] }}" alt="{{ post['title'] }}" class="img-responsive"></p> {% endif %}
+                <h1>{{ post['title'] }}</h1>
+                <div>{{ post['content'] }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{{ page_url('blog') }}" class="btn btn-primary">{{ lang('blog.back')}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

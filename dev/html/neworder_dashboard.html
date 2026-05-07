@@ -1,0 +1,784 @@
+<div class="spinner-wrapper">
+    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+</div>
+
+<div class="dashboard-page d-none">
+    <div class="d-flex justify-content-between">
+        <div>
+            <h3 class="fw-bold page-title">Dashboard</h3>
+            <p class="page-description">The SMM Panel for Providers & Resellers!</p>
+        </div>
+        <div class="">
+            <a class="btn btn-primary d-none d-sm-block" href="/?page=neworder">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.10851 1.66675H13.8835C16.7168 1.66675 18.3335 3.26675 18.3335 6.10841V13.8917C18.3335 16.7167 16.7252 18.3334 13.8918 18.3334H6.10851C3.26684 18.3334 1.66684 16.7167 1.66684 13.8917V6.10841C1.66684 3.26675 3.26684 1.66675 6.10851 1.66675ZM10.6835 10.6917H13.0502C13.4335 10.6834 13.7418 10.3751 13.7418 9.99175C13.7418 9.60842 13.4335 9.30008 13.0502 9.30008H10.6835V6.95008C10.6835 6.56675 10.3752 6.25841 9.99184 6.25841C9.60851 6.25841 9.30017 6.56675 9.30017 6.95008V9.30008H6.94184C6.75851 9.30008 6.58351 9.37508 6.45017 9.50008C6.32517 9.63342 6.25017 9.80758 6.25017 9.99175C6.25017 10.3751 6.55851 10.6834 6.94184 10.6917H9.30017V13.0501C9.30017 13.4334 9.60851 13.7417 9.99184 13.7417C10.3752 13.7417 10.6835 13.4334 10.6835 13.0501V10.6917Z" fill="#E7F9F3"/>
+                </svg>
+                Place New order
+            </a>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <!-- 4 blocks -->
+            <div class="row gx-3">
+                <!-- Unread Ticket -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="widget-icon red-widget">
+                                <svg width="28" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.2384 0C25.3244 0 27.3311 0.824444 28.8073 2.30378C30.2851 3.78 31.1111 5.77111 31.1111 7.85556V20.1444C31.1111 24.4844 27.58 28 23.2384 28H7.87111C3.52956 28 0 24.4844 0 20.1444V7.85556C0 3.51556 3.514 0 7.87111 0H23.2384ZM24.9978 8.08889C24.6711 8.07178 24.36 8.18222 24.1251 8.4L17.1111 14C16.2089 14.7482 14.9162 14.7482 14 14L7 8.4C6.51622 8.04222 5.84733 8.08889 5.44444 8.50889C5.02444 8.92889 4.97778 9.59778 5.334 10.0644L5.53778 10.2667L12.6156 15.7889C13.4867 16.4733 14.5429 16.8467 15.6489 16.8467C16.7518 16.8467 17.8267 16.4733 18.6962 15.7889L25.7133 10.1733L25.8378 10.0489C26.2096 9.59778 26.2096 8.94444 25.8207 8.49333C25.6044 8.26156 25.3073 8.12 24.9978 8.08889Z" fill="#FF6B89"/>
+                                </svg>                                    
+                            </div>
+                            <div class="text-end">
+                                <label class="fw-semibold widget-title">Unread Tickets</label>
+                                <a class="text-decoration-none" href="/tickets"><h2 class="fw-bold widget-value mb-0">{{ user['unread_ticket'] }}</h2></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Unread Ticket -->
+
+                <!-- Active Orders -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="widget-icon blue-widget">
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9216 10.4964L13.6686 9.59012C13.8896 9.51644 14.1298 9.51496 14.3568 9.58865L17.0802 10.4729L17.0604 0.449049C17.06 0.204801 16.8615 0.00722434 16.6173 0.00781382L11.3514 0.0204285C11.1075 0.0210179 10.9101 0.219081 10.9104 0.463035L10.9216 10.4964Z" fill="#75B9FF"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M27.9691 8.11853C27.9632 5.70168 27.1527 3.56926 25.6878 2.11179C24.2981 0.729474 22.403 0 20.2072 0H20.1733L19.7129 0.00150309C19.469 0.00229888 19.2718 0.200495 19.2723 0.444419L19.2935 11.9928C19.2935 12.348 19.1255 12.6811 18.8381 12.8888C18.5522 13.0966 18.1838 13.1556 17.8463 13.0465L14.0177 11.8027L10.164 13.0745C10.0505 13.1128 9.93412 13.1305 9.8177 13.1305C9.58782 13.1305 9.36235 13.0598 9.17077 12.9213C8.8834 12.7135 8.71393 12.3804 8.71245 12.0267L8.69968 0.46953C8.69941 0.225017 8.5007 0.0271452 8.25619 0.0279115L7.75751 0.0294737C3.10656 0.0456842 -0.0117561 3.32168 3.333e-05 8.18042L0.0265595 19.8815C0.0324542 22.2246 0.758981 24.2377 2.12951 25.7055C3.53393 27.2072 5.49098 28 7.78993 28H7.82235L20.2381 27.9705C24.8891 27.9543 28.0059 24.6798 27.9971 19.8196L27.9691 8.11853Z" fill="#75B9FF"/>
+                                </svg>                                                                    
+                            </div>
+                            <div class="text-end">
+                                <label class="fw-semibold widget-title">Active Orders</label>
+                                <a class="text-decoration-none" href="/orders"><h2 class="fw-bold widget-value mb-0">{{ user['ordersActive'] }}</h2></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Active Orders -->
+            </div>
+
+            <div class="row gx-3">
+                <!-- Account Balance -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="widget-icon purple-widget">
+                                    <svg width="28" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.73548 13.4249C4.73548 8.99041 7.72235 5.89307 11.9975 5.89307H23.041C23.3756 5.89307 23.5822 5.52793 23.4099 5.24108L22.1359 3.11996C20.2494 0.0140133 16.9785 -0.874014 13.9974 0.913518L2.88196 7.61318C-0.10061 9.40788 -0.850915 12.7133 1.01983 15.8451L3.93798 20.6143C4.16478 20.985 4.73548 20.8242 4.73548 20.3896V13.4249Z" fill="#8C8CED"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.9972 15.5331H11.9781C11.3841 15.5331 10.9021 15.0511 10.9021 14.4572C10.9021 13.8632 11.3841 13.3812 11.9781 13.3812H24.9972C25.5912 13.3812 26.0732 13.8632 26.0732 14.4572C26.0732 15.0511 25.5912 15.5331 24.9972 15.5331ZM24.9829 7.32715H11.9967C8.51204 7.32715 6.16931 9.77747 6.16931 13.4243V21.9172C6.16931 25.5554 8.51204 28 11.9967 28H24.9815C28.4676 28 30.8117 25.5554 30.8117 21.9172V13.4243C30.8117 9.77747 28.469 7.32715 24.9829 7.32715Z" fill="#8C8CED"/>
+                                    </svg>                                                                    
+                                </div>
+                                <div class="text-end">
+                                    <label class="fw-semibold widget-title">Account Balance</label>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-flex justify-content-between">
+                                <a href="/addfunds" class="primary-link-color fw-semibold text-decoration-none" style="font-size: 16px;">Fund Balance</a>
+                                <a class="text-decoration-none" href="/addfunds"><span class="widget-value d-flex mb-0">$ <h2 class="fw-bold mb-0">{{ user['balance'] | number_format(2) }}</h2></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Account Balance -->
+
+                <!-- Referal Link -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="widget-icon green-widget">
+                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3831 14.4321C17.7937 14.4321 16.2887 14.7556 15.0227 15.2901C19.4675 16.5842 22.6041 19.6645 22.6745 23.2513C24.9812 22.9418 27.4568 22.0838 27.4568 19.6927C27.4568 16.8374 23.7575 14.4321 19.3831 14.4321Z" fill="#5FDEAE"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3409 12.4067H19.3831C22.3791 12.4067 24.8124 9.97342 24.8124 6.97743C24.8124 3.98145 22.3791 1.5481 19.3831 1.5481C18.7923 1.5481 18.2297 1.64656 17.6952 1.81534C18.6658 3.25004 19.2284 4.98011 19.2284 6.83678C19.2284 8.7919 18.5954 10.6064 17.5264 12.0832C18.0891 12.2942 18.708 12.4067 19.3409 12.4067Z" fill="#5FDEAE"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2806 16.7375C4.70777 16.7375 0 19.7828 0 23.3878C0 27.5217 5.86678 27.9999 10.2806 27.9999C12.8236 27.9999 20.5611 27.9999 20.5611 23.3597C20.5611 19.7701 15.8533 16.7375 10.2806 16.7375Z" fill="#5FDEAE"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2366 13.6844H10.2788C14.0526 13.6844 17.1218 10.6153 17.1218 6.84294C17.1218 3.06912 14.0526 0 10.2788 0C6.50781 0 3.43868 3.06912 3.43868 6.84012C3.43165 8.66162 4.13352 10.3762 5.41772 11.6688C6.70191 12.9614 8.41229 13.6774 10.2366 13.6844Z" fill="#5FDEAE"/>
+                                    </svg>            
+                                </div>
+                                <div class="text-end">
+                                    <label class="d-flex align-items-center fw-semibold widget-title">
+                                        <img class="tooltip-icon cursor-pointer me-1"  src='https://followizaddons.com/new-design/icons/bx-info-circle-fill.png' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="<h6>Referral Link</h6><p>Share your affiliate link with friends and earn a 1% commission on every deposit they make!</p>"></img>
+                                        Referral Link
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-flex justify-content-end align-items-end" style="min-height: 28px;">
+                                <span class="me-2 widget-value mb-0">{{ user['referral_link'] }}</span>
+                                <a href="javascript:" class="copy-btn" data-copy-txt="{{ user['referral_link'] }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.3342 1.35821C2.00054 0.642376 2.94344 0.249756 4.03456 0.249756H9.23169C10.1938 0.249756 11.0419 0.551956 11.6883 1.11879C12.3325 1.68356 12.7294 2.46967 12.8672 3.35808C12.9306 3.7674 12.6503 4.15067 12.2409 4.21412C11.8316 4.27758 11.4483 3.9972 11.3849 3.58788C11.2937 2.99987 11.0447 2.54937 10.6994 2.24664C10.3565 1.94596 9.87189 1.74976 9.23169 1.74976H4.03456C3.31641 1.74976 2.78638 1.99968 2.43212 2.38025C2.07236 2.76672 1.83871 3.34835 1.83871 4.10024V10.7952C1.83871 11.4802 2.03355 12.0246 2.33981 12.4059C2.64124 12.7812 3.08435 13.0421 3.67607 13.1155C4.08714 13.1665 4.37905 13.5411 4.32807 13.9521C4.27709 14.3632 3.90253 14.6551 3.49147 14.6041C2.53339 14.4853 1.72897 14.0408 1.17032 13.3452C0.616515 12.6557 0.338715 11.7639 0.338715 10.7952V4.10024C0.338715 3.03674 0.673355 2.06813 1.3342 1.35821Z" fill="#5FDEAE"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.40849 6.4692C7.07504 5.75429 8.01799 5.36304 9.10879 5.36304H14.3042C15.3975 5.36304 16.3409 5.75394 17.0072 6.46961C17.6678 7.17922 18 8.14716 18 9.20916V15.9041C18 16.9661 17.6678 17.934 17.007 18.6437C16.3406 19.3594 15.397 19.7502 14.3033 19.7502H9.10879C8.01539 19.7502 7.07207 19.3593 6.40581 18.6436C5.7452 17.934 5.41293 16.9661 5.41293 15.9041V9.20916C5.41293 8.14606 5.74736 7.1783 6.40849 6.4692ZM7.50559 7.4921C7.14635 7.87744 6.91293 8.45766 6.91293 9.20916V15.9041C6.91293 16.6566 7.14545 17.2367 7.50369 17.6215C7.85629 18.0003 8.38589 18.2502 9.10879 18.2502H14.3033C15.0268 18.2502 15.5566 18.0002 15.9092 17.6215C16.2675 17.2367 16.5 16.6566 16.5 15.9041V9.20916C16.5 8.45666 16.2675 7.87651 15.9093 7.49169C15.5567 7.11294 15.0271 6.86304 14.3042 6.86304H9.10879C8.38949 6.86304 7.85949 7.11259 7.50559 7.4921Z" fill="#5FDEAE"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Referal Link -->
+            </div>
+            <!-- / 4 blocks -->
+
+            <!-- Services Enabled -->
+            <div class="card services-table-card mb-3 d-none d-md-block">
+                <div class="card-body" style="padding-top: 20px;">
+                    <div class="d-flex justify-content-between">
+                        <label class="fw-semibold d-flex align-items-center">
+                            <img src="https://followizaddons.com/new-design/icons/document.png">                                
+                            <span class="ms-1 card-title">Services Enabled</span>
+                        </label>
+
+                        {% set menu_exist = 0 %}
+                        
+                        {% for menu in site['menu'] %}
+                            {% if  menu['link'] == '/updates' %}
+                                {% set menu_exist = 1 %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if  menu_exist == 1 %}
+                        <a href="/updates">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.84705 1.74069C2.73951 0.783304 4.00861 0.25 5.50061 0.25H7.48102C7.89522 0.25 8.23101 0.585786 8.23101 0.999992C8.23101 1.4142 7.89522 1.74998 7.48102 1.74998H5.50061C4.3802 1.74998 3.524 2.14155 2.94424 2.76348C2.35905 3.39126 1.99998 4.31438 1.99998 5.4675V12.5323C1.99998 13.6863 2.35763 14.6093 2.94159 15.2367C3.51992 15.8579 4.3757 16.2498 5.50061 16.2498H12.9975C14.1228 16.2498 14.9791 15.8578 15.5577 15.2365C16.142 14.6092 16.4998 13.6863 16.4998 12.5323V10.9848C16.4998 10.5706 16.8356 10.2348 17.2498 10.2348C17.664 10.2348 17.9998 10.5706 17.9998 10.9848V12.5323C17.9998 13.996 17.542 15.3068 16.6554 16.2588C15.7632 17.2169 14.4932 17.7498 12.9975 17.7498H5.50061C4.00511 17.7498 2.73558 17.2168 1.84369 16.2587C0.957455 15.3067 0.5 13.9959 0.5 12.5323V5.4675C0.5 4.00287 0.960035 2.69224 1.84705 1.74069Z" fill="#5FDEAE"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1951 0.999992C12.1951 0.585786 12.5309 0.25 12.9451 0.25H17.25C17.6642 0.25 18 0.585786 18 0.999992V5.30483C18 5.71904 17.6642 6.05482 17.25 6.05482C16.8358 6.05482 16.5 5.71904 16.5 5.30483V2.81063L11.0692 8.24131C10.7763 8.53421 10.3014 8.53421 10.0086 8.24131C9.71566 7.94841 9.71566 7.47362 10.0086 7.18072L15.4393 1.74998H12.9451C12.5309 1.74998 12.1951 1.4142 12.1951 0.999992Z" fill="#5FDEAE"/>
+                            </svg>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="table-responsive news-table-wrapper">
+                    <table id="table-updates-order" class="table update-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th class="width-service-name">Service</th>
+                                <th class="nowrap">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- / Services Enabled -->
+        </div>
+
+        <div class="col-md-4">
+            <!-- VIP status -->
+            <div class="card vip-status-card {% if user['spent'] >= 5000 %} vip-success {% endif %} mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <label class="d-flex align-items-center fw-semibold widget-title">
+                            VIP Status
+                            <img class="tooltip-icon cursor-pointer ms-1"  style="z-index: 3;" src='https://followizaddons.com/new-design/icons/bx-info-circle-fill.png'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="<h6>VIP Status</h6><p>Unlock VIP Status by spending $5000 at <a href='https://followiz.com' target='_blank'>Followiz.com</a>, and enjoy exclusive perks and bonuses.</p>"></img>
+                        </label>
+                        <a  href="javascript:;" data-bs-toggle="modal" data-bs-target="#vip_modal" style="z-index: 3;">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.84705 1.74069C2.73951 0.783304 4.00861 0.25 5.50061 0.25H7.48102C7.89522 0.25 8.23101 0.585786 8.23101 0.999992C8.23101 1.4142 7.89522 1.74998 7.48102 1.74998H5.50061C4.3802 1.74998 3.524 2.14155 2.94424 2.76348C2.35905 3.39126 1.99998 4.31438 1.99998 5.4675V12.5323C1.99998 13.6863 2.35763 14.6093 2.94159 15.2367C3.51992 15.8579 4.3757 16.2498 5.50061 16.2498H12.9975C14.1228 16.2498 14.9791 15.8578 15.5577 15.2365C16.142 14.6092 16.4998 13.6863 16.4998 12.5323V10.9848C16.4998 10.5706 16.8356 10.2348 17.2498 10.2348C17.664 10.2348 17.9998 10.5706 17.9998 10.9848V12.5323C17.9998 13.996 17.542 15.3068 16.6554 16.2588C15.7632 17.2169 14.4932 17.7498 12.9975 17.7498H5.50061C4.00511 17.7498 2.73558 17.2168 1.84369 16.2587C0.957455 15.3067 0.5 13.9959 0.5 12.5323V5.4675C0.5 4.00287 0.960035 2.69224 1.84705 1.74069Z" fill="#5FDEAE"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1951 0.999992C12.1951 0.585786 12.5309 0.25 12.9451 0.25H17.25C17.6642 0.25 18 0.585786 18 0.999992V5.30483C18 5.71904 17.6642 6.05482 17.25 6.05482C16.8358 6.05482 16.5 5.71904 16.5 5.30483V2.81063L11.0692 8.24131C10.7763 8.53421 10.3014 8.53421 10.0086 8.24131C9.71566 7.94841 9.71566 7.47362 10.0086 7.18072L15.4393 1.74998H12.9451C12.5309 1.74998 12.1951 1.4142 12.1951 0.999992Z" fill="#5FDEAE"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <div class="vip-status-progress"
+                            data-value="{{ ((( user['spent'] /5000)*100)/100) | number_format(2) }}" 
+                            data-size="140" data-thickness="10" data-fill= "{&quot;color&quot;: &quot;rgba(47, 205, 148, 1)&quot;}" data-reverse="true">
+                            <span class="diamond">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M31.9642 61.4488C29.9662 45.011 26.8886 29.7358 21.9058 16.512C14.7213 15.2763 7.53612 15.2763 0.351654 16.512L31.9642 61.4488Z" fill="#47987C"/>
+                                    <path d="M42.0226 16.5119C34.6449 15.9176 27.7646 15.7637 21.9058 16.5119L31.9642 61.4487C36.3232 46.8206 39.6418 31.8299 42.0226 16.5119Z" fill="#25B27D"/>
+                                    <path d="M31.9641 61.4488L42.0225 16.512C48.6689 15.2349 55.8885 15.3171 63.5766 16.512L31.9641 61.4488Z" fill="#5FDEAE"/>
+                                    <path d="M12.3693 2.47949C16.8407 7.36397 20.3666 12.0974 21.9051 16.5119H0.351654L12.3693 2.47949Z" fill="#25B27D"/>
+                                    <path d="M31.9642 2.47949C29.1844 8.08755 26.0512 13.1217 21.9058 16.5119L12.3693 2.47949H31.9642Z" fill="#5FDEAE"/>
+                                    <path d="M42.0226 16.5119C39.8371 11.2586 36.229 6.70714 31.9642 2.47949L21.9058 16.5119H42.0226Z" fill="#4BA484"/>
+                                    <path d="M42.0225 16.5119C46.482 12.6053 49.2028 7.72998 51.2513 2.47949H31.9641L42.0225 16.5119Z" fill="#25B27D"/>
+                                    <path d="M42.024 16.5092H63.5767L51.2478 2.48022L42.024 16.5092Z" fill="#499F81"/>
+                                    <path d="M6.84065 37.2835C5.89859 40.1904 3.60142 42.4869 0.695177 43.4289C0.237147 43.5772 0.237147 44.2087 0.695177 44.3569C3.60212 45.299 5.89859 47.5962 6.84065 50.5024C6.98887 50.9604 7.62042 50.9604 7.76865 50.5024C8.7107 47.5955 11.0079 45.299 13.9141 44.3569C14.3721 44.2087 14.3721 43.5772 13.9141 43.4289C11.0072 42.4869 8.7107 40.1897 7.76865 37.2835C7.62112 36.8254 6.98958 36.8254 6.84065 37.2835Z" fill="#25B27D"/>
+                                    <path d="M57.4853 37.2216C56.7111 39.6087 54.8256 41.4949 52.4385 42.2683C52.0627 42.3906 52.0627 42.909 52.4385 43.0305C54.8256 43.8047 56.7118 45.6902 57.4853 48.0773C57.6075 48.4531 58.126 48.4531 58.2475 48.0773C59.0217 45.6902 60.9072 43.804 63.2943 43.0305C63.6701 42.9083 63.6701 42.3899 63.2943 42.2683C60.9072 41.4942 59.021 39.6087 58.2475 37.2216C58.126 36.8457 57.6075 36.8457 57.4853 37.2216Z" fill="#5FDEAE"/>
+                                    <path d="M48.0261 52.7195C47.4199 54.5903 45.9418 56.0684 44.071 56.6746C43.776 56.7702 43.776 57.1762 44.071 57.2717C45.9418 57.878 47.4199 59.3561 48.0261 61.2268C48.1217 61.5219 48.5277 61.5219 48.6232 61.2268C49.2295 59.3561 50.7076 57.878 52.5783 57.2717C52.8734 57.1762 52.8734 56.7702 52.5783 56.6746C50.7076 56.0684 49.2295 54.5903 48.6232 52.7195C48.5277 52.4252 48.1217 52.4252 48.0261 52.7195Z" fill="#4BA484"/>
+                                    <path d="M17.1267 53.9587C16.6061 55.5639 15.3381 56.8326 13.7329 57.3525C13.48 57.4347 13.48 57.7831 13.7329 57.8653C15.3381 58.3859 16.6068 59.6539 17.1267 61.2591C17.2089 61.512 17.5573 61.512 17.6395 61.2591C18.16 59.6539 19.4281 58.3852 21.0333 57.8653C21.2862 57.7831 21.2862 57.4347 21.0333 57.3525C19.4281 56.8319 18.1593 55.5639 17.6395 53.9587C17.5573 53.7058 17.2082 53.7058 17.1267 53.9587Z" fill="#5FDEAE"/>
+                                </svg>    
+                            </span>                            
+                        </div>      
+                    </div>
+                    
+                    {% if user['spent'] >= 5000 %}
+                    <div class="mx-auto vip-member" style="width: fit-content;">
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" checked="checked" disabled><label class="form-check-label">Free Child Panel</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" checked="checked" disabled><label class="form-check-label">Priority Ticket Response</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" checked="checked" disabled><label class="form-check-label">Direct Skype Support</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" checked="checked" disabled><label  class="form-check-label">Tailored Service Research</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" checked="checked" disabled><label  class="form-check-label">Auto Invoicing</label>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="mx-auto" style="width: fit-content;">
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" disabled><label class="form-check-label color-gray-500">Free Child Panel</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" disabled><label class="form-check-label color-gray-500">Priority Ticket Response</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" disabled><label class="form-check-label color-gray-500">Direct Skype Support</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" disabled><label  class="form-check-label color-gray-500">Tailored Service Research</label>
+                        </div>
+                        <div class="form-check" style="width: fit-content;">
+                            <input type="checkbox" class="form-check-input" disabled><label  class="form-check-label color-gray-500">Auto Invoicing</label>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex mt-4">
+                        <span class="widget-value">$</span> <h2 class="fw-bold widget-value me-2">{{ user['spent']|number_format }}</h2> <label class="fw-semibold d-flex align-items-center widget-sub-value"> / $5000</label>
+                    </div>
+                </div>
+            </div>
+            <!-- / VIP status -->
+
+            <!-- Chiled panel -->
+            <div class="card child-panel-card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <label class="d-flex align-items-center fw-semibold widget-title">
+                            Child Panel
+                            <img class="tooltip-icon cursor-pointer ms-1"  src='https://followizaddons.com/new-design/icons/bx-info-circle-fill.png'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="<h6>Child Panel</h6><p>Managing a high volume of manual orders? Get your exclusive Child Panel, allowing your clients to place orders on your website, all fully automated!</p>"></img>
+                        </label>
+
+                        {% set menu_exist = 0 %}
+                        
+                        {% for menu in site['menu'] %}
+                            {% if  menu['link'] == '/child-panel' %}
+                                {% set menu_exist = 1 %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if menu_exist == 1 %}
+                        <a href="/child-panel">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.84705 1.74069C2.73951 0.783304 4.00861 0.25 5.50061 0.25H7.48102C7.89522 0.25 8.23101 0.585786 8.23101 0.999992C8.23101 1.4142 7.89522 1.74998 7.48102 1.74998H5.50061C4.3802 1.74998 3.524 2.14155 2.94424 2.76348C2.35905 3.39126 1.99998 4.31438 1.99998 5.4675V12.5323C1.99998 13.6863 2.35763 14.6093 2.94159 15.2367C3.51992 15.8579 4.3757 16.2498 5.50061 16.2498H12.9975C14.1228 16.2498 14.9791 15.8578 15.5577 15.2365C16.142 14.6092 16.4998 13.6863 16.4998 12.5323V10.9848C16.4998 10.5706 16.8356 10.2348 17.2498 10.2348C17.664 10.2348 17.9998 10.5706 17.9998 10.9848V12.5323C17.9998 13.996 17.542 15.3068 16.6554 16.2588C15.7632 17.2169 14.4932 17.7498 12.9975 17.7498H5.50061C4.00511 17.7498 2.73558 17.2168 1.84369 16.2587C0.957455 15.3067 0.5 13.9959 0.5 12.5323V5.4675C0.5 4.00287 0.960035 2.69224 1.84705 1.74069Z" fill="#5FDEAE"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1951 0.999992C12.1951 0.585786 12.5309 0.25 12.9451 0.25H17.25C17.6642 0.25 18 0.585786 18 0.999992V5.30483C18 5.71904 17.6642 6.05482 17.25 6.05482C16.8358 6.05482 16.5 5.71904 16.5 5.30483V2.81063L11.0692 8.24131C10.7763 8.53421 10.3014 8.53421 10.0086 8.24131C9.71566 7.94841 9.71566 7.47362 10.0086 7.18072L15.4393 1.74998H12.9451C12.5309 1.74998 12.1951 1.4142 12.1951 0.999992Z" fill="#5FDEAE"/>
+                            </svg>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="d-flex" style="height: 122px">
+                        <div class="d-flex" style="align-self: self-end;">
+                            <span class="widget-value">$</span> <h2 class="fw-bold me-2 widget-value">25</h2> <label class="fw-semibold color-gray-400 d-flex align-items-center widget-sub-value"> / month</label>
+                        </div>
+                        <span class="card-bg-img">
+                            <svg width="104" height="83" viewBox="0 0 104 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_1229_3312)">
+                                <path d="M10.8455 29.5787V82.4033C10.8455 84.2024 12.3044 85.6613 14.1035 85.6613H89.7811C91.5802 85.6613 93.0392 84.2024 93.0392 82.4033V29.5787V14.3947C93.0392 12.5956 91.5802 11.1367 89.7811 11.1367H14.1035C12.3044 11.1379 10.8455 12.5956 10.8455 14.3947V29.5787Z" fill="#25B27D"/>
+                                <path d="M79.7217 40.8013H62.927C61.5845 40.8013 60.4955 41.8903 60.4955 43.2328V81.2548H82.1532V43.2328C82.1532 41.8903 81.0642 40.8013 79.7217 40.8013Z" fill="#5FDEAE"/>
+                                <path d="M47.8356 69.2239H24.0477C22.768 69.2239 21.7303 68.1862 21.7303 66.9065V43.1186C21.7303 41.8389 22.768 40.8013 24.0477 40.8013H47.8367C49.1164 40.8013 50.1541 41.8389 50.1541 43.1186V66.9077C50.1529 68.1874 49.1153 69.2239 47.8356 69.2239Z" fill="#5FDEAE"/>
+                                <path d="M11.0738 29.5786H10.6172C5.0692 29.5786 0.571442 25.0808 0.571442 19.5328V16.0465C6.82835 13.9449 13.6218 13.7451 21.1196 16.0465V19.5328C21.1196 25.0808 16.6218 29.5786 11.0738 29.5786Z" fill="#46977A"/>
+                                <path d="M31.6219 29.5786H31.1653C25.6173 29.5786 21.1196 25.0809 21.1196 19.5329V16.0466C28.4119 14.5614 35.3058 14.4107 41.6677 16.0466V19.5329C41.6677 25.0809 37.1699 29.5786 31.6219 29.5786Z" fill="#5FDEAE"/>
+                                <path d="M92.8097 29.5787H93.2663C98.8143 29.5787 103.312 25.0809 103.312 19.5329V16.0466C96.9318 14.3537 90.0106 14.6162 82.7639 16.0466V19.5329C82.7639 25.0809 87.2617 29.5787 92.8097 29.5787Z" fill="#46977A"/>
+                                <path d="M72.2616 29.5786H72.7182C78.2662 29.5786 82.7639 25.0809 82.7639 19.5329V16.0465C75.9146 13.1264 69.0652 13.1264 62.2158 16.0465V19.5329C62.2158 25.0809 66.7136 29.5786 72.2616 29.5786Z" fill="#5FDEAE"/>
+                                <path d="M41.6677 16.0466C42.7282 11.5009 42.6506 6.17321 41.6677 0.223389H27.0842C23.1664 5.49741 21.1789 10.7726 21.1196 16.0466H41.6677Z" fill="#5FDEAE"/>
+                                <path d="M0.571442 16.0469L13.5738 0.224854H27.0899L21.1196 16.0469H0.571442Z" fill="#46977A"/>
+                                <path d="M62.2158 16.0466C59.742 10.9221 60.1028 5.6264 62.2158 0.223389H76.7993C81.6669 6.14696 83.8986 11.4769 82.7639 16.0466H62.2158Z" fill="#5FDEAE"/>
+                                <path d="M103.312 16.0467L90.3097 0.224609H76.805L82.764 16.0467H103.312Z" fill="#46977A"/>
+                                <path d="M52.1701 29.5786H51.7134C46.1654 29.5786 41.6677 25.0809 41.6677 19.5329V16.0465C48.5171 13.1264 55.3664 13.1264 62.2158 16.0465V19.5329C62.2158 25.0809 57.7181 29.5786 52.1701 29.5786Z" fill="#46977A"/>
+                                <path d="M41.6677 0.224609H53.9623H62.2158V16.0467H41.6677V0.224609Z" fill="#46977A"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_1229_3312" x="-3.42856" y="0.223389" width="110.741" height="93.438" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="2"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1229_3312"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1229_3312" result="shape"/>
+                                </filter>
+                                </defs>
+                            </svg>   
+                        </span>                         
+                    </div>
+                </div>
+            </div>
+
+            <!-- News updates -->
+            <div class="card news-card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <label class="fw-semibold widget-title">
+                            News Updates
+                        </label>
+                        <div>
+                            <a href="javascript:;" class="prev-news">
+                                <!-- <i class="fa-solid fa-chevron-left"></i> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 0L12.3357 0.00461305C18.8047 0.182596 24 5.48827 24 12C24 18.612 18.624 24 12 24C5.388 24 0 18.612 0 12C0 5.376 5.388 0 12 0ZM14.376 7.2C14.016 6.84 13.452 6.84 13.104 7.2L8.916 11.364C8.748 11.532 8.652 11.76 8.652 12C8.652 12.24 8.748 12.468 8.916 12.636L13.104 16.8C13.272 16.98 13.5 17.064 13.728 17.064C13.968 17.064 14.196 16.98 14.376 16.8C14.724 16.44 14.724 15.876 14.364 15.528L10.824 12L14.364 8.472C14.724 8.124 14.724 7.548 14.376 7.2Z" />
+                                </svg>
+                            </a>
+                            <a href="javascript:;" class="next-news active">
+                                <!-- <i class="fa-solid fa-chevron-right"></i> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 0C18.612 0 24 5.388 24 12C24 18.624 18.612 24 12 24L11.6643 23.9954C5.19531 23.8174 0 18.5117 0 12C0 5.388 5.376 0 12 0ZM10.272 6.936C10.032 6.936 9.804 7.02 9.624 7.2C9.276 7.56 9.276 8.124 9.636 8.472L13.176 12L9.636 15.528C9.276 15.876 9.276 16.452 9.624 16.8C9.984 17.16 10.548 17.16 10.896 16.8L15.084 12.636C15.252 12.468 15.348 12.24 15.348 12C15.348 11.76 15.252 11.532 15.084 11.364L10.896 7.2C10.728 7.02 10.5 6.936 10.272 6.936Z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                      <div class="news-item active" data-news-step="1">
+                            <h6>🎉 Cleanup on our Services List</h6>
+                            <p>Big news! We've spruced up our services a bit to make things way better for you. We said goodbye to some of the services that weren’t getting much love and kept only the best ones. Now, finding what you need on our site should be a breeze! 🌬️ We’re super excited about these changes and hope you are too.<br>Thanks for being such awesome members of our community. 💖</p>
+                        </div>
+                      
+                      <div class="news-item" data-news-step="2">
+                            <h6>🚨 Important Update on Perfect Money</h6>
+                            <p>We regret to inform you that due to regulatory changes, we can no longer support payments through Perfect Money in our country. We apologize for any inconvenience this may cause and encourage you to explore our other available payment options. Thank you for your understanding and continued support.</p>
+                        </div>
+                      
+                        <div class="news-item" data-news-step="3">
+                            <h6>🌐 Exciting Website Update!</h6>
+                            <p>We're thrilled to introduce our fresh website design, designed with you in mind. Our revamped layout enhances user-friendliness and introduces stunning visuals. Explore new features and, if you encounter any issues, don't hesitate to open a ticket—we're here to assist you.<br>Thank you for being a part of our community, and we hope you enjoy the improved experience!</p>
+                        </div>
+                        <div class="news-item" data-news-step="4">
+                            <h6>Discover Our New Best Sellers!</h6>
+                            <p>We're excited to announce our revamped Best Seller Services! Now, across popular categories like Instagram, Facebook, YouTube, and more, you can easily discover our top-selling offerings directly on our website.<br>We highly recommend testing and incorporating these services into your panel to unlock incredible profit potential!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Service Enabled table -->
+            <div class="card services-table-card mb-3 d-block d-md-none">
+                <div class="card-body" style="padding-top: 20px;">
+                    <div class="d-flex justify-content-between">
+                        <label class="fw-semibold color-gray-400 d-flex align-items-center">
+                            <img src="https://followizaddons.com/new-design/icons/document.png">                                
+                            <span class="ms-1 card-title">Services Enabled</span>
+                        </label>
+    
+                        {% set menu_exist = 0 %}
+                        
+                        {% for menu in site['menu'] %}
+                            {% if  menu['link'] == '/updates' %}
+                                {% set menu_exist = 1 %}
+                            {% endif %}
+                        {% endfor %}
+    
+                        {% if  menu_exist == 1 %}
+                        <a href="/updates">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.84705 1.74069C2.73951 0.783304 4.00861 0.25 5.50061 0.25H7.48102C7.89522 0.25 8.23101 0.585786 8.23101 0.999992C8.23101 1.4142 7.89522 1.74998 7.48102 1.74998H5.50061C4.3802 1.74998 3.524 2.14155 2.94424 2.76348C2.35905 3.39126 1.99998 4.31438 1.99998 5.4675V12.5323C1.99998 13.6863 2.35763 14.6093 2.94159 15.2367C3.51992 15.8579 4.3757 16.2498 5.50061 16.2498H12.9975C14.1228 16.2498 14.9791 15.8578 15.5577 15.2365C16.142 14.6092 16.4998 13.6863 16.4998 12.5323V10.9848C16.4998 10.5706 16.8356 10.2348 17.2498 10.2348C17.664 10.2348 17.9998 10.5706 17.9998 10.9848V12.5323C17.9998 13.996 17.542 15.3068 16.6554 16.2588C15.7632 17.2169 14.4932 17.7498 12.9975 17.7498H5.50061C4.00511 17.7498 2.73558 17.2168 1.84369 16.2587C0.957455 15.3067 0.5 13.9959 0.5 12.5323V5.4675C0.5 4.00287 0.960035 2.69224 1.84705 1.74069Z" fill="#5FDEAE"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1951 0.999992C12.1951 0.585786 12.5309 0.25 12.9451 0.25H17.25C17.6642 0.25 18 0.585786 18 0.999992V5.30483C18 5.71904 17.6642 6.05482 17.25 6.05482C16.8358 6.05482 16.5 5.71904 16.5 5.30483V2.81063L11.0692 8.24131C10.7763 8.53421 10.3014 8.53421 10.0086 8.24131C9.71566 7.94841 9.71566 7.47362 10.0086 7.18072L15.4393 1.74998H12.9451C12.5309 1.74998 12.1951 1.4142 12.1951 0.999992Z" fill="#5FDEAE"/>
+                            </svg>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="table-responsive news-table-wrapper">
+                    <table id="table-updates-order" class="table update-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th class="width-service-name">Service</th>
+                                <th class="nowrap">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--/ Mobile Service Enabled table -->
+        </div>    
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="vip_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Exclusive VIP Status Benefits</h5>
+                    <a href="javascript:;" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.181 15.4577C15.035 15.6037 14.843 15.6777 14.651 15.6777C14.458 15.6777 14.267 15.6037 14.12 15.4577L12.247 13.5847L10.38 15.4517C10.234 15.5987 10.042 15.6717 9.85 15.6717C9.659 15.6717 9.466 15.5987 9.32 15.4517C9.027 15.1587 9.027 14.6847 9.32 14.3917L11.186 12.5237L9.32 10.6577C9.027 10.3647 9.027 9.89067 9.32 9.59767C9.613 9.30467 10.087 9.30467 10.38 9.59767L12.246 11.4637L14.11 9.59967C14.403 9.30667 14.877 9.30667 15.17 9.59967C15.463 9.89267 15.463 10.3667 15.17 10.6597L13.307 12.5237L15.181 14.3967C15.474 14.6897 15.474 15.1647 15.181 15.4577ZM12.25 2.78467C5.052 2.78467 2.5 5.33667 2.5 12.5347C2.5 19.7327 5.052 22.2847 12.25 22.2847C19.449 22.2847 22 19.7327 22 12.5347C22 5.33667 19.449 2.78467 12.25 2.78467Z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 14px;">Unlock Premium Perks with <a href="https://followiz.com">Followiz.com</a> VIP Status</p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 mt-3">
+                            <div class="card border-primary-400">
+                                <div>
+                                    <img class="vip-feature-img" src="https://followizaddons.com/new-design/icons/vip_child_lg-icon.png">
+                                </div>
+                                <h5 class="vip-item-title mt-3">Free Child Panel</h5>
+                                <p>Say goodbye to high monthly panel costs! With a free child panel, you gain the ability to place an unlimited number of orders without the burden of paying for website hosting. For more information, visit the /child-panel page!</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mt-3">
+                            <div class="card border-primary-400">
+                                <div>
+                                    <img class="vip-feature-img theme-asset-item dark-mode-asset-item" src="https://followizaddons.com/new-design/icons/vip_priority_lg-icon.png">
+                                    <img class="vip-feature-img theme-asset-item light-mode-asset-item" src="https://followizaddons.com/new-design/icons/vip_priority_lg-icon-light.png">
+                                </div>
+                                <h5 class="vip-item-title mt-3">Priority Ticket Response</h5>
+                                <p>Experience top-notch service with expedited ticket responses from our dedicated Agents. Your inquiries and issues will be addressed with the utmost priority.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 mt-3">
+                            <div class="card border-primary-400">
+                                <div>
+                                    <img class="vip-feature-img theme-asset-item dark-mode-asset-item" src="https://followizaddons.com/new-design/icons/vip_skype_lg-icon.png">
+                                    <img class="vip-feature-img theme-asset-item light-mode-asset-item" src="https://followizaddons.com/new-design/icons/vip_skype_lg-icon-light.png">
+                                </div>
+                                <h5 class="vip-item-title mt-3">Direct Skype Chat</h5>
+                                <p>Establish direct contact with Followiz administrators for personalized and attentive support. We're here to assist you one-on-one, ensuring your needs are met efficiently.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mt-3">
+                            <div class="card border-primary-400">
+                                <div>
+                                    <img class="vip-feature-img theme-asset-item dark-mode-asset-item" src="https://followizaddons.com/new-design/icons/vip_tailored_lg-icon.png">
+                                    <img class="vip-feature-img theme-asset-item light-mode-asset-item" src="https://followizaddons.com/new-design/icons/vip_tailored_lg-icon-light.png">
+                                </div>
+                                <h5 class="vip-item-title mt-3">Tailored Service Research</h5>
+                                <p>Enjoy the freedom to request the specific services you need. Furthermore, if you're actively purchasing a particular service from another panel, we'll work to secure it for you at a more competitive rate. Your satisfaction is our priority.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="neworder-page d-none">
+    <div>
+        <h3 class="fw-bold page-title">Place a New Order</h3>
+        <p class="page-description">You can use this page for single or bulk orders.</p>
+    </div>
+    <div class="mt-5 d-flex">
+        <a href="javascript:;" class="custom-tag neworder-btn text-decoration-none active">Single Order</a>
+        <a href="/massorder" class="custom-tag text-decoration-none">Mass Order</a>
+        <a href="javascript:;" class="custom-tag service-ruler-btn text-decoration-none">Service Rules</a>
+    </div>
+
+    <div class="neworder-wrapper row mt-4">
+        <!-- Order Form Section -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Order form -->
+                    <form {% if site['rtl'] %} class="rtl-form"{% endif %} action="{{ page['url'] }}" method="post" id="order-form">
+                        <input type="hidden" id="exist_error" {% if error %} value="1" {% endif %}>
+                        {% if error %}
+                            <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                                <div class="alert-content">
+                                    {{ errorMessage }}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if 1 == success %}
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4>{{lang('neworder.message.success')}}</h4>
+                                <div class="alert-content">
+                                    {{lang('neworder.id')}}: {{order['id']}}<br>
+                                    {{lang('neworder.service')}}: {{order['service']}}
+                                    <br>
+                                    {{lang('neworder.link')}}: {{order['link']}}<br>
+                                    {{lang('neworder.quantity')}}: {{order['quantity']}}<br>
+                                    {{ lang('neworder.charge') }}: {% if order.converted %} <span data-toggle="tooltip" data-placement="top" title="{{ order.original_charge }}">{{ order['charge'] }}</span> {% else %} {{ order['charge'] }} {% endif %}<br>
+                                    {{ lang('neworder.balance') }}: {% if order.converted %} <span data-toggle="tooltip" data-placement="top" title="{{ order.original_balance }}">{{ order['balance'] }}</span> {% else %} {{ order['balance'] }} {% endif %}<br>
+                                </div>
+                            </div>
+                        {%endif%}
+
+                        {% if 2 == success %}
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4>{{lang('neworder.message.success')}}</h4>
+                                <div class="alert-content">
+                                    {{lang('neworder.subscription_id')}}: {{order['id']}}<br>
+                                    {{lang('neworder.service')}}: {{order['service']}}
+                                    <br>
+                                    {{lang('neworder.username')}}: {{order['link']}}<br>
+                                    {{lang('neworder.quantity')}}:
+                                    {% if order['quantity_min'] == order['quantity_max'] %}
+                                        {{order['quantity_max']}}
+                                    {% else %}
+                                        {{order['quantity_min']}}-{{order['quantity_max']}}
+                                    {%endif%}
+                                    <br>
+                                    {{lang('neworder.new_posts')}}:
+                                    {{order['posts']}}
+                                    <br>
+                                    {{lang('neworder.old_posts')}}:
+                                    {{order['old_posts']}}
+                                    <br>
+                                    {{lang('neworder.delay')}}:
+                                    {{order['delay']}}
+                                    <br>
+                                </div>
+                            </div>
+                        {%endif%}
+
+                        
+                        {% if services_search %}
+                            <div class="form-group new-order-search">
+                                <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="Search Service ID" {% if site['rtl'] %} data-dir="rtl" {% endif %}>
+                                    <div class="input-wrapper" style="position: relative;">
+                                        <input type="text" class="form-control" id="template-input" value="" placeholder="Search Service ID">
+                                        <button type="button">
+                                            <span class="fas fa-search"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="separator mb-4">
+                                <span>OR</span>
+                            </div>
+                        {% endif %}
+                        {% if categories %}
+                            <div class="form-group">
+                                <select class="form-control bg_color" id="orderform-main-category" name="main-category">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-none">
+                                    <select
+                                        class="form-control"
+                                        id="orderform-category"
+                                        data-select="true"
+                                        data-select-search="true"
+                                        data-select-search-placeholder="{{ lang('general.search.placeholder') }}"
+                                        {% if site['rtl'] %} data-select-dir="rtl" {% endif %}
+                                    >
+                                        {% for category in extended_categories %}
+                                        <option
+                                            value="{{ category.id }}"
+                                            {% if category.icon %}
+                                                data-icon="
+                                                {% if category.icon['icon_type'] == 'icon' %}
+                                                    <span class='{{ category.icon['icon'] }}'></span>
+                                                {% elseif category.icon['icon_type'] == 'emoji' %}
+                                                    <span>{{ category.icon['icon'] }}</span>
+                                                {% elseif category.icon['icon_type'] == 'image' %}
+                                                    <img src='{{ category.icon['url'] }}' alt='{{ category.name }}' class='img-responsive btn-group-vertical'>
+                                                {% endif %}
+                                                "
+                                            {% endif %}
+                                            {% if category.id == data['category'] %} selected {% endif %}
+                                        >
+                                            {{ category.name }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <select 
+                                        class="form-control" 
+                                        id="orderform-category_1" 
+                                        name="OrderForm[category]"
+                                    >
+                                    {% for category in extended_categories %}
+                                        <option
+                                            value="{{ category.id }}"
+                                            {% if category.icon %}
+                                            data-icon="
+                                                {% if category.icon['icon_type'] == 'icon' %}
+                                                <span class='{{ category.icon['icon'] }}'></span>
+                                                {% elseif category.icon['icon_type'] == 'emoji' %}
+                                                <span>{{ category.icon['icon'] }}</span>
+                                                {% elseif category.icon['icon_type'] == 'image' %}
+                                                <img src='{{ category.icon['url'] }}' alt='{{ category.name }}' class='img-responsive btn-group-vertical'>
+                                                {% endif %}
+                                            "
+                                            {% endif %}
+                                            {% if category.id == data['category'] %} selected {% endif %}
+                                        >
+                                            {{ category.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        {% endif %}
+                        <div class="form-group service-info-wrapper">
+                            <select
+                                class="form-control"
+                                id="orderform-service"
+                                name="OrderForm[service]"
+                            ></select>
+                            <img class="tooltip-icon cursor-pointer ms-1" id="service_info_bubble" src="https://followizaddons.com/new-design/icons/bx-info-circle-fill.png" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<div class='service-info-bubble-tooltip'><h4 class='service-name'>Service Type [Start Time - Speed/Day - Maximum] [Refill Period]</h4><div class='info-item'>⛔<span class='ms-2'>Cancel Button Available</span></div><div class='info-item'>♻<span class='ms-2'>Refill Button Available</span></div><div class='info-item'>🥇<span class='ms-2'>Real Quality</span></div><div class='info-item'><strong class='me-2'>AR</strong>Auto Refill</div><div class='info-item'><strong class='me-2'>R30 / R60 / R∞</strong>Refill available 30 Days / 60 Days / Lifetime</div>">
+                        </div>
+
+                        <div class="description fields hidden" id="service_description" style="display:none">
+                            <div class="service-description-split">{{service['description']}}</div>
+                        </div>
+                        <div id="fields"></div>
+
+                        {% if check_agreement %}
+                            <div class="form-group">
+                                <label class="control-label terms">
+                                    <input type="checkbox"  name="OrderForm[termsofservice]" class="terms-accept-checkbox" value="1" id="terms" {{data['termsofservice'] ? 'checked' : ''}}> {{lang('signup.accept_terms_text')}}
+                                    <a  href="{{ page_url('terms') }}" target="_blank">{{ lang('terms.signup_checkbox') }}</a>
+                                </label>
+                            </div>
+                        {%endif%}
+
+                        <div class="separator charge-separator mb-4">
+                            <span><a class="color-primary text-decoration-none">{{ lang('neworder.charge') }}: </a><input id="charge" value="{{ order['charge'] }}" readonly></span>
+                        </div>
+
+                        <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Submit Order</button>
+                    </form>
+                    <!-- / Order form -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Detail section -->
+        <div class="col-xl-6 pt-3">
+            <input type="hidden" id="seviceTitle"/>
+            <h6 class="detail-title">Service Details</h6>
+            
+            <div class="form-group service-detail ps-2">
+                <div class="row">
+                    <div class="col-xl-12 col-md-6 col-sm-12">
+                        <div class="selection_deaitls d-flex align-items-center quality mb-2">
+                            <span class="badge bg-primary">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0123 3.82892L13.6875 7.17544C13.8516 7.50398 14.1685 7.73178 14.536 7.7845L18.2833 8.3239C19.2092 8.45757 19.5776 9.57967 18.9076 10.2226L16.1978 12.8264C15.9315 13.0825 15.8102 13.4505 15.8732 13.812L16.5127 17.488C16.6702 18.3973 15.7024 19.0911 14.8748 18.6609L11.5255 16.9241C11.1972 16.7537 10.804 16.7537 10.4747 16.9241L7.12535 18.6609C6.29781 19.0911 5.32996 18.3973 5.48841 17.488L6.12696 13.812C6.18995 13.4505 6.06873 13.0825 5.80243 12.8264L3.09264 10.2226C2.42259 9.57967 2.79102 8.45757 3.71687 8.3239L7.4642 7.7845C7.83167 7.73178 8.14952 7.50398 8.31369 7.17544L9.98786 3.82892C10.4021 3.00147 11.5981 3.00147 12.0123 3.82892Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            <span class="detail-item-title ms-2">Quality:</span>
+                            <span class="detail-item-txt real quality-split ms-2"></span>
+                        </div>
+                        <div class="selection_deaitls d-flex align-items-center refill_avilabel mb-2">
+                            <span class="badge bg-primary" id="refill_avilable_id">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19.691 14.5422C20.508 13.5672 21 12.3112 21 10.9392C21 7.83822 18.486 5.32422 15.385 5.32422H8.614C5.513 5.32422 3 7.83822 3 10.9392C3 14.0402 5.513 16.5532 8.614 16.5532H15.385" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12.7656 13.9297L15.3886 16.5527L12.7656 19.1767" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                            
+                            </span>
+                            <span class="detail-item-title ms-2">Refill:</span>
+                            <span class="detail-item-txt mt_txt refill-split ms-2" id="Refill-Available-txt" >None</span>
+                        </div>
+                        <div class="selection_deaitls d-flex align-items-center start_time mb-2">
+                            <span class="badge bg-primary">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4789 11.0005C19.4789 15.6837 15.683 19.4796 10.9998 19.4796C6.31652 19.4796 2.52061 15.6837 2.52061 11.0005C2.52061 6.31721 6.31652 2.52129 10.9998 2.52129C15.683 2.52129 19.4789 6.31721 19.4789 11.0005Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.1455 13.6977L10.6897 11.6361V7.19299" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                                        
+                            </span>
+                            <span class="detail-item-title ms-2">Start Time:</span>
+                            <span class="detail-item-txt hour time-split ms-2"></span>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-6 col-sm-12">
+                        <div class="selection_deaitls d-flex align-items-center speed mb-2">
+                            <span class="badge bg-primary">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.83492 8.62056H19.1735" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15.0719 12.2005H15.0812" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11.0042 12.2005H11.0135" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.92807 12.2005H6.93733" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15.0719 15.7632H15.0812" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11.0042 15.7632H11.0135" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.92807 15.7632H6.93733" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.7067 1.83333V4.84988" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7.30171 1.83333V4.84988" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.8851 3.28093H7.12338C4.43142 3.28093 2.75 4.78054 2.75 7.53704V15.8325C2.75 18.6324 4.43142 20.1667 7.12338 20.1667H14.8766C17.577 20.1667 19.25 18.6584 19.25 15.9019V7.53704C19.2585 4.78054 17.5855 3.28093 14.8851 3.28093Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                                                                    
+                            </span>
+                            <span class="detail-item-title ms-2">Speed per Day:</span>
+                            <span class="detail-item-txt hour speed-split ms-2"></span>
+                        </div>
+                        <div class="selection_deaitls d-flex align-items-center avg_time mb-2">
+                            <span class="badge bg-primary">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5835 3C16.6238 3.12162 17.6736 4.65503 17.5277 6.50854C17.4051 7.79481 16.2054 8.96724 14.131 10.9589C13.4636 11.6536 13.4636 12.3464 14.131 13.0421C16.2054 15.0337 17.4051 16.2052 17.5277 17.4915C17.6736 19.345 16.6238 20.8784 14.5835 21H9.73318C7.69188 20.8784 6.64205 19.345 6.78897 17.4915C6.91156 16.2052 8.11124 15.0337 10.1856 13.0421C10.8521 12.3464 10.8531 11.6536 10.1846 10.9589C8.11124 8.96724 6.91156 7.79481 6.78897 6.50854C6.64205 4.65503 7.69188 3.12162 9.73318 3H14.5835Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    
+                                </svg>                                                                                                                                      
+                            </span>    
+                            <span class="detail-item-title minute ms-2"> Average Time:</span>      
+                            <span class="detail-item-txt avg_txt ms-2">{{ service['average_time'] }}</span>
+                            <span>
+                                <img class="tooltip-icon cursor-pointer ms-1" src="https://followizaddons.com/new-design/icons/bx-info-circle-fill.png" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The average time is based on 10 latest completed orders per 1000 quantity.">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3 d-none" id="tags_wrapper">
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-favorite d-none" data-favorite="1" id="add_favorite_btn"><span class="fas fa-star favorite-star me-2"></span>Add to Favorites</button>
+                <button class="btn btn-favorite d-none" data-favorite="0" id="remove_favorite_btn"><span class="fas fa-star me-2"></span>Remove from Favorites</button>
+            </div>
+
+            <div class="mt-4">
+                <h6 class="detail-title">Service Description</h6>
+                <div class="description_txt ps-2">
+                    <div class="profile text-color2">
+                        <p class="profile_picture text-color2 details-split mb-0"></p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-ruler-wrapper row mt-4 d-none">
+        <div class="col-xl-6 col-lg-8 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                  <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Ensure Public Accessibility of Links</h6>
+                        <p class="">Before placing an order, please verify that your link is set to public. Orders associated with private links cannot be processed, and such orders will not be eligible for cancellation, refunds, or refills.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Delays Between Drip-Feed Orders</h6>
+                        <p class="">For orders using the drip-feed feature, it's crucial for you to insert a significant delay between each order. This ensures that drip-feed orders do not overlap and allows each order to complete before the next one begins. This practice is essential for maintaining the intended delivery schedule and preventing confusion.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Avoid Duplicate Orders on the same Link</h6>
+                        <p class="">You cannot place orders of the same service type on the same link simultaneously. If you have an ongoing order for a particular service on a link, please wait for it to complete before making another order for the same service on the same link. This helps maintain order and clarity in the process.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Check for Refill Availability Before Reordering</h6>
+                        <p class="">Before placing new orders using the same link, you should confirm that your previous order has been fully delivered and does not require a refill. This proactive approach ensures a smoother and more effective ordering experience.</p>
+                    </div>
+                    <div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Confirm Correct Link Entry Before Ordering</h6>
+                        <p class="">Before placing an order, it's essential for you to make sure you've entered the correct link. Orders made with incorrect links will not be eligible for refunds.</p>
+                    </div>
+					<div class="service-ruler-item">
+                        <h6 class="service-ruler-title">Try Before You Buy</h6>
+                        <p class="">Prior to placing larger orders, you should test the service with a small order. This practice allows you to evaluate the quality and speed of the service. Testing with a smaller order first ensures that you are satisfied with the results and helps prevent potential disappointment and issues with larger orders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>   
+    const categories = {{ extended_categories | json_encode }};
+    const selectedCatId = "{{ data['category'] }}";
+</script>

@@ -1,0 +1,191 @@
+<div class="services-page">
+    <div>
+        <h3 class="fw-bold page-title">Services</h3>
+        <p class="page-description">Get to know our available services to select from.</p>
+    </div>
+    <div class="mt-3 mb-4">
+        {% set array = [] %}
+
+        {% for cat_key,category in serviceCategoryList %}
+            {% set cat = category['name']|split(' ') %}
+            {% if cat[0] not in array   %}  
+                {% set array = array|merge([cat[0]]) %}
+            {% endif %}
+        {% endfor %}
+        <div class="row gx-2">
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+                <select class="form-control form-select" id="sel_category">         			
+                    <option value="all">All</option>
+                    {% for obj in array %}
+                        <option value="{{obj}}">{{obj}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+                <form action="javascript:;" class="w-100" method="get">
+                    <div class="input-group-custom">
+                        <input type="text" name="search" id="searchService" class="form-control" value="{{ search }}" placeholder="Search Service ID or Service Name" >
+                        <span class="input-group-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-3">
+        {% set loopIndex = 1 %} 
+        {% set serviceByCate = [] %} 
+        {% for cat_key,category in serviceCategoryList %}
+            {% set serviceByCate = serviceByCate|merge({ (cat_key): category['services'] }) %}
+            {% set cat = category['name']|split(' ') %}
+            <div class="service-data-panel" data-cat_key="{{cat_key}}" data-category="{{ category['name'] }}">
+                <a data-bs-toggle="collapse" href="#collapse-{{loopIndex}}" aria-bs-expanded="false" class="collapsed list-item">
+                    <div class="social-title">
+                        <img src="https://followizaddons.com/followiz-icons/{{ cat[0] }}.svg" class="social-icon">
+                        {% if category['name'] %}
+                            {{ category['name'] }}
+                        {% endif %}
+                    </div>
+                </a>
+
+                <div id="collapse-{{loopIndex}}"  class="panel-collapse collapse" aria-bs-expanded="false">
+                    <!-- table place holder -->
+                    <table class="table scroll {% if site['rtl'] %} rtl-table {% endif %}">
+                        <thead>
+                            <tr class="">
+                                <th style="width: 120px" class="pb-0 no-border"></th>
+                                <th colspan="5" class="pb-0 no-border name">{{ lang('services.name') }}</th>
+                                <th scope="col" class="color-primary-400 pb-0 no-border">Price</th>
+                                <th class="pb-0 no-border"></th>
+                            </tr>
+                            <tr>
+                                <th scope="col" class="color-gray-400">{{ lang('services.id') }}</th>
+                                <th scope="col" class="width-25 color-gray-400">Quality</th>
+                                <th scope="col" class="start_time color-gray-400">Start Time</th>
+                                <th scope="col" class="speed_day color-gray-400">Speed per Day</th>
+                                <th scope="col" class="rf_avilable color-gray-400">Refill Available</th>
+                                <th scope="col" class="color-gray-400">Min/Max</th>
+                                <th scope="col" class="color-gray-400">
+                                    Avg. Time
+                                    <img class="tooltip-icon cursor-pointer ms-1" src="https://followizaddons.com/new-design/icons/bx-info-circle-fill.png" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="The average time is based on 10 latest completed orders per 1000 quantity.">
+                                </th>
+                                <th scope="col" class="rest-data color-gray-400">Details</th>
+                            </tr>
+                        </thead>
+                        <!-- please do not make any change -->
+                        <tbody id="service_container_{{cat_key}}" class="service_container"></tbody>
+                        <!-- please do not make any change -->
+                    </table >
+                    <!-- table place holder -->
+                </div>
+            </div>
+            {% set loopIndex = loopIndex+1 %} 
+        {% endfor%}
+    </div>
+
+ 
+    <!-- detail modal -->
+    <div class="modal fade" tabindex="-1" aria-hidden="true" id="service_detail_modal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-normal">
+                        <span id="service_detail_id"></span> - <span id="service_detail_name"></span>
+                    </h5>
+                    <a href="javascript:;" class="close-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.181 15.4577C15.035 15.6037 14.843 15.6777 14.651 15.6777C14.458 15.6777 14.267 15.6037 14.12 15.4577L12.247 13.5847L10.38 15.4517C10.234 15.5987 10.042 15.6717 9.85 15.6717C9.659 15.6717 9.466 15.5987 9.32 15.4517C9.027 15.1587 9.027 14.6847 9.32 14.3917L11.186 12.5237L9.32 10.6577C9.027 10.3647 9.027 9.89067 9.32 9.59767C9.613 9.30467 10.087 9.30467 10.38 9.59767L12.246 11.4637L14.11 9.59967C14.403 9.30667 14.877 9.30667 15.17 9.59967C15.463 9.89267 15.463 10.3667 15.17 10.6597L13.307 12.5237L15.181 14.3967C15.474 14.6897 15.474 15.1647 15.181 15.4577ZM12.25 2.78467C5.052 2.78467 2.5 5.33667 2.5 12.5347C2.5 19.7327 5.052 22.2847 12.25 22.2847C19.449 22.2847 22 19.7327 22 12.5347C22 5.33667 19.449 2.78467 12.25 2.78467Z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="modal-body mt-2 pt-4">
+                    <div class="modal_detail">
+                        <label class="detail-title">Service Details</label>
+                        <div class="selection_deaitls ps-2 mt-2">
+                            <div class="d-flex align-items-center quality mb-2">
+                                <span class="badge bg-primary">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0123 3.82892L13.6875 7.17544C13.8516 7.50398 14.1685 7.73178 14.536 7.7845L18.2833 8.3239C19.2092 8.45757 19.5776 9.57967 18.9076 10.2226L16.1978 12.8264C15.9315 13.0825 15.8102 13.4505 15.8732 13.812L16.5127 17.488C16.6702 18.3973 15.7024 19.0911 14.8748 18.6609L11.5255 16.9241C11.1972 16.7537 10.804 16.7537 10.4747 16.9241L7.12535 18.6609C6.29781 19.0911 5.32996 18.3973 5.48841 17.488L6.12696 13.812C6.18995 13.4505 6.06873 13.0825 5.80243 12.8264L3.09264 10.2226C2.42259 9.57967 2.79102 8.45757 3.71687 8.3239L7.4642 7.7845C7.83167 7.73178 8.14952 7.50398 8.31369 7.17544L9.98786 3.82892C10.4021 3.00147 11.5981 3.00147 12.0123 3.82892Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                <span class="detail-item-title ms-2">Quality:</span>
+                                <span class="detail-item-txt real quality-split ms-2"></span>
+                            </div>
+                            <div class="d-flex align-items-center refill_avilabel mb-2">
+                                <span class="badge bg-primary" id="refill_avilable_id">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.691 14.5422C20.508 13.5672 21 12.3112 21 10.9392C21 7.83822 18.486 5.32422 15.385 5.32422H8.614C5.513 5.32422 3 7.83822 3 10.9392C3 14.0402 5.513 16.5532 8.614 16.5532H15.385" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.7656 13.9297L15.3886 16.5527L12.7656 19.1767" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                            
+                                </span>
+                                <span class="detail-item-title ms-2">Refill:</span>
+                                <span class="detail-item-txt mt_txt refill-split ms-2" id="Refill-Available-txt" >None</span>
+                            </div>
+                            <div class="d-flex align-items-center start_time mb-2">
+                                <span class="badge bg-primary">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.4789 11.0005C19.4789 15.6837 15.683 19.4796 10.9998 19.4796C6.31652 19.4796 2.52061 15.6837 2.52061 11.0005C2.52061 6.31721 6.31652 2.52129 10.9998 2.52129C15.683 2.52129 19.4789 6.31721 19.4789 11.0005Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.1455 13.6977L10.6897 11.6361V7.19299" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                                        
+                                </span>
+                                <span class="detail-item-title ms-2">Start Time:</span>
+                                <span class="detail-item-txt hour time-split ms-2"></span>
+                            </div>
+                            <div class="d-flex align-items-center speed mb-2">
+                                <span class="badge bg-primary">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.83492 8.62056H19.1735" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M15.0719 12.2005H15.0812" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M11.0042 12.2005H11.0135" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6.92807 12.2005H6.93733" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M15.0719 15.7632H15.0812" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M11.0042 15.7632H11.0135" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6.92807 15.7632H6.93733" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.7067 1.83333V4.84988" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.30171 1.83333V4.84988" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.8851 3.28093H7.12338C4.43142 3.28093 2.75 4.78054 2.75 7.53704V15.8325C2.75 18.6324 4.43142 20.1667 7.12338 20.1667H14.8766C17.577 20.1667 19.25 18.6584 19.25 15.9019V7.53704C19.2585 4.78054 17.5855 3.28093 14.8851 3.28093Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                                                                    
+                                </span>
+                                <span class="detail-item-title ms-2">Speed per Day:</span>
+                                <span class="hdetail-item-txt our speed-split ms-2"></span>
+                            </div>
+                            <div class="d-flex align-items-center avg_time">
+                                <span class="badge bg-primary">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5835 3C16.6238 3.12162 17.6736 4.65503 17.5277 6.50854C17.4051 7.79481 16.2054 8.96724 14.131 10.9589C13.4636 11.6536 13.4636 12.3464 14.131 13.0421C16.2054 15.0337 17.4051 16.2052 17.5277 17.4915C17.6736 19.345 16.6238 20.8784 14.5835 21H9.73318C7.69188 20.8784 6.64205 19.345 6.78897 17.4915C6.91156 16.2052 8.11124 15.0337 10.1856 13.0421C10.8521 12.3464 10.8531 11.6536 10.1846 10.9589C8.11124 8.96724 6.91156 7.79481 6.78897 6.50854C6.64205 4.65503 7.69188 3.12162 9.73318 3H14.5835Z" stroke="#F7FDFB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                                                                                                                      
+                                </span>    
+                                <span class="detail-item-title minute ms-2"> Average Time:</span>      
+                                <span class="detail-item-txt avg_txt ms-2">{{ service['average_time'] }}</span>
+                            </div>
+                        </div>
+
+                        <label class="detail-title mt-4">Service Description</label>
+                        <p class="description_txt detail-data details-split mt-2 mb-0 ps-2" id="service_detail">
+                            
+                        </p> 
+                        <div class="service-description-split d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if servicesText %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="well {% if site['rtl'] %} rtl-content {% endif %}">
+                    {{ servicesText }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<script>
+    const serviceByCate = {{serviceByCate | json_encode() }};
+    const serviceCategoryList = {{ serviceCategoryList | json_encode() }}
+ </script>

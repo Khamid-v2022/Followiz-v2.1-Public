@@ -1,0 +1,182 @@
+<div class="orders-page">
+    <div>
+        <h3 class="fw-bold page-title">Order History</h3>
+        <p class="page-description">View and manage your order history</p>
+    </div>
+    <div class="mt-3 mb-4">
+        <div class="row gx-2">
+            <div class="col-lg-2 col-md-5 col-sm-12 mt-2">
+                <input type="hidden" id="this_page_url" value="{{ page['url'] }}">
+                <select class="form-control form-select" id="sel_status" value="{{ status }}">
+                    <option value="all" {% if 'all' == status %} selected {% endif %} data-href="{{ page['url'] }}">
+                        {{ lang('orders.all') }}
+                    </option>  
+                    <option value="pending" {% if 'pending' == status %} selected {% endif %} data-href="{{ page['url'] }}/pending">
+                        {{ lang('orders.status.pending') }}
+                    </option>
+                    <option value="inprogress" {% if 'inprogress' == status %} selected {% endif %} data-href="{{ page['url'] }}/inprogress">
+                        {{ lang('orders.status.inprogress') }}
+                    </option>
+                    <option value="completed" {% if 'completed' == status %} selected {% endif %} data-href="{{ page['url'] }}/completed">
+                        {{ lang('orders.status.completed') }}
+                    </option>
+                    <option value="partial" {% if 'partial' == status %} selected {% endif %} data-href="{{ page['url'] }}/partial">
+                        {{ lang('orders.status.partial') }}
+                    </option>
+                    <option value="processing" {% if 'processing' == status %} selected {% endif %} data-href="{{ page['url'] }}/processing">
+                        {{ lang('orders.status.processing') }}
+                    </option>
+                    <option value="canceled" {% if 'canceled' == status %} selected {% endif %} data-href="{{ page['url'] }}/canceled">
+                        {{ lang('orders.status.canceled') }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-7 col-sm-12 mt-2">
+                <form action="{{ page['url'] }}" method="get" id="history-search">
+                    <div class="input-group-custom">
+                        <input type="text" name="search" class="form-control" value="{{ search }}" placeholder="Search Order ID/Link (separate terms by comma)" >
+                        <span class="input-group-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card table-responsive services-table-card mt-3">
+        <table class="table mt-3 {% if site['rtl'] %} rtl-table {% endif %}" style="margin-bottom: 11px;">
+            <thead>
+                <tr>
+                    <th class="no-border pb-0"></th>
+                    <th colspan="5" class="name no-border pb-0">Service Name</th>
+                    <th class="name no-border pb-0">Status</th>
+                    {% if task == 1 %}<th class="no-border pb-0"></th>{% endif %}
+                </tr>
+                <tr>
+                    <th class="color-gray-400 pt-0 text-nowrap name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="copy-all-btn">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9712 5.97214C13.0908 5.97214 13.1878 5.87514 13.1878 5.75547C13.1878 3.79714 11.9295 2.48047 10.0462 2.48047H5.2378C3.35447 2.48047 2.0878 3.79714 2.0878 5.75547V10.2888C2.0878 12.2555 3.35447 13.5721 5.2378 13.5721H5.3128C5.45087 13.5721 5.5628 13.4602 5.5628 13.3221V10.5055C5.5628 7.88047 7.4128 5.97214 9.95449 5.97214H12.9712Z"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 7.2207H9.95708C8.07623 7.2207 6.8129 8.5407 6.8129 10.504V15.0365C6.8129 16.9999 8.07623 18.3199 9.95708 18.3199H14.7671C16.6479 18.3199 17.9121 16.9999 17.9121 15.0365V10.504C17.9121 8.5407 16.6487 7.2207 14.7679 7.2207Z"/>
+                        </svg>
+                        <span class="ms-2">ID</span>
+                    </th>
+                    <th class="color-gray-400 pt-0">{{ lang('orders.link') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('orders.quantity') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('orders.startcount') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('orders.remains') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('orders.charge') }}</th>
+                    <th class="color-gray-400 pt-0">{{ lang('orders.date') }}</th>
+                    {% if task == 1 %}<th class="color-gray-400 pt-0">Action</th>{% endif %} 
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orderList %}
+                <tr class="trow trow-{{ order['id'] }}" data-service_id="{{ order['id'] }}">
+                    <td rowspan="2" class="text-nowrap name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="copy-btn me-2">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9712 5.97214C13.0908 5.97214 13.1878 5.87514 13.1878 5.75547C13.1878 3.79714 11.9295 2.48047 10.0462 2.48047H5.2378C3.35447 2.48047 2.0878 3.79714 2.0878 5.75547V10.2888C2.0878 12.2555 3.35447 13.5721 5.2378 13.5721H5.3128C5.45087 13.5721 5.5628 13.4602 5.5628 13.3221V10.5055C5.5628 7.88047 7.4128 5.97214 9.95449 5.97214H12.9712Z" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 7.2207H9.95708C8.07623 7.2207 6.8129 8.5407 6.8129 10.504V15.0365C6.8129 16.9999 8.07623 18.3199 9.95708 18.3199H14.7671C16.6479 18.3199 17.9121 16.9999 17.9121 15.0365V10.504C17.9121 8.5407 16.6487 7.2207 14.7679 7.2207Z" />
+                        </svg>
+                        <span class="fas fa-star favorite-btn me-2 d-none" data-service_id="{{ order['service_id'] }}" data-service-category="{{  order['category'] }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Favorite"></span>
+                        <span class="">{{ order['id'] }}</span>
+                    </td>
+                    <td colspan="5" class="no-border name pb-0">
+                        <a href="javascript:;" class="order-again-btn text-decoration-none" data-service_id="{{ order['service_id'] }}" data-service-category="{{  order['category'] }}" data-service="{{ order['service'] }}">{{ order['service_id'] }} - {{ order['service'] }}</a>
+                    </td>
+                    <td class="no-border pb-0">
+                        {% if order['status'] == 'In progress' %}
+                        <span class="badge order-status Inprogress">{{ order['status'] }}</span>
+                        {% else %}
+                        <span class="badge order-status {{ order['status'] }}">{{ order['status'] }} {% if order['cancelReason'] %}<i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" style="margin-left:5px;" title="{{ order['cancelReason'] }}"></i>{% endif %}</span>
+                        {% endif %}
+                    </td>
+                    
+                    {% if task == 1 %}
+                    <td rowspan="2" class="">
+                        <div class="order-actions">
+                            {% if order['refilling'] == 1 %}
+                                {{ lang('orders.refilling') }}
+                            {% else %}
+                                {% if order['refill'] == 1 %}
+                                    <a href="{{ page['url'] }}/{{ order['id'] }}/refill" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ lang('orders.button.refill') }}"><i class="fa-solid fa-arrows-rotate color-gray-900"></i></a>
+                                {% endif %}
+                                {% if order['refillAvailableTime'] %}
+                          			<div data-bs-toggle="tooltip" data-bs-placement="top" title="{{ order['refillAvailableTime'] }}">
+                                   		<button class="btn btn-sm btn-primary disabled">
+                                          <i class="fa-solid fa-arrows-rotate color-gray-900"></i>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                                {% if order['cancel'] == 1 %}
+                                    <a href="{{ page['url'] }}/{{ order['id'] }}/cancel" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ lang('orders.button.cancel') }}"><i class="fa-solid fa-xmark color-gray-900"></i></a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr class="trow trow-{{ order['id'] }}"  data-service_id="{{ order['id'] }}">
+                    <td class="link-field"><a href="https://followiz.com/anon.ws?r={{ order['link'] }}" class="text-decoration-none color-gray-400" target="_blank">{{ order['link'] }}</a></td>
+                    <td class="">{{ order['quantity'] }}</td>
+                    <td class="">{{ order['start_count'] }}</td>
+                    <td class="">{{ order['remains'] }}</td>
+                    <td class="">{{ order['charge'] }}</td>
+                    <td class="">{{ order['date'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="mx-4">
+            {% if pagination['count'] > 100 %}
+                {% if searchList %}
+                    {% set params = {} %}
+                    {% for search in searchList %}
+                        {% set params = params | merge([search['name'] ~ '=' ~ search['value']]) %}
+                    {% endfor %}
+                    {% set params = '?' ~ params|join('&') %}
+                {% endif %}
+                <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                    {% if pagination['current'] != 1 %}
+                    <li>
+                        <a href="{{ page['url'] }}/{{ status }}/{{ pagination['last'] }}{{ params }}" aria-label="Previous">
+                            <span aria-hidden="true">Previous</span>
+                        </a>
+                    </li>
+                    {% endif %}
+            
+                    {% set r, l = 1, 1 %}
+            
+                    {% if pagination['current'] == 1 %}
+                        {% set r = 1 %}
+                    {% endif %}
+            
+                    {% if pagination['current'] == 2 %}
+                        {% set r = 1 %}
+                    {% endif %}
+            
+                    {% if pagination['current'] >= pagination['pages'] %}
+                        {% set l = 1 %}
+                    {% endif %}
+            
+                    {% for i in 1..ceil(pagination['pages']) %}
+                        {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                            <li{% if i == pagination['current'] %} class="active"{% endif %}>
+                                <a href="{{ page['url'] }}/{{ status }}/{{i}}{{ params }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+            
+                    {% if pagination['current'] < pagination['pages'] %}
+                        <li>
+                            <a href="{{ page['url'] }}/{{ status }}/{{ pagination['next'] }}{{ params }}" aria-label="Next">
+                                <span aria-hidden="true">Next</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>

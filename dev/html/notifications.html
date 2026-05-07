@@ -1,0 +1,96 @@
+<div class="account-page">
+    <div>
+        <h3 class="fw-bold page-title">My Account</h3>
+        <p class="page-description">Manage your account settings here</p>
+    </div>
+
+    <div class="mt-5 d-flex">
+        <a href="/account" class="custom-tag neworder-btn text-decoration-none">General</a>
+        <a href="javascript:;" class="custom-tag text-decoration-none active">Notifications</a>
+    </div>
+
+    <div class="row mt-4">
+
+        <div class="col-lg-7 col-md-9 col-sm-12">
+            {% if confirmEmail.available %}
+            <div>
+                <div id="confirmEmailSuccess" class="alert alert-dismissible alert-success general-success-alert hidden{% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                <div id="confirmEmailError" class="alert alert-dismissible alert-danger hidden{% if site['rtl'] %} rtl-alert {% endif %}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <!--- Error text --->
+                </div>
+                <h5>{{ lang('notifications.email_confirmation.title') }}</h5>
+                <p>{{ lang('notifications.email_confirmation.description') }}</p>
+                <form action="{{ confirmEmail.url }}" method="post">
+                    <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                    <button type="submit" class="btn btn-primary btn-md btn-block">{{ lang('notifications.email_confirmation.confirm') }}</button>
+                </form>
+            </div>
+            {% endif %}
+
+            {% if connectTelegram.available %}
+                <div class="">
+                    <h5>{{ lang('notifications.telegram.title') }}</h5>
+                    <form action="{{ connectTelegram.url }}" method="post">
+                        <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                        <button type="submit" class="btn btn-primary btn-block">{{ lang('notifications.telegram.button') }}</button>
+                    </form>
+                </div>
+            {% endif %}
+
+            {% if userNotifications['notifications']|length > 0 %}
+                <div class="card">
+                    <div class="card-body mt-1">
+                        {% if error %}
+                            <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ errorMessage }}
+                            </div>
+                        {% endif %}
+                        {% if success %}
+                            <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ successText }}
+                            </div>
+                        {% endif %}
+
+                        <form action="" method="post">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ lang('notifications.title') }}</th>
+                                        {% for sender in userNotifications['senders'] %}
+                                        <th>{{ sender.name }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for notification in userNotifications['notifications'] %}
+                                    <tr>
+                                        <td>{{ notification['name'] }}</td>
+                                        {% for sender in userNotifications['senders'] %}
+                                        <td>
+                                            <span {% if sender['disabled'] %}data-toggle="tooltip" data-placement="top" title="{{ sender['tooltip'] }}"{% endif %}>
+                                                <input type="hidden" name="NotificationsForm[notifications][{{ sender['code'] }}][{{ notification['id'] }}]" value="0"/>
+                                                <input type="checkbox" class="form-check-input" name="NotificationsForm[notifications][{{ sender['code'] }}][{{ notification['id'] }}]" {% if notification['statuses'][sender['code']] %}checked="checked"{% endif %} {% if sender['disabled'] %}disabled{% endif %} value="1"/>
+                                            </span>
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                            {% if saveButtonAvailable %}
+                                <button type="submit" class="btn btn-primary btn-block">{{ lang('notifications.save') }}</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+

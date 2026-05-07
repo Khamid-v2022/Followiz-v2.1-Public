@@ -1,0 +1,26 @@
+<div class="signin-page">
+    <div class="">
+        <div class="card mx-auto simple-page-content">
+            <div class="card-body">
+                <form  {% if site['rtl'] %} class="rtl-form" {% endif %} method="post" action="{{ page['url'] }}">
+                    <div class="mb-4">
+                        <a href="/" class="d-flex align-items-center text-decoration-none text-white">
+                            <img src="https://followizaddons.com/new-design/icons/logo.png" alt="Followiz" title="" class="logo-img me-2">
+                            <span class="brand-txt">Follo<span class="color-primary">wiz</span></span>
+                        </a>
+                    </div>
+                    <h6 style="font-size: 16px;" class="card-title mb-4">{{ lang('2fa.title') }}</h6>
+                    <p>{{ lang('2fa.sent') }}</p>
+
+                    
+                    <div class="form-group">
+                        <input type="text" autocomplete="off" class="form-control" id="code" name="code" placeholder="{{ lang('2fa.code') }}">
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                    <button type="submit" class="btn btn-primary w-100 my-3">{{ lang('2fa.continue') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

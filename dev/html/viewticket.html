@@ -1,0 +1,144 @@
+<div class="ticket-view-page">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card" id="chat_container">
+                <div class="card-body">
+                    <div class="ticket-title mb-4">Ticket: #{{ ticket['id'] }} - {{ ticket['thema'] }}</div>
+
+                    <div class="ticket-content">
+                        {% set lastSupportMsg = '' %}
+                        {% set lastSupportMsgId = 0 %}
+                        {% if messageList %}
+                            {% for message in messageList %}
+
+                                {% if message['support'] == 0 %}
+                                    <!-- set Null if last message is not agent message to show text-area -->
+                                    {% set lastSupportMsg = '' %}
+                                    {% set lastSupportMsgId = 0 %}
+                                    <div class="row ticket-message-block ticket-message-left ticket-ask-message" data-msg_id="{{ message['id'] }}">
+                                        <div class="col-md-10">
+                                            <div class="viewticket-client">
+                                                <div class="viewticket-logo-wrapper">
+                                                    <i class="fa-solid fa-user viewticket-logo"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="ticket-message">
+                                                        <div class="message" id="msg_container_{{ message['id'] }}">{{ message['message'] }}</div>
+                                                        {% if message['files'] %}
+                                                            <div style="margin-top: 16px;">
+                                                                {% for file in message['files'] %}
+                                                                  <div>
+                                                                    <a href="{{ file['url'] }}" title="{{ file['name'] }}" target="_blank" rel="noopener noreferrer nofollow">{{ sliceUrl(file['name']) }}</a>
+                                                                  </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    
+                                                    <div class="info">
+                                                        <i class="ask-time">{{ message['time'] }}</i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                {% else %}
+                                    {% set lastSupportMsg = message['message'] %}
+                                    {% set lastSupportMsgId = message['id'] %}
+                                    <div class="row ticket-message-block ticket-message-right ticket-support-message" data-msg_id="{{ message['id'] }}" >
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-10">
+                                            <div class="viewticket-followiz">
+                                                <div>
+                                                    <div class="ticket-message">
+                                                        <div class="message" id="msg_container_{{ message['id'] }}">{{ message['message'] }}</div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <i class="reply-time me-4">{{ message['time'] }}</i>
+                                                        <span class="ticketReview msg_{{ message['id'] }}"
+                                                            data_msg_id="{{ message['id'] }}" data_ser_key="{{ ticket['id'] }}" >
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="viewticket-logo-wrapper">
+                                                    <img class="viewticket-logo" src="https://followizaddons.com/followiz-icons/100x100-followiz-logo.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="send-message-wrapper pt-3">
+                        {% if canAddMessage %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form {% if site['rtl'] %} class="rtl-form"{% endif %} method="post" action="/viewticket/{{ ticket['id'] }}" id="send_message_form" data-ticket_id="{{ ticket['id'] }}">
+                                        {% if error %}
+                                            <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                {{ errorMessage }}
+                                            </div>
+                                        {% endif %}
+                                        <div class="alert alert-dismissible alert-danger d-none {% if site['rtl'] %} rtl-alert {% endif %}" id="message_error_wrapper">
+                                            <button type="button" class="close close-alert-btn">&times;</button>
+                                            <div>Message can not be empty</div>
+                                        </div>
+                                        <div class="form-group">
+                                            {% if lastSupportMsgId != 0 %}
+                                            <div class="last-ticket-rating-wrapper text-center d-none">
+                                                <p class="notify-message mb-0">Please take a moment to rate our previous agent's reply.</p>
+                                                <span class="lastMessageReview msg_{{ lastSupportMsgId }}"
+                                                    data_msg_id="{{ lastSupportMsgId }}" >
+                                                </span>
+                                                <p><small>After rating, you will be able to respond to the ticket.</small></p>
+                                            </div>
+                                            <textarea id="message" rows="4" class="form-control d-none" name="TicketMessageForm[message]" placeholder="Start Typing"></textarea>
+                                            {% else %}
+                                            <textarea id="message" rows="4" class="form-control" name="TicketMessageForm[message]" placeholder="Start Typing"></textarea>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                          <div
+                                            class="tickets-uploader"
+                                            data-rtl="{% if site['rtl'] %}true{% else %}false{% endif %}"
+                                            data-lang-button-attach="{{ lang('tickets.button.attach') }}"
+                                            data-lang-file-format-incorrect="{{ lang('tickets.error.file_format.incorrect') }}"
+                                            data-lang-file-size-incorrect="{{ lang('tickets.error.file_size.incorrect') }}"
+                                          ></div>
+                                        </div>
+
+                                        <input type="hidden" name="_csrf" value="{{csrftoken}}">
+                                        {% if lastSupportMsgId != 0 %}
+                                        <button type="button" id="send_message_btn" class="btn btn-primary mt-2 w-100" disabled>SEND MESSAGE</button>
+                                        {% else %}
+                                        <button type="button" id="send_message_btn" class="btn btn-primary mt-2 w-100">SEND MESSAGE</button>
+                                        {% endif %}
+                                    </form>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label" style="width:100%;font-size:16px;margin-top:20px;margin-bottom:20px;text-align:center;">This ticket has been closed.<br>Please open up a new ticket if you still face issues.</a></label>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>		
+</div>
+<script type="text/javascript" src="https://cdn.mypanel.link/global/8te9i1287ajnfn9z.js"></script>
+<script>
+    const homeURL =  location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')+'/';
+    const currentURL = window.location.href;
+    // on submit ticket message redirect to ticket page
+    if(currentURL.includes('viewticket') ){
+        window.location.href = homeURL + "tickets";
+    }
+ </script>

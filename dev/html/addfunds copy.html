@@ -1,0 +1,406 @@
+<div class="deposit-page">
+    <div class="">
+        <h3 class="fw-bold page-title">Deposit & Funds Management</h3>
+        <p class="page-description">Easily manage and track your deposits and funds efficiently.</p>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-lg-6 col-md-12 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">Select your preferred payment option.</h6>
+                    <div class="mt-3">
+                        <!-- VIP alert -->
+                        {% if user['spent'] >= 5000 %}
+                        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            <div class="alert-content d-flex align-items-center">
+                                <img src="https://followizaddons.com/new-design/icons/diamond.svg">
+                                <div class="ms-3">
+                                    As a VIP member, you now have exclusive access to the Stripe payment method. Simply submit a ticket to unlock this payment option!
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if success %}
+                            <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                                <div class="alert-content">
+                                    {{ successText }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if error %}
+                            <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                                <div class="alert-content">
+                                    {{ errorText }}
+                                </div>    
+                            </div>                       
+                        {% endif %}
+                        
+                        {% if paymentsList %}
+                        <div class="payment-options row gx-2">
+                            {% for payment in paymentsList %}
+                                {% if payment['name'] == 'Perfect Money USD' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item active" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/perfect_money.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'Payeer' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/payeer.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'Stripe / Credit Card' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/stripe.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'Stripe' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/stripe.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'PayPal Invoice' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/payeer.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'PayPal' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/payeer.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'Coinbase' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/coinbase.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% elseif payment['name'] == 'Coinpayments' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/coinpayment.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+								
+								{% elseif payment['name'] == 'Cryptomus' %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/cryptomus.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+								
+                                {% else %}
+                                <div class="col-sm-4 col-6">
+                                    <div class="payment-item" data-payment-name="{{ payment['name'] }}" data-payment-id="{{ payment['id'] }}">
+                                        <img class="payment-option-icon" src="https://followizaddons.com/new-design/icons/payment/perfect_money.png"></img>
+                                        <label class="payment-label">{{ payment['name'] }}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="d-none">
+                            <div class="perfect_money_note">
+                                <p class="estimated-time">1 Minute</p>
+                                <p class="payment-note-detail">
+                                    Perfect Money USD Payments Only
+                                </p>
+                                <p class="minimum">$5</p>
+                            </div>
+                            <div class="stripe_note">
+                                <p class="estimated-time">5 Minute</p>
+                                <p class="payment-note-detail">
+                                    Credit Card Payments
+                                </p>
+                                <p class="minimum">$10</p>
+                            </div>
+                            <div class="paypal_invoice_note">
+                                <p class="estimated-time">15 Minute</p>
+                                <p class="payment-note-detail"></p>
+                                <p class="minimum">$20</p>
+                            </div>
+                            <div class="paypal_note">
+                                <p class="estimated-time">1 Minute</p>
+                                <p class="payment-note-detail"></p>
+                                <p class="minimum">$5</p>
+                            </div>
+                            <div class="skrill_note">
+                                <p class="estimated-time">5 Minute</p>
+                                <p class="payment-note-detail"></p>
+                                <p class="minimum">$5</p>
+                            </div>
+                            <div class="coinpayment_note">
+                                <p class="estimated-time">30 Minute</p>
+                                <p class="payment-note-detail">
+                                    Send the correct Cryptocurrency amount; do not send the equivalent USD amount.
+                                </p>
+                                <p class="minimum">$20</p>
+                            </div>
+                            <div class="coinbase_note">
+                                <p class="estimated-time">30 Minute</p>
+                                <p class="payment-note-detail">
+									Send the correct Cryptocurrency amount; do not send the equivalent USD amount.
+                                </p>
+                                <p class="minimum">$1</p>
+                            </div>
+							<div class="cryptomus_note">
+                                <p class="estimated-time">30 Minute</p>
+                                <p class="payment-note-detail">
+									Send the correct Cryptocurrency amount; do not send the equivalent USD amount.
+                                </p>
+                                <p class="minimum">$1</p>
+                            </div>
+                            <div class="payeer_note">
+                                <p class="estimated-time">5 Minute</p>
+                                <p class="payment-note-detail"></p>
+                                <p class="minimum">$5</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4 payment-detail">
+                            <div class="col-md-6 d-flex mt-2">
+                                <div class="payment-detail-icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6199 19.9401C22.3902 20.3257 21.9815 20.5407 21.5614 20.5407C21.3481 20.5407 21.1298 20.4849 20.9329 20.3684L15.3682 17.0486C14.9957 16.8271 14.7676 16.4234 14.7676 15.9918V8.83364C14.7676 8.15426 15.319 7.60287 15.9984 7.60287C16.6777 7.60287 17.2291 8.15426 17.2291 8.83364V15.2927L22.1932 18.2531C22.7774 18.6027 22.9678 19.3575 22.6199 19.9401ZM16 0C4.18626 0 0 4.18626 0 16C0 27.8121 4.18626 32 16 32C27.8137 32 32 27.8121 32 16C32 4.18626 27.8137 0 16 0Z" fill="#5FDEAE"/>
+                                    </svg>
+                                </div>
+                                <div class="ms-2">
+                                    <label class="payment-des-item-lable">Estimated Time:</label><br>
+                                    <span class="payment-des-item-txt estimated-time">1 Minute</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex mt-2">
+                                <div class="payment-detail-icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 30 32" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8477 15.7H14.2203C13.5321 15.7 12.9736 15.1414 12.9736 14.4533C12.9736 13.7651 13.5321 13.2066 14.2203 13.2066H20.8477C21.5359 13.2066 22.0944 13.7651 22.0944 14.4533C22.0944 15.1414 21.5359 15.7 20.8477 15.7ZM20.8477 23.7137H14.2203C13.5321 23.7137 12.9736 23.1552 12.9736 22.467C12.9736 21.7788 13.5321 21.2203 14.2203 21.2203H20.8477C21.5359 21.2203 22.0944 21.7788 22.0944 22.467C22.0944 23.1552 21.5359 23.7137 20.8477 23.7137ZM9.21352 15.7H8.74477C8.05659 15.7 7.49808 15.1414 7.49808 14.4533C7.49808 13.7651 8.05659 13.2066 8.74477 13.2066H9.21352C9.90169 13.2066 10.4602 13.7651 10.4602 14.4533C10.4602 15.1414 9.90169 15.7 9.21352 15.7ZM9.21352 23.7137H8.74477C8.05659 23.7137 7.49808 23.1552 7.49808 22.467C7.49808 21.7788 8.05659 21.2203 8.74477 21.2203H9.21352C9.90169 21.2203 10.4602 21.7788 10.4602 22.467C10.4602 23.1552 9.90169 23.7137 9.21352 23.7137ZM27.0446 4.90697C25.9109 3.77165 24.3168 3.1134 22.4285 2.89897V1.24669C22.4285 0.558516 21.87 0 21.1818 0C20.4936 0 19.9351 0.558516 19.9351 1.24669V5.52865C19.9351 6.02899 20.2343 6.45452 20.6599 6.65399C20.5003 6.72713 20.3274 6.77534 20.1379 6.77534C19.4497 6.77534 18.8912 6.21682 18.8912 5.52865V3.11173C18.8912 2.92812 18.7423 2.77928 18.5588 2.77928H10.3422V1.24669C10.3422 0.558516 9.78367 0 9.0955 0C8.40733 0 7.84881 0.558516 7.84881 1.24669V5.52865C7.84881 6.02899 8.14802 6.45452 8.57355 6.65399C8.41398 6.72713 8.2411 6.77534 8.05161 6.77534C7.36344 6.77534 6.80492 6.21682 6.80492 5.52865V3.29102C6.80492 3.088 6.62427 2.93195 6.42475 2.96956C2.67928 3.67565 0.5 6.39558 0.5 10.557V24.096C0.5 29.0462 3.47875 32 8.46883 32H21.1253C26.112 32 29.0908 29.0877 29.0908 24.209V10.5603C29.0974 8.21152 28.391 6.25671 27.0446 4.90697Z" fill="#5FDEAE"/>
+                                    </svg>
+                                </div>
+                                <div class="ms-2">
+                                    <span class="payment-des-item-lable ">Note: </span>
+                                    <span class="payment-des-item-txt payment-note-detail">For Perfect Money USD Payments Only</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 32px;">
+                            <form {% if site['rtl'] %} class="rtl-form"{% endif %} method="post" action="">             
+                                <div class="form-group hidden">
+                                    <label for="method" class="control-label">{{ lang('addfunds.method') }}</label>
+                                    <select class="form-control" id="method" name="AddFoundsForm[type]" id="order_type">
+                                        {% for payment in paymentsList %}
+                                        <option value="{{ payment['id'] }}"{% if currentPayment == payment['id'] %} selected{% endif %}>{{ payment['name'] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="control-label">{{ lang('addfunds.amount') }}</label>
+                                    <input type="number" class="form-control mt-2"  name="AddFoundsForm[amount]" id="amount" placeholder="Minimum: $5">
+                                </div>
+                
+                                {% if site['cpf_field'] %}
+                                    <div class="form-group">
+                                        <label for="cpf" class="control-label">{{ lang('addfunds.cpf') }}</label>
+                                        <input type="text" class="form-control"  name="AddFoundsForm[cpf]" id="cpf">
+                                    </div>
+                                {% endif %}
+                                <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                                <button type="submit" class="btn btn-primary w-100 mt-4">Continue</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if addfunds %}
+        <div class="col-lg-6 col-md-12 mb-5">
+            <div class="py-3 faq-wrapper">
+                <div class="note">
+                    <label class="color-primary">Frequently Asked Questions</label>
+                </div>
+                <div class="faq-section mt-3">
+                    {{ addfunds }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div> 
+
+    <!-- Deposit history -->
+    {% if paymentList %}
+        <div class="">
+            <!--<h6 class="color-gray-100">Deposit History</h6>
+            <p class="" style="font-size: 14px;">View your deposit histories.</p>-->
+            <!-- VIP alert -->
+            <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}" style="max-width: 600px;">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                <div class="alert-content d-flex align-items-center">
+                    <img src="https://followizaddons.com/new-design/icons/diamond.svg">
+                    <div class="ms-3">
+                        Unlocking your VIP Status comes with the benefit of downloading invoices for your transactions. To further personalize your invoices with your business details, visit the <a href="https://followiz.com/account">account page</a> and easily update your information.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card deposit-history-table-card">
+            <div class="card-body">
+                <div class="">
+                    <label class="fw-semibold color-gray-400 d-flex align-items-center">
+                        <img src="https://followizaddons.com/new-design/icons/document.png">                 
+                        <span class="card-title ms-1">Payment History</span>
+                    </label>
+                </div>
+            </div>
+            <div class="d-none">
+                <input type="hidden" id="other_name">
+                <input type="hidden" id="other_phone">
+                <input type="hidden" id="other_address">
+                <input type="hidden" id="other_city">
+                <input type="hidden" id="other_country">
+                <input type="hidden" id="other_province">
+                <input type="hidden" id="other_postal">
+                <pre style="display: none;" id="other_detail"></pre>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{{ lang('addfunds.id') }}</th>
+                            <th>{{ lang('addfunds.date') }}</th>
+                            <th>{{ lang('addfunds.method') }}</th>
+                            <th>{{ lang('addfunds.amount') }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in paymentList %}
+                        <tr>
+                            <td>{{ payment['id'] }}</td>
+                            <td><span class="nowrap">{{ payment['date'] }}</span></td>
+                            <td>
+                                {% if payment['method'] == 'Perfect Money USD' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/perfect_money.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'Payeer' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/payeer.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'Stripe / Credit Card' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/stripe.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'Stripe' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/stripe.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'PayPal Invoice' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/payeer.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'PayPal' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/payeer.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'Coinbase' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/coinbase.png"></img>
+                                {% endif %}
+								{% if payment['method'] == 'Cryptomus' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/cryptomus.png"></img>
+                                {% endif %}
+                                {% if payment['method'] == 'Coinpayments' %}
+                                    <img class="payment-option-icon-sm" src="https://followizaddons.com/new-design/icons/payment/coinpayment.png"></img>
+                                {% endif %}
+                                
+                                {{ payment['method'] }}
+                            </td>
+                            <td>
+                                {% if payment['original_amount'] %}
+                                    <span data-bs-toggle="tooltip" data-bs-placement="left" title="{{ payment['original_amount'] }}&nbsp;{{ payment['original_currency'] }}">≈ {{ payment['amount'] }}</span>
+                                {% else %}
+                                    {{ payment['amount'] }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="invoice-download-btn text-decoration-none"  data-payment-id="{{ payment['id'] }}"
+                                    data-payment-date="{{ payment['date'] }}"
+                                    data-payment-method="{{ payment['method'] }}"
+                                    {% if payment["original_amount"] %}
+                                    data-payment-amount="{{ payment['original_amount'] }}"
+                                    {% else %}
+                                    data-payment-amount="{{ payment['amount'] }}"
+                                    {% endif %} >
+                                        Download
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if pagination['count'] > 50 %}
+            <div class="px-4">
+                <ul class="pagination {% if site['rtl'] %} rtl-pagination {% endif %}">
+                    {% if pagination['current'] != 1 %}
+                        <li>
+                            <a href="{{ page['url'] }}/{{ pagination['last'] }}" aria-label="Previous">
+                                Previous
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% set r, l = 1, 1 %}
+
+                    {% if pagination['current'] == 1 %}
+                        {% set r = 1 %}
+                    {% endif %}
+
+                    {% if pagination['current'] == 2 %}
+                        {% set r = 1 %}
+                    {% endif %}
+
+                    {% if pagination['current'] >= pagination['pages'] %}
+                        {% set l = 1 %}
+                    {% endif %}
+
+                    {% for i in 1..ceil(pagination['pages']) %}
+                        {% if i >= (pagination['current']-l) and i <= (pagination['current']+r) %}
+                            <li{% if i == pagination['current'] %} class="active"{% endif %}><a href="{{ page['url'] }}/{{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if pagination['current'] < pagination['pages'] %}
+                        <li>
+                            <a href="{{ page['url'] }}/{{ pagination['next'] }}" aria-label="Next">
+                                Next
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    const paymentList = {{ paymentList | json_encode }};
+</script>

@@ -1,0 +1,245 @@
+<div class="childpanel-page">
+    <div>
+        <h3 class="fw-bold page-title">Child Panel</h3>
+        <p class="page-description">If you got any questions how Child Panel works, open up a <a class="text-decoration-none" href="/tickets">ticket</a></p>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-xl-7 col-lg-12 mb-3">
+            <div class="card">
+                <div class="card-body mt-1" style="padding: 32px 24px">
+                    <h6>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.16812 2.08398C5.84024 2.08398 4.72912 2.55691 3.952 3.3904C3.17788 4.22066 2.76572 5.37541 2.76572 6.68908V7.28581H18.5983V6.68908C18.5983 5.37598 18.1884 4.22118 17.4153 3.39064C16.6391 2.55674 15.5279 2.08398 14.1967 2.08398H7.16812ZM5.92327 4.83463C5.57809 4.83463 5.29827 5.11446 5.29827 5.45963C5.29827 5.80481 5.57809 6.08463 5.92327 6.08463H5.96948C6.31466 6.08463 6.59448 5.80481 6.59448 5.45963C6.59448 5.11446 6.31466 4.83463 5.96948 4.83463H5.92327ZM7.99452 4.83463C7.64935 4.83463 7.36952 5.11446 7.36952 5.45963C7.36952 5.80481 7.64935 6.08463 7.99452 6.08463H8.04074C8.38592 6.08463 8.66576 5.80481 8.66576 5.45963C8.66576 5.11446 8.38592 4.83463 8.04074 4.83463H7.99452ZM10.0666 4.83463C9.72142 4.83463 9.44159 5.11446 9.44159 5.45963C9.44159 5.80481 9.72142 6.08463 10.0666 6.08463H10.1128C10.458 6.08463 10.7378 5.80481 10.7378 5.45963C10.7378 5.11446 10.458 4.83463 10.1128 4.83463H10.0666Z" fill="#5FDEAE"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.76572 13.3107V8.53516H18.5983V13.3107C18.5983 14.6238 18.1884 15.7787 17.4153 16.6092C16.6388 17.4432 15.5275 17.9159 14.1958 17.9159H7.16812C5.83687 17.9159 4.72552 17.4431 3.94907 16.6092C3.17575 15.7787 2.76572 14.6239 2.76572 13.3107ZM11.3069 11.43C11.3069 11.0847 11.0271 10.805 10.6819 10.805C10.3368 10.805 10.0569 11.0847 10.0569 11.43V14.5775C10.0569 14.9227 10.3368 15.2025 10.6819 15.2025C11.0271 15.2025 11.3069 14.9227 11.3069 14.5775V11.43ZM8.55142 12.6106C8.55142 12.2654 8.27162 11.9856 7.92644 11.9856C7.58127 11.9856 7.30144 12.2654 7.30144 12.6106V14.5776C7.30144 14.9227 7.58127 15.2026 7.92644 15.2026C8.27162 15.2026 8.55142 14.9227 8.55142 14.5776V12.6106ZM14.0632 13.6537C14.0632 13.3086 13.7834 13.0287 13.4382 13.0287C13.093 13.0287 12.8132 13.3086 12.8132 13.6537V14.5772C12.8132 14.9224 13.093 15.2022 13.4382 15.2022C13.7834 15.2022 14.0632 14.9224 14.0632 14.5772V13.6537Z" fill="#5FDEAE"/>
+                        </svg>
+                        <span class="color-primary-400 ms-1">Create Child Account</span>
+                    </h6>
+                    <form action="{{ page['url'] }}" method="post">
+                        <div class="mt-4">
+                            <div class="col-xl-6 col-lg-7 col-md-9 col-sm-12">
+                                {% if errorForm %}
+                                    <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ errorFormMessage }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" id="domain" name="CreateOrderForm[domain]" value="{{ form['domain'] }}" placeholder="Domain name">
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="alert alert-warning">
+                                <div>{{ lang('child_panel.form.ns.info') }}</div>
+                                <ul style="padding-left: 20px" class="mb-0">
+                                    {% for ns in name_servers %}
+                                        <li>{{ ns }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <select id="createorderform-currency" class="form-control form-select" name="CreateOrderForm[currency]" aria-required="true" placeholder="Currency">
+                                        {% for currency in currenciesList %}
+                                            <option value="{{ currency['code'] }}" {% if form['currency'] == currency['code'] %} selected {% endif %}>
+                                                {{ currency['name'] }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <input type="text" id="createorderform-username" class="form-control" name="CreateOrderForm[username]" aria-required="true" value="{{ form['username'] }}" placeholder="Admin username" autocomplete="false">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <input type="password" id="createorderform-password" class="form-control" name="CreateOrderForm[password]" aria-required="true" placeholder="Admin password" autocomplete="false">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <input type="password" id="createorderform-password_confirm" class="form-control" name="CreateOrderForm[password_confirm]" aria-required="true" placeholder="Confirm admin Password">
+                                </div>
+                            </div>
+
+                            <div class="separator charge-separator mt-3 mb-4">
+                                <span><a class="color-primary text-decoration-none">Cost: </a><input type="text" class="color-gray-100" id="price" value="{{ price }}" readonly></span>
+                            </div>
+                            
+                            <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                            
+                        </div>
+
+                        <div class="py-3">
+                            <button type="submit" class="btn btn-primary w-100">{{ lang('child_panel.form.submit') }}</button>
+                        </div>
+                        <p>You can order your Child Panel monthly from here. Child Panel are non refundable once purchased.</p>
+                    </form>
+                </div>
+            </div>
+            
+            {% if childpanel %}
+            <div class="row justify-content-center api-panel">
+                <div class="card col-md-8 col-md-offset-2">
+                    <div class="card-body {% if site['rtl'] %} rtl-content {% endif %}">
+                        {{ childpanel }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if panelsList %}
+            <div class="mt-4">
+                <div class="card table-responsive">
+                    {% if error %}
+                    <div class="card-body">
+                        <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ errorMessage }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if success %}
+                    <div class="card-body">
+                        <div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ successMessage }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if renew %}
+                    <div class="card-body">
+                        <div class="alert alert-danger" role="alert">
+                            <a href="{{ renewUrl }}" class="btn btn-blue">{{ lang('child_panel.button.renew') }}</a>
+                            {{ renewMessage }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <table class="table mt-3 {% if site['rtl'] %} rtl-table {% endif %}">
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Expiry</th>
+                                <th class="col-md-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for panel in panelsList %}
+                                <tr>
+                                    <td>{{ panel['domain'] }}</td>
+                                    <td>{{ panel['status'] }}</td>
+                                    <td nowrap>{{ panel['created'] }}</td>
+                                    <td nowrap>{{ panel['expiry'] }}</td>
+                                    <td nowrap>
+                                        {% if panel['admin'] %}
+                                        <a href="{{ panel['admin_url'] }}" class="btn btn-xs btn-primary" target="_blank">{{ lang('child_panel.button.admin') }}</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-xl-5 col-md-12 mt-2 mb-4">
+            <div class="faq-wrapper">
+                <div class="note">
+                    <label class="color-primary-400 fw-semibold">Want to see what a child panel looks like from the admin side?</label>
+                </div>
+                <div class="mt-3" style="padding: 12px 16px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M23.2135 17.9032L22.2131 18.8985C21.9672 19.1427 21.6438 19.2674 21.3221 19.2674C20.9987 19.2674 20.6737 19.1427 20.4278 18.8952C19.9343 18.4 19.9377 17.6 20.4312 17.1082L21.4282 16.1145C22.9524 14.5903 22.9524 12.1061 21.4265 10.5768C19.8973 9.05095 17.4147 9.05095 15.8939 10.5752L14.8952 11.5722C14.4 12.064 13.6 12.064 13.1082 11.5688C12.6164 11.0754 12.6164 10.2754 13.1116 9.78358L14.1086 8.78989C16.6097 6.2821 20.6973 6.2821 23.2118 8.78989C25.7229 11.3044 25.7229 15.392 23.2135 17.9032ZM19.1882 14.688L14.6324 19.2354C14.3865 19.4813 14.0615 19.6042 13.7398 19.6042C13.4164 19.6042 13.0914 19.4813 12.8455 19.2337C12.3537 18.7385 12.3537 17.9385 12.8472 17.4467L17.4029 12.8977C17.8981 12.4059 18.6981 12.4076 19.1899 12.8994C19.6817 13.3945 19.6817 14.1945 19.1882 14.688ZM18.8968 22.2114L17.8981 23.2202C16.6383 24.4749 14.9844 25.0998 13.3356 25.0998C11.6867 25.1015 10.0413 24.4766 8.78821 23.2269C6.27705 20.7141 6.27705 16.6265 8.78484 14.1154L9.78526 13.1183C10.2804 12.6265 11.0804 12.6265 11.5722 13.1217C12.0657 13.6168 12.0623 14.4168 11.5688 14.9086L10.5701 15.9023C9.04926 17.4282 9.04926 19.9124 10.5718 21.44C12.0943 22.9592 14.5785 22.9541 16.1078 21.4383L17.1015 20.4345C17.5916 19.9394 18.3949 19.9343 18.8884 20.4244C19.3853 20.9162 19.3886 21.7162 18.8968 22.2114ZM23.104 0H8.89768C3.57558 0 0 3.744 0 9.31368V22.6863C0 28.256 3.57558 32 8.89768 32H23.1023C28.4244 32 32 28.256 32 22.6863V9.31368C32 3.744 28.4244 0 23.104 0Z" fill="#5FDEAE"/>
+                        </svg>
+                        <div class="child-panel-info-wrapper d-flex justify-content-between w-100 align-items-center ms-2">
+                            <div class="child-panel-info">
+                                <label>URL</label>
+                                <h6 class="copy-data">https://followizchild.com/admin</h6>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="copy-btn" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9711 5.57174C13.0908 5.57174 13.1878 5.47474 13.1878 5.35508C13.1878 3.39674 11.9295 2.08008 10.0461 2.08008H5.23777C3.35444 2.08008 2.08777 3.39674 2.08777 5.35508V9.88842C2.08777 11.8551 3.35444 13.1718 5.23777 13.1718H5.31277C5.45084 13.1718 5.56277 13.0598 5.56277 12.9218V10.1051C5.56277 7.48008 7.41277 5.57174 9.95446 5.57174H12.9711Z" fill="#525A66"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 6.82031H9.95705C8.0762 6.82031 6.81287 8.14031 6.81287 10.1037V14.6362C6.81287 16.5995 8.0762 17.9195 9.95705 17.9195H14.7671C16.6479 17.9195 17.912 16.5995 17.912 14.6362V10.1037C17.912 8.14031 16.6487 6.82031 14.7679 6.82031Z" fill="#525A66"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="32" viewBox="0 0 26 32" fill="none">
+                            <path d="M13 21.0783C19.9418 21.0783 25.8 22.2063 25.8 26.5583C25.8 30.912 19.9034 32 13 32C6.05979 32 0.199997 30.872 0.199997 26.5199C0.199997 22.1663 6.09661 21.0783 13 21.0783ZM13 0C17.7026 0 21.4704 3.76644 21.4704 8.46568C21.4704 13.1649 17.7026 16.933 13 16.933C8.29903 16.933 4.52962 13.1649 4.52962 8.46568C4.52962 3.76644 8.29903 0 13 0Z" fill="#5FDEAE"/>
+                        </svg>
+                        <div class="child-panel-info-wrapper d-flex justify-content-between w-100 align-items-center ms-2">
+                            <div class="child-panel-info">
+                                <label>Username</label>
+                                <h6 class="copy-data">followiz</h6>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="copy-btn" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9711 5.57174C13.0908 5.57174 13.1878 5.47474 13.1878 5.35508C13.1878 3.39674 11.9295 2.08008 10.0461 2.08008H5.23777C3.35444 2.08008 2.08777 3.39674 2.08777 5.35508V9.88842C2.08777 11.8551 3.35444 13.1718 5.23777 13.1718H5.31277C5.45084 13.1718 5.56277 13.0598 5.56277 12.9218V10.1051C5.56277 7.48008 7.41277 5.57174 9.95446 5.57174H12.9711Z" fill="#525A66"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 6.82031H9.95705C8.0762 6.82031 6.81287 8.14031 6.81287 10.1037V14.6362C6.81287 16.5995 8.0762 17.9195 9.95705 17.9195H14.7671C16.6479 17.9195 17.912 16.5995 17.912 14.6362V10.1037C17.912 8.14031 16.6487 6.82031 14.7679 6.82031Z" fill="#525A66"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 28 32" fill="none">
+                            <path d="M13.9659 0C17.754 0 21.1016 2.33933 22.3372 5.80459C22.4673 6.15446 22.4348 6.53613 22.2722 6.87009C22.1096 7.20406 21.8186 7.4585 21.4593 7.57141C20.7276 7.82427 19.9147 7.44419 19.6383 6.71265C18.8092 4.35742 16.5346 2.78302 13.9984 2.78302C10.6801 2.78302 7.99909 5.3927 7.9812 8.58762V10.7345L7.96169 10.7377H20.7699C24.5418 10.7377 27.6 13.7291 27.6 17.4185V25.3192C27.6 29.0086 24.5418 32 20.7699 32H7.22845C3.45816 32 0.399994 29.0086 0.399994 25.3192V17.4185C0.399994 14.3843 2.48105 11.8509 5.31323 11.0367L5.13601 11.0574V8.61942C5.16853 3.86602 9.1209 0 13.9659 0ZM13.9919 18.2121C13.2115 18.2121 12.5774 18.8323 12.5774 19.5957V23.1261C12.5774 23.9054 13.2115 24.5256 13.9919 24.5256C14.7885 24.5256 15.4226 23.9054 15.4226 23.1261V19.5957C15.4226 18.8323 14.7885 18.2121 13.9919 18.2121Z" fill="#5FDEAE"/>
+                        </svg>
+                        <div class="child-panel-info-wrapper d-flex justify-content-between w-100 align-items-center ms-2">
+                            <div class="child-panel-info">
+                                <label>Password</label>
+                                <h6 class="copy-data">12345678</h6>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="copy-btn" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9711 5.57174C13.0908 5.57174 13.1878 5.47474 13.1878 5.35508C13.1878 3.39674 11.9295 2.08008 10.0461 2.08008H5.23777C3.35444 2.08008 2.08777 3.39674 2.08777 5.35508V9.88842C2.08777 11.8551 3.35444 13.1718 5.23777 13.1718H5.31277C5.45084 13.1718 5.56277 13.0598 5.56277 12.9218V10.1051C5.56277 7.48008 7.41277 5.57174 9.95446 5.57174H12.9711Z" fill="#525A66"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 6.82031H9.95705C8.0762 6.82031 6.81287 8.14031 6.81287 10.1037V14.6362C6.81287 16.5995 8.0762 17.9195 9.95705 17.9195H14.7671C16.6479 17.9195 17.912 16.5995 17.912 14.6362V10.1037C17.912 8.14031 16.6487 6.82031 14.7679 6.82031Z" fill="#525A66"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="separator charge-separator mb-4"></div>
+                <div class="note gray-note">
+                    <label class="fw-semibold">Please update your Domain Nameservers</label>
+                </div>
+
+                <div class="mt-3" style="padding: 12px 16px;">
+                    <div class="child-panel-info-wrapper d-flex justify-content-between align-items-center mb-2">
+                        <a class="text-decoration-none copy-data">ns1.perfectdns.com</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="copy-btn" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9711 5.57174C13.0908 5.57174 13.1878 5.47474 13.1878 5.35508C13.1878 3.39674 11.9295 2.08008 10.0461 2.08008H5.23777C3.35444 2.08008 2.08777 3.39674 2.08777 5.35508V9.88842C2.08777 11.8551 3.35444 13.1718 5.23777 13.1718H5.31277C5.45084 13.1718 5.56277 13.0598 5.56277 12.9218V10.1051C5.56277 7.48008 7.41277 5.57174 9.95446 5.57174H12.9711Z" fill="#525A66"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 6.82031H9.95705C8.0762 6.82031 6.81287 8.14031 6.81287 10.1037V14.6362C6.81287 16.5995 8.0762 17.9195 9.95705 17.9195H14.7671C16.6479 17.9195 17.912 16.5995 17.912 14.6362V10.1037C17.912 8.14031 16.6487 6.82031 14.7679 6.82031Z" fill="#525A66"/>
+                        </svg>
+                    </div>
+                    <div class="child-panel-info-wrapper d-flex justify-content-between align-items-center">
+                        <a class="text-decoration-none copy-data">ns2.perfectdns.com</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="copy-btn" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9711 5.57174C13.0908 5.57174 13.1878 5.47474 13.1878 5.35508C13.1878 3.39674 11.9295 2.08008 10.0461 2.08008H5.23777C3.35444 2.08008 2.08777 3.39674 2.08777 5.35508V9.88842C2.08777 11.8551 3.35444 13.1718 5.23777 13.1718H5.31277C5.45084 13.1718 5.56277 13.0598 5.56277 12.9218V10.1051C5.56277 7.48008 7.41277 5.57174 9.95446 5.57174H12.9711Z" fill="#525A66"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7679 6.82031H9.95705C8.0762 6.82031 6.81287 8.14031 6.81287 10.1037V14.6362C6.81287 16.5995 8.0762 17.9195 9.95705 17.9195H14.7671C16.6479 17.9195 17.912 16.5995 17.912 14.6362V10.1037C17.912 8.14031 16.6487 6.82031 14.7679 6.82031Z" fill="#525A66"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-3 childpanel-descriptions">
+                    <ul>
+                        <li class="mb-2">Resell Followiz Services using your own Automated Panel.</li>
+                        <li class="mb-2">Build your business using our drag and drop editor.</li>
+                        <li class="mb-2">Set your own service prices and decide of your own profit.</li>
+                        <li class="mb-2">You can start selling today by integrating multiple payment methods into your panel.</li>
+                        <li>Import all of our services to your new panel with 1-click only.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well">
+                <form {% if site['rtl'] %} class="rtl-form"{% endif %} action="{{ page['url'] }}" method="post" id="order-form">
+                    {% if error %}
+                    <div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ errorMessage }}
+                    </div>
+                    {% endif %}
+        
+                    {% if 1 == success %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>{{lang('neworder.message.success')}}</h4>
+                        {{lang('neworder.id')}}: {{order['id']}}<br>
+                        {{lang('neworder.service')}}: {{order['service']}}
+                        <br>
+                        {{lang('neworder.link')}}: {{order['link']}}<br>
+                        {{lang('neworder.quantity')}}: {{order['quantity']}}<br>
+                        {{ lang('neworder.charge') }}: {% if order.converted %} <span data-toggle="tooltip" data-placement="top" title="{{ order.original_charge }}">{{ order['charge'] }}</span> {% else %} {{ order['charge'] }} {% endif %}<br>
+                        {{ lang('neworder.balance') }}: {% if order.converted %} <span data-toggle="tooltip" data-placement="top" title="{{ order.original_balance }}">{{ order['balance'] }}</span> {% else %} {{ order['balance'] }} {% endif %}<br>
+                    </div>
+                    {%endif%}
+        
+                    {% if 2 == success %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>{{lang('neworder.message.success')}}</h4>
+                        {{lang('neworder.subscription_id')}}: {{order['id']}}<br>
+                        {{lang('neworder.service')}}: {{order['service']}}
+                        <br>
+                        {{lang('neworder.username')}}: {{order['link']}}<br>
+                        {{lang('neworder.quantity')}}:
+                        {% if order['quantity_min'] == order['quantity_max'] %}
+                        {{order['quantity_max']}}
+                        {% else %}
+                        {{order['quantity_min']}}-{{order['quantity_max']}}
+                        {%endif%}
+                        <br>
+                        {{lang('neworder.new_posts')}}:
+                        {{order['posts']}}
+                        <br>
+                        {{lang('neworder.old_posts')}}:
+                        {{order['old_posts']}}
+                        <br>
+                        {{lang('neworder.delay')}}:
+                        {{order['delay']}}
+                        <br>
+                    </div>
+                    {%endif%}
+        
+                    {% if categories %}
+                    {% if services_search %}
+                        <div class="form-group">
+                            <div class="search-dropdown" id="new-order-search" style="position: relative;" data-lang-placeholder="{{ lang('general.search.placeholder') }}" {% if site['rtl'] %} data-dir="rtl" {% endif %}>
+                                <div class="input-wrapper" style="position: relative;">
+                                    <button style="position: absolute;top: 50%;transform: translateY(-50%);padding: 0px 2px;background: none;border: none;{% if site['rtl'] %}right: 12px;left: auto;{% else %}left: 12px;{% endif %}" type="button">
+                                        <span class="fas fa-search"></span>
+                                    </button>
+                                    <input type="text" class="form-control" id="template-input" value="" placeholder="{{ lang('general.search.placeholder') }}">
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="orderform-category" class="control-label">{{ lang('neworder.category') }}</label>
+                        <select
+                            class="form-control"
+                            id="orderform-category"
+                            name="OrderForm[category]"
+                            data-select="true"
+                            data-select-search="true"
+                            data-select-search-placeholder="{{ lang('general.search.placeholder') }}"
+                            {% if site['rtl'] %} data-select-dir="rtl" {% endif %}
+                        >
+                        {% for category in extended_categories %}
+                            <option
+                                value="{{ category.id }}"
+                                {% if category.icon %}
+                                data-icon="
+                                    {% if category.icon['icon_type'] == 'icon' %}
+                                    <span class='{{ category.icon['icon'] }}'></span>
+                                    {% elseif category.icon['icon_type'] == 'emoji' %}
+                                    <span>{{ category.icon['icon'] }}</span>
+                                    {% elseif category.icon['icon_type'] == 'image' %}
+                                    <img src='{{ category.icon['url'] }}' alt='{{ category.name }}' class='img-responsive btn-group-vertical'>
+                                    {% endif %}
+                                "
+                                {% endif %}
+                                {% if category.id == data['category'] %} selected {% endif %}
+                            >
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="orderform-service" class="control-label">{{ lang('neworder.service') }}</label>
+                        <select
+                            class="form-control"
+                            id="orderform-service"
+                            name="OrderForm[service]"
+                            data-select="true"
+                            data-select-search="true"
+                            data-select-search-placeholder="{{ lang('general.search.placeholder') }}"
+                            {% if site['rtl'] %} data-select-dir="rtl" {% endif %}
+                        ></select>
+                    </div>
+        
+                    <div class="form-group hidden fields" id="service_description">
+                        <label for="service_description" class="control-label">{{ lang('neworder.description') }}</label>
+                        <div class="panel-body border-solid border-rounded">
+                            {{service['description']}}
+                        </div>
+                    </div>
+        
+                    <div id="fields"></div>
+        
+                    <div class="form-group">
+                        <label for="charge" class="control-label">{{ lang('neworder.charge') }}</label>
+                        <input type="text" class="form-control" id="charge" value="{{ order['charge'] }}" readonly>
+                    </div>
+        
+                    {% if check_agreement %}
+                    <div class="form-group">
+                        <label class="control-label terms">
+                        <input type="checkbox"  name="OrderForm[termsofservice]" class="terms-accept-checkbox" value="1" id="terms" {{data['termsofservice'] ? 'checked' : ''}}> {{lang('signup.accept_terms_text')}}
+                        <a  href="{{ page_url('terms') }}" target="_blank">{{ lang('terms.signup_checkbox') }}</a>
+                        </label>
+                    </div>
+                    {%endif%}
+        
+                    <input type="hidden" name="_csrf" value="{{ csrftoken }}">
+                    <button type="submit" class="btn btn-primary">{{ lang('neworder.button') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% if newOrderText %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="well {% if site['rtl'] %} rtl-content {% endif %}">
+                {{ newOrderText }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+  
